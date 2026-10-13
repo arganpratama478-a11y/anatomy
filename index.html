@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>ULTIMATE COMPLETE</title>
+<style>
+*{margin:0;box-sizing:border-box}
+body{background:#080812;color:#fff;font-family:Inter,sans-serif;overflow:hidden}
+#top{position:fixed;top:0;width:100%;padding:12px;text-align:center;z-index:20;background:linear-gradient(#080812 80%,transparent)}
+#title{font-weight:800}
+#desc{font-size:11px;color:#8a8aa8}
+#stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#viewport{transform-origin:center center;transition:transform.1s}
+svg{width:380px;height:620px;touch-action:none}
+.part{cursor:pointer;transition:.15s}
+.part:hover{filter:brightness(1.4);stroke:#fff;stroke-width:.5}
+#ui{position:fixed;bottom:0;width:100%;padding:14px;background:#12121f;border-radius:20px 20px 0 0;z-index:20}
+input{width:100%;accent-color:#ff5a8a}
+.chips{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+.chip{flex:1;min-width:60px;padding:7px;border-radius:10px;background:#1e1e32;text-align:center;font-size:10px;border:1px solid #2a2a44;cursor:pointer}
+.chip.on{background:#ff5a8a;border-color:#ff5a8a;color:#fff}
+#popup,#quiz{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(0);background:#1c1c2e;padding:16px;width:310px;border-radius:16px;z-index:50;border:1px solid #333;transition:.25s}
+#popup.show,#quiz.show{transform:translate(-50%,-50%) scale(1)}
+.btn{width:100%;padding:10px;margin-top:8px;border:none;border-radius:10px;background:#ff5a8a;color:#fff;font-weight:700;cursor:pointer}
+.btn2{background:#2a2a44}
+</style>
+</head>
+<body>
+<div id="top">
+<div id="title">Kulit → Otot → Organ → Saraf → Darah → Tulang</div>
+<div id="desc">Pinch 2 jari = zoom | Drag = geser | Klik organ = info | Quiz = mode belajar</div>
+</div>
+
+<div id="stage">
+<div id="viewport">
+<svg id="man" viewBox="0 0 200 340">
+<g id="L_bone">
+<circle class="part" cx="100" cy="26" r="19" fill="#e9e9ef" data-name="Os Cranium" data-latin="Cranium" data-info="22 tulang, melindungi otak"/>
+<rect class="part" x="88" y="66" width="24" height="55" rx="6" fill="#e9e9ef" data-name="Sternum & Costae" data-latin="Thorax" data-info="Melindungi jantung & paru"/>
+<rect class="part" x="60" y="70" width="12" height="48" rx="5" fill="#d8d8e0" data-name="Humerus" data-latin="Os brachii" data-info="Tulang lengan atas terpanjang di lengan"/>
+<rect class="part" x="128" y="70" width="12" height="48" rx="5" fill="#d8d8e0" data-name="Humerus" data-latin="Os brachii" data-info="Tulang lengan atas"/>
+<rect class="part" x="78" y="162" width="14" height="75" rx="6" fill="#d8d8e0" data-name="Femur" data-latin="Os femoris" data-info="Tulang terpanjang & terkuat di tubuh"/>
+<rect class="part" x="108" y="162" width="14" height="75" rx="6" fill="#d8d8e0" data-name="Femur" data-latin="Os femoris" data-info="Tulang paha"/>
+</g>
+<g id="L_vessel">
+<path d="M100 50 L100 160" stroke="#ff1a1a" stroke-width="2.5" opacity=".8" class="part" data-name="Aorta" data-latin="Aorta" data-info="Pembuluh nadi terbesar, bawa darah dari jantung"/>
+<path d="M100 55 Q85 70 78 132 Q82 145 100 155" stroke="#3366ff" stroke-width="2" opacity=".7" fill="none" class="part" data-name="Vena Cava" data-latin="Vena cava" data-info="Bawa darah balik ke jantung"/>
+<path d="M100 55 Q115 70 122 132 Q118 145 100 155" stroke="#3366ff" stroke-width="2" opacity=".7" fill="none" class="part" data-name="Vena Cava" data-latin="Vena cava" data-info="Vena besar"/>
+</g>
+<g id="L_nerve">
+<path d="M100 20 Q100 50 100 90 Q92 110 88 140 Q85 180 90 220" stroke="#ffeb3b" stroke-width="1.8" fill="none" stroke-dasharray="4 3" class="part" data-name="Medulla Spinalis" data-latin="Spinal cord" data-info="Sum-sum tulang belakang, 31 pasang saraf spinal"/>
+<circle cx="100" cy="26" r="10" fill="#ffe57f" opacity=".9" class="part" data-name="Encephalon" data-latin="Brain" data-info="Otak: 86 miliar neuron, pusat kontrol"/>
+</g>
+<g id="L_organ">
+<path class="part" d="M70 70 Q70 115 85 120 Q90 90 85 70" fill="#ff8a8a" data-name="Pulmo" data-latin="Lungs" data-info="Paru, pertukaran O2-CO2 di alveolus 300jt alveoli"/>
+<path class="part" d="M130 70 Q130 115 115 120 Q110 90 115 70" fill="#ff8a8a" data-name="Pulmo" data-latin="Lungs" data-info="Paru kanan 3 lobus, kiri 2 lobus"/>
+<path class="part" d="M100 85 Q108 78 112 85 Q112 95 100 105 Q88 95 88 85 Q92 78 100 85" fill="#ff1f4b" data-name="Cor" data-latin="Heart" data-info="4 ruang: atrium & ventriculus, pompa 5L/menit"/>
+<path class="part" d="M85 120 Q100 125 115 120 L115 138 Q100 145 85 138 Z" fill="#8a3d1d" data-name="Hepar" data-latin="Liver" data-info="Hati: 500+ fungsi, detoks & empedu"/>
+<path class="part" d="M85 142 Q75 152 85 162 L95 162 Q105 152 95 142 Z" fill="#d9a066" data-name="Ventriculus" data-latin="Stomach" data-info="Lambung: HCl & pepsin cerna protein"/>
+<ellipse class="part" cx="78" cy="133" rx="6" ry="10" fill="#b5653a" data-name="Ren" data-latin="Kidney" data-info="Ginjal: filter 180L darah/hari"/>
+<ellipse class="part" cx="122" cy="133" rx="6" ry="10" fill="#b5653a" data-name="Ren" data-latin="Kidney" data-info="Ginjal kanan lebih rendah dari kiri"/>
+</g>
+<g id="L_muscle">
+<path class="part" d="M54 64 Q100 56 146 64 Q152 136 100 278 Q48 136 54 64" fill="#a82a2a" opacity=".9" data-name="Musculus" data-latin="Skeletal muscle" data-info="600+ otot, 40% berat tubuh, voluntary lurik"/>
+</g>
+<g id="L_skin">
+<path class="part" d="M50 60 Q100 48 150 60 Q157 136 100 288 Q43 136 50 60" fill="#eac8a6" data-name="Integumen" data-latin="Cutis" data-info="Kulit: 2m², 3 layer, proteksi & termoregulasi"/>
+<circle class="part" cx="100" cy="26" r="26" fill="#eac8a6" data-name="Kulit Kepala" data-latin="Scalp" data-info="Kulit kepala + rambut"/>
+</g>
+</svg>
+</div>
+</div>
+
+<div id="popup">
+<div style="display:flex;justify-content:space-between"><b id="p_name">Nama</b><span onclick="closeP()" style="cursor:pointer">✕</span></div>
+<p id="p_latin" style="font-size:11px;color:#ff7aa2;margin-top:4px"></p>
+<p id="p_info" style="font-size:12px;color:#aaa;margin-top:6px;line-height:1.5"></p>
+<button class="btn btn2" onclick="closeP()">Tutup</button>
+</div>
+
+<div id="quiz">
+<b>🧠 QUIZ MODE</b>
+<p id="q_text" style="font-size:13px;color:#ddd;margin:10px 0">Klik bagian yang disebut!</p>
+<p id="q_target" style="font-size:16px;color:#ff5a8a;font-weight:800">Cor</p>
+<p id="q_score" style="font-size:11px;color:#888">Score: 0</p>
+<button class="btn" onclick="closeQuiz()">Keluar Quiz</button>
+</div>
+
+<div id="ui">
+<div style="display:flex;justify-content:space-between;font-size:11px"><span id="pct">0% Kulit</span><span style="color:#888">Double tap = reset zoom</span></div>
+<input id="depth" type="range" min="0" max="100" value="0" oninput="bedah(this.value)">
+<div class="chips">
+<div class="chip on" id="c0" onclick="go(0)">KULIT</div>
+<div class="chip" id="c1" onclick="go(25)">OTOT</div>
+<div class="chip" id="c2" onclick="go(50)">ORGAN</div>
+<div class="chip" id="c3" onclick="go(70)">SARAF</div>
+<div class="chip" id="c4" onclick="go(85)">DARAH</div>
+<div class="chip" id="c5" onclick="go(100)">TULANG</div>
+</div>
+<div style="display:flex;gap:6px;margin-top:8px">
+<button class="btn2" style="flex:1;padding:8px;border-radius:10px;border:none;color:#fff" onclick="startQuiz()">🎯 Mode Quiz</button>
+<button class="btn2" style="flex:1;padding:8px;border-radius:10px;border:none;color:#fff" onclick="resetZoom()">🔍 Reset View</button>
+</div>
+</div>
+
+<script>
+const L={skin:L_skin,muscle:L_muscle,organ:L_organ,nerve:L_nerve,vessel:L_vessel,bone:L_bone};
+function bedah(v){
+ v=+v;
+ L.skin.style.opacity = v<20?1-v/20:0;
+ L.muscle.style.opacity = v<20?v/20 : v<40?1 : 1-(v-40)/20;
+ L.organ.style.opacity = v<30?0 : v<55?(v-30)/25 : v<75?1 : 1-(v-75)/15;
+ L.nerve.style.opacity = v<60?0 : v<75?(v-60)/15 : 1;
+ L.vessel.style.opacity = v<70?0 : v<85?(v-70)/15 : 1;
+ L.bone.style.opacity = 0.15+v/100*0.85;
+ let txt=v<20?v+'% Kulit':v<40?v+'% Otot':v<60?v+'% Organ':v<75?v+'% Saraf':v<90?v+'% Pembuluh Darah':v+'% Tulang';
+ document.getElementById('pct').innerText=txt;
+ document.querySelectorAll('.chips.chip').forEach(c=>c.classList.remove('on'));
+ if(v<20)c0.classList.add('on');else if(v<40)c1.classList.add('on');else if(v<60)c2.classList.add('on');else if(v<75)c3.classList.add('on');else if(v<90)c4.classList.add('on');else c5.classList.add('on');
+}
+function go(v){depth.value=v;bedah(v)}
+// ZOOM & PAN
+let scale=1, panX=0, panY=0, lastDist=0;
+const vp=document.getElementById('viewport');
+function apply(){vp.style.transform=`translate(${panX}px,${panY}px) scale(${scale})`}
+vp.addEventListener('touchstart',e=>{
+ if(e.touches.length==2){lastDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY)}
+});
+vp.addEventListener('touchmove',e=>{
+ if(e.touches.length==2){
+  let d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
+  scale=Math.min(3,Math.max(0.6,scale*(d/lastDist))); lastDist=d; apply();
+ } else if(e.touches.length==1 && scale>1){
+  panX+=e.touches[0].clientX-(panX+window.innerWidth/2); // simple pan
+ }
+},{passive:false});
+function resetZoom(){scale=1;panX=0;panY=0;apply()}
+document.getElementById('stage').addEventListener('dblclick',resetZoom);
+// POPUP
+let quizMode=false, score=0, target=null;
+const parts=[...document.querySelectorAll('.part')];
+parts.forEach(el=>{
+ el.addEventListener('click',e=>{
+  if(quizMode){
+   if(el.dataset.name.includes(target) || el.dataset.latin.includes(target)){
+    score++; document.getElementById('q_score').innerText='Score: '+score+' ✅ Benar!';
+    nextQ();
+   } else {
+    document.getElementById('q_score').innerText='Score: '+score+' ❌ Salah, itu '+el.dataset.name;
+   }
+  } else {
+   p_name.innerText=el.dataset.name;
+   p_latin.innerText=el.dataset.latin;
+   p_info.innerText=el.dataset.info;
+   document.getElementById('popup').classList.add('show');
+  }
+  e.stopPropagation();
+ })
+});
+function closeP(){document.getElementById('popup').classList.remove('show')}
+function startQuiz(){quizMode=true;score=0;document.getElementById('quiz').classList.add('show');nextQ()}
+function closeQuiz(){quizMode=false;document.getElementById('quiz').classList.remove('show')}
+function nextQ(){
+ let names=['Cor','Pulmo','Hepar','Femur','Cranium','Aorta','Encephalon','Ren'];
+ target=names[Math.floor(Math.random()*names.length)];
+ document.getElementById('q_target').innerText=target;
+ document.getElementById('q_text').innerText='Cari & klik:';
+}
+document.getElementById('stage').addEventListener('click',closeP);
+bedah(0);
+</script>
+</body>
+</html>
