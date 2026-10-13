@@ -1,110 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>ULTIMATE COMPLETE</title>
+<title>ANATOMY ULTIMATE V2 - For Araa</title>
 <style>
 *{margin:0;box-sizing:border-box}
-body{background:#080812;color:#fff;font-family:Inter,sans-serif;overflow:hidden}
-#top{position:fixed;top:0;width:100%;padding:12px;text-align:center;z-index:20;background:linear-gradient(#080812 80%,transparent)}
-#title{font-weight:800}
-#desc{font-size:11px;color:#8a8aa8}
-#stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-#viewport{transform-origin:center center;transition:transform.1s}
-svg{width:380px;height:620px;touch-action:none}
-.part{cursor:pointer;transition:.15s}
-.part:hover{filter:brightness(1.4);stroke:#fff;stroke-width:.5}
-#ui{position:fixed;bottom:0;width:100%;padding:14px;background:#12121f;border-radius:20px 20px 0 0;z-index:20}
-input{width:100%;accent-color:#ff5a8a}
-.chips{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
-.chip{flex:1;min-width:60px;padding:7px;border-radius:10px;background:#1e1e32;text-align:center;font-size:10px;border:1px solid #2a2a44;cursor:pointer}
-.chip.on{background:#ff5a8a;border-color:#ff5a8a;color:#fff}
-#popup,#quiz{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(0);background:#1c1c2e;padding:16px;width:310px;border-radius:16px;z-index:50;border:1px solid #333;transition:.25s}
-#popup.show,#quiz.show{transform:translate(-50%,-50%) scale(1)}
-.btn{width:100%;padding:10px;margin-top:8px;border:none;border-radius:10px;background:#ff5a8a;color:#fff;font-weight:700;cursor:pointer}
-.btn2{background:#2a2a44}
+body{background:#050510;color:#fff;font-family:Inter,system-ui,sans-serif;overflow:hidden}
+#top{position:fixed;top:0;width:100%;padding:14px 16px;z-index:20;background:linear-gradient(#050510 85%,transparent);border-bottom:1px solid #1a1a30}
+#title{font-weight:900;font-size:15px;letter-spacing:.5px}
+#title span{color:#ff5a8a}
+#desc{font-size:11px;color:#7a7a9a;margin-top:4px;line-height:1.4}
+#stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding-top:60px;padding-bottom:160px}
+#viewport{transform-origin:center center;transition:transform.3s ease}
+svg{width:400px;height:680px;touch-action:none;filter:drop-shadow(0 0 40px #ff5a8a22)}
+.part{cursor:pointer;transition:.2s;stroke:transparent;stroke-width:0}
+.part:hover{filter:brightness(1.5) drop-shadow(0 0 8px #fff);stroke:#fff;stroke-width:1}
+.part.active{filter:brightness(1.6) drop-shadow(0 0 12px #ff5a8a);stroke:#ff5a8a;stroke-width:1.2}
+
+#ui{position:fixed;bottom:0;width:100%;padding:14px;background:#0e0e1c;border-radius:24px 24px 0 0;z-index:20;border:1px solid #22223e;border-bottom:none}
+#bar{display:flex;justify-content:space-between;font-size:11px;margin-bottom:8px}
+#pct{font-weight:700;color:#ff5a8a}
+input{width:100%;accent-color:#ff5a8a;height:6px}
+.chips{display:flex;gap:6px;margin-top:10px}
+.chip{flex:1;padding:8px 2px;border-radius:12px;background:#1a1a32;text-align:center;font-size:10px;font-weight:700;border:1px solid #2a2a4a;cursor:pointer;transition:.2s}
+.chip.on{background:#ff5a8a;border-color:#ff5a8a;color:#fff;transform:translateY(-2px);box-shadow:0 4px 12px #ff5a8a44}
+#detail{margin-top:12px;background:#1a1a32;padding:12px;border-radius:14px;border:1px solid #2a2a4a;min-height:70px}
+#detail b{font-size:12px}
+#detail p{font-size:11px;color:#aaa;margin-top:4px;line-height:1.5}
+
+#popup{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(0);background:#15152a;padding:20px;width:340px;border-radius:20px;z-index:100;border:1px solid #333355;transition:.3s cubic-bezier(.34,1.56,.64,1);box-shadow:0 20px 60px #000a}
+#popup.show{transform:translate(-50%,-50%) scale(1)}
+.badge{display:inline-block;padding:3px 8px;border-radius:20px;background:#ff5a8a22;color:#ff5a8a;font-size:9px;font-weight:800;margin-top:6px}
+.btn{width:100%;padding:12px;margin-top:10px;border:none;border-radius:12px;background:#ff5a8a;color:#fff;font-weight:800;cursor:pointer}
+.btn2{background:#24244a}
+
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.beating{animation:beat.8s infinite}
 </style>
 </head>
 <body>
 <div id="top">
-<div id="title">Kulit → Otot → Organ → Saraf → Darah → Tulang</div>
-<div id="desc">Pinch 2 jari = zoom | Drag = geser | Klik organ = info | Quiz = mode belajar</div>
+<div id="title">HUMAN ANATOMY <span>ULTIMATE V2</span> 🧬</div>
+<div id="desc">Kulit (2m²) → Otot (600+) → Organ (78) → Saraf (86M neuron) → Pembuluh (100rb km) → Tulang (206)<br>Pinch zoom | Tap organ untuk penjelasan lengkap</div>
 </div>
 
 <div id="stage">
 <div id="viewport">
-<svg id="man" viewBox="0 0 200 340">
+<svg id="man" viewBox="0 0 200 360">
+<!-- TULANG -->
 <g id="L_bone">
-<circle class="part" cx="100" cy="26" r="19" fill="#e9e9ef" data-name="Os Cranium" data-latin="Cranium" data-info="22 tulang, melindungi otak"/>
-<rect class="part" x="88" y="66" width="24" height="55" rx="6" fill="#e9e9ef" data-name="Sternum & Costae" data-latin="Thorax" data-info="Melindungi jantung & paru"/>
-<rect class="part" x="60" y="70" width="12" height="48" rx="5" fill="#d8d8e0" data-name="Humerus" data-latin="Os brachii" data-info="Tulang lengan atas terpanjang di lengan"/>
-<rect class="part" x="128" y="70" width="12" height="48" rx="5" fill="#d8d8e0" data-name="Humerus" data-latin="Os brachii" data-info="Tulang lengan atas"/>
-<rect class="part" x="78" y="162" width="14" height="75" rx="6" fill="#d8d8e0" data-name="Femur" data-latin="Os femoris" data-info="Tulang terpanjang & terkuat di tubuh"/>
-<rect class="part" x="108" y="162" width="14" height="75" rx="6" fill="#d8d8e0" data-name="Femur" data-latin="Os femoris" data-info="Tulang paha"/>
+<circle class="part" cx="100" cy="28" r="20" fill="#f0f0f5" data-name="Tengkorak" data-latin="Os Cranium - 22 tulang" data-fungsi="Melindungi otak dari benturan, tempat melekatnya otot wajah & membentuk struktur wajah" data-fakta="Terdiri dari 8 tulang cranium + 14 tulang wajah. Bayi baru lahir punya 270 tulang, dewasa 206 karena penggabungan"/>
+<rect class="part" x="88" y="70" width="24" height="60" rx="7" fill="#eaeaf0" data-name="Tulang Dada & Rusuk" data-latin="Sternum & Costae - 25 tulang" data-fungsi="Melindungi jantung dan paru-paru, membantu pernapasan dengan gerakan naik-turun" data-fakta="12 pasang rusuk. 7 pasang rusuk sejati, 3 palsu, 2 melayang"/>
+<rect class="part" x="58" y="72" width="13" height="52" rx="6" fill="#dddde5" data-name="Lengan Atas" data-latin="Humerus - Tulang terpanjang di lengan" data-fungsi="Menghubungkan bahu ke siku, untuk gerakan mengangkat, mendorong, memutar lengan" data-fakta="Tulang ini punya 3 bagian: caput, corpus, dan condylus. Sering patah saat jatuh"/>
+<rect class="part" x="129" y="72" width="13" height="52" rx="6" fill="#dddde5" data-name="Lengan Atas" data-latin="Humerus" data-fungsi="Gerakan lengan atas, titik lekat otot biceps & triceps" data-fakta="Bisa menahan beban hingga 150kg"/>
+<rect class="part" x="76" y="172" width="15" height="85" rx="7" fill="#dddde5" data-name="Tulang Paha" data-latin="Femur - Tulang TERKUAT & TERPANJANG" data-fungsi="Menopang 70% berat tubuh, untuk berjalan, lari, lompat. Tempat sumsum tulang merah pembuat darah" data-fakta="Panjang ~26% tinggi badan. Bisa menahan beban 30x berat badan! Tulang paling sulit patah"/>
+<rect class="part" x="109" y="172" width="15" height="85" rx="7" fill="#dddde5" data-name="Tulang Paha" data-latin="Femur" data-fungsi="Penopang utama tubuh, mengandung sumsum merah pembuat sel darah" data-fakta="Jika patah butuh 3-6 bulan penyembuhan"/>
+<rect class="part" x="77" y="260" width="13" height="45" rx="5" fill="#d0d0d8" data-name="Tulang Kering" data-latin="Tibia" data-fungsi="Menopang berat badan di kaki bawah" data-fakta="Tulang kering kedua terkuat setelah femur"/>
+<rect class="part" x="110" y="260" width="13" height="45" rx="5" fill="#d0d0d8" data-name="Tulang Kering" data-latin="Tibia" data-fungsi="Penopang kaki bawah" data-fakta="Sering disebut tulang kering karena dekat kulit"/>
 </g>
+<!-- PEMBULUH -->
 <g id="L_vessel">
-<path d="M100 50 L100 160" stroke="#ff1a1a" stroke-width="2.5" opacity=".8" class="part" data-name="Aorta" data-latin="Aorta" data-info="Pembuluh nadi terbesar, bawa darah dari jantung"/>
-<path d="M100 55 Q85 70 78 132 Q82 145 100 155" stroke="#3366ff" stroke-width="2" opacity=".7" fill="none" class="part" data-name="Vena Cava" data-latin="Vena cava" data-info="Bawa darah balik ke jantung"/>
-<path d="M100 55 Q115 70 122 132 Q118 145 100 155" stroke="#3366ff" stroke-width="2" opacity=".7" fill="none" class="part" data-name="Vena Cava" data-latin="Vena cava" data-info="Vena besar"/>
+<path d="M100 50 L100 175" stroke="#ff1a1a" stroke-width="3" opacity=".9" class="part" data-name="Aorta" data-latin="Aorta - Pembuluh nadi terbesar (diameter 2.5cm)" data-fungsi="Membawa darah kaya O2 dari jantung kiri ke seluruh tubuh. Tekanan tertinggi di tubuh" data-fakta="Panjang 30-40cm. Setiap detik mengalirkan 83ml darah. Jika putus, manusia bisa mati dalam 1 menit"/>
+<path d="M100 58 Q82 75 75 135 Q80 150 100 165" stroke="#2a6bff" stroke-width="2.4" opacity=".8" fill="none" class="part" data-name="Vena Cava Superior & Inferior" data-latin="Vena Cava - Vena terbesar" data-fungsi="Mengembalikan darah miskin O2 dari seluruh tubuh ke jantung kanan untuk dipompa ke paru" data-fakta="Vena cava inferior adalah vena terpanjang di tubuh, panjang 22cm"/>
+<path d="M100 58 Q118 75 125 135 Q120 150 100 165" stroke="#2a6bff" stroke-width="2.4" opacity=".8" fill="none" class="part" data-name="Vena Cava" data-latin="Vena cava inferior" data-fungsi="Membawa darah kotor CO2 kembali ke jantung" data-fakta="Total panjang pembuluh darah manusia 100.000 km, bisa mengelilingi bumi 2.5x"/>
+<circle cx="100" cy="98" r="4" fill="#ff1a1a" class="beating" opacity=".9"/>
 </g>
+<!-- SARAF -->
 <g id="L_nerve">
-<path d="M100 20 Q100 50 100 90 Q92 110 88 140 Q85 180 90 220" stroke="#ffeb3b" stroke-width="1.8" fill="none" stroke-dasharray="4 3" class="part" data-name="Medulla Spinalis" data-latin="Spinal cord" data-info="Sum-sum tulang belakang, 31 pasang saraf spinal"/>
-<circle cx="100" cy="26" r="10" fill="#ffe57f" opacity=".9" class="part" data-name="Encephalon" data-latin="Brain" data-info="Otak: 86 miliar neuron, pusat kontrol"/>
+<path d="M100 22 Q100 60 100 100 Q90 120 86 150 Q84 190 90 230 Q92 250 100 270" stroke="#ffeb3b" stroke-width="2.2" fill="none" stroke-dasharray="5 4" class="part" data-name="Sumsum Tulang Belakang" data-latin="Medulla Spinalis - 45cm, 31 pasang saraf" data-fungsi="Jalan tol informasi: otak ke tubuh 120m/detik. Mengatur refleks tanpa harus lewat otak" data-fakta="Jika terpotong = lumpuh. Punya 31 pasang saraf spinal. Kecepatan sinyal 432 km/jam"/>
+<circle cx="100" cy="28" r="12" fill="#ffe76a" opacity=".95" class="part" data-name="Otak" data-latin="Encephalon - 1.4kg, 86 miliar neuron" data-fungsi="Pusat kontrol: berpikir, ingatan, emosi, gerakan. Butuh 20% energi tubuh padahal cuma 2% berat" data-fakta="Otak punya 86 miliar neuron, koneksinya 1000 triliun. Lebih banyak dari bintang di galaksi! Tidak bisa merasakan sakit sendiri"/>
+<path d="M100 40 Q70 55 58 75 Q55 85 62 95" stroke="#ffeb3b" stroke-width="1.5" fill="none" opacity=".6"/>
+<path d="M100 40 Q130 55 142 75 Q145 85 138 95" stroke="#ffeb3b" stroke-width="1.5" fill="none" opacity=".6"/>
 </g>
+<!-- ORGAN -->
 <g id="L_organ">
-<path class="part" d="M70 70 Q70 115 85 120 Q90 90 85 70" fill="#ff8a8a" data-name="Pulmo" data-latin="Lungs" data-info="Paru, pertukaran O2-CO2 di alveolus 300jt alveoli"/>
-<path class="part" d="M130 70 Q130 115 115 120 Q110 90 115 70" fill="#ff8a8a" data-name="Pulmo" data-latin="Lungs" data-info="Paru kanan 3 lobus, kiri 2 lobus"/>
-<path class="part" d="M100 85 Q108 78 112 85 Q112 95 100 105 Q88 95 88 85 Q92 78 100 85" fill="#ff1f4b" data-name="Cor" data-latin="Heart" data-info="4 ruang: atrium & ventriculus, pompa 5L/menit"/>
-<path class="part" d="M85 120 Q100 125 115 120 L115 138 Q100 145 85 138 Z" fill="#8a3d1d" data-name="Hepar" data-latin="Liver" data-info="Hati: 500+ fungsi, detoks & empedu"/>
-<path class="part" d="M85 142 Q75 152 85 162 L95 162 Q105 152 95 142 Z" fill="#d9a066" data-name="Ventriculus" data-latin="Stomach" data-info="Lambung: HCl & pepsin cerna protein"/>
-<ellipse class="part" cx="78" cy="133" rx="6" ry="10" fill="#b5653a" data-name="Ren" data-latin="Kidney" data-info="Ginjal: filter 180L darah/hari"/>
-<ellipse class="part" cx="122" cy="133" rx="6" ry="10" fill="#b5653a" data-name="Ren" data-latin="Kidney" data-info="Ginjal kanan lebih rendah dari kiri"/>
+<path class="part" d="M68 75 Q66 115 84 122 Q91 95 86 75" fill="#ff8a8a" data-name="Paru-Paru Kiri" data-latin="Pulmo Sinister - 2 lobus, 300 juta alveoli" data-fungsi="Pertukaran O2 & CO2. Menghirup 11.000 liter udara/hari. 70% sampah tubuh dibuang lewat paru" data-fakta="Jika dibentangkan luas alveoli 70m² = lapangan tenis. Kanan 3 lobus, kiri 2 lobus biar ada tempat jantung"/>
+<path class="part" d="M132 75 Q134 115 116 122 Q109 95 114 75" fill="#ff8a8a" data-name="Paru-Paru Kanan" data-latin="Pulmo Dexter - 3 lobus, lebih besar" data-fungsi="Ambil O2, buang CO2. 1x napas = 500ml udara" data-fakta="Paru kanan lebih besar 10% dari kiri. Kita bernapas 22.000x sehari"/>
+<path id="heart" class="part beating" d="M100 86 Q108 79 113 86 Q113 97 100 108 Q87 97 87 86 Q92 79 100 86" fill="#ff1744" data-name="Jantung" data-latin="Cor - 300gr, berdetak 100.000x/hari" data-fungsi="Pompa 7.500 liter darah/hari ke seluruh tubuh. 4 ruang: 2 atrium, 2 ventrikel. Listrik sendiri tanpa otak" data-fakta="Seumur hidup berdetak 3 MILIAR kali. Jantung wanita berdetak lebih cepat dari pria. Bisa terus berdetak di luar tubuh jika diberi O2"/>
+<path class="part" d="M84 125 Q100 130 116 125 L116 145 Q100 152 84 145 Z" fill="#8a3d1d" data-name="Hati" data-latin="Hepar - 1.5kg, 500+ fungsi" data-fungsi="Pabrik kimia: detoks racun, buat empedu, simpan gula, buat protein darah. Bisa regenerasi 75% hilang" data-fakta="Organ terbesar di dalam tubuh. 1 menit menyaring 1.4 liter darah. Hati mabuk butuh 1 minggu recovery"/>
+<path class="part" d="M84 148 Q72 158 84 170 L96 170 Q108 158 96 148 Z" fill="#e0a060" data-name="Lambung" data-latin="Ventriculus - Kapasitas 1.5L" data-fungsi="Mencerna protein dengan HCl pH 1.5 (sekuat air aki) & enzim pepsin. Bunuh bakteri" data-fakta="Asam lambung bisa larutkan silet! Lambung buat lapisan lendir baru tiap 3 hari biar tidak tercerna sendiri"/>
+<ellipse class="part" cx="76" cy="138" rx="7" ry="12" fill="#a05a2a" data-name="Ginjal Kiri" data-latin="Ren - Filter 180L darah/hari" data-fungsi="Filter darah jadi urin, buang racun, atur tekanan darah, buat hormon. 1 juta nefron per ginjal" data-fakta="Ginjal filter darah 40x sehari. Jika 1 ginjal rusak, 1 lagi bisa handle 100%. Ginjal kanan lebih rendah karena ada hati"/>
+<ellipse class="part" cx="124" cy="138" rx="7" ry="12" fill="#a05a2a" data-name="Ginjal Kanan" data-latin="Ren Dexter" data-fungsi="Cuci darah, atur air & garam tubuh" data-fakta="Setiap hari buat 1-2L urin dari 180L darah yang difilter"/>
+<path class="part" d="M90 170 Q100 180 110 170 Q105 200 100 210 Q95 200 90 170" fill="#d4a0" data-name="Usus Halus" data-latin="Intestinum Tenue - 6 meter!" data-fungsi="Serap 90% nutrisi makanan. Panjang 6m tapi muat karena melingkar. Vili & mikrovili perbesar luas serap" data-fakta="Luas penyerapan usus 250m² = lapangan tenis. Makanan 6 jam di usus halus"/>
 </g>
+<!-- OTOT -->
 <g id="L_muscle">
-<path class="part" d="M54 64 Q100 56 146 64 Q152 136 100 278 Q48 136 54 64" fill="#a82a2a" opacity=".9" data-name="Musculus" data-latin="Skeletal muscle" data-info="600+ otot, 40% berat tubuh, voluntary lurik"/>
+<path class="part" d="M52 62 Q100 54 148 62 Q155 140 100 285 Q45 140 52 62" fill="#b01e1e" opacity=".92" data-name="Otot Rangka" data-latin="Musculus Skeletalis - 600+ otot, 40% berat" data-fungsi="Gerakan sadar (voluntary). Otot lurik bisa berkontraksi 50x/detik. Butuh energi besar" data-fakta="Otot terkuat: rahang (masseter) bisa gigit 90kg. Otot terkecil: di telinga 1mm. Otot mata bergerak 100.000x/hari"/>
 </g>
+<!-- KULIT -->
 <g id="L_skin">
-<path class="part" d="M50 60 Q100 48 150 60 Q157 136 100 288 Q43 136 50 60" fill="#eac8a6" data-name="Integumen" data-latin="Cutis" data-info="Kulit: 2m², 3 layer, proteksi & termoregulasi"/>
-<circle class="part" cx="100" cy="26" r="26" fill="#eac8a6" data-name="Kulit Kepala" data-latin="Scalp" data-info="Kulit kepala + rambut"/>
+<path class="part" d="M48 58 Q100 46 152 58 Q160 140 100 295 Q40 140 48 58" fill="#eac8a6" data-name="Kulit" data-latin="Integumen - Organ TERBESAR 2m², 4kg" data-fungsi="Proteksi: anti bakteri, UV, air. Termoregulasi: keringat & bulu kuduk. Sensor: 5 juta reseptor sentuh" data-fakta="3 lapisan: epidermis, dermis, hipodermis. Ganti kulit baru tiap 28 hari. Sidik jari unik bahkan kembar identik beda"/>
+<circle class="part" cx="100" cy="28" r="27" fill="#eac8a6" data-name="Kulit Kepala & Rambut" data-latin="Scalp - 100.000 helai rambut" data-fungsi="Proteksi kepala dari panas & benturan, estetika" data-fakta="Rambut tumbuh 1cm/bulan. Botak karena hormon DHT, bukan karena topi"/>
 </g>
 </svg>
 </div>
 </div>
 
 <div id="popup">
-<div style="display:flex;justify-content:space-between"><b id="p_name">Nama</b><span onclick="closeP()" style="cursor:pointer">✕</span></div>
-<p id="p_latin" style="font-size:11px;color:#ff7aa2;margin-top:4px"></p>
-<p id="p_info" style="font-size:12px;color:#aaa;margin-top:6px;line-height:1.5"></p>
-<button class="btn btn2" onclick="closeP()">Tutup</button>
+<div style="display:flex;justify-content:space-between;align-items:center"><b id="p_name" style="font-size:16px">Nama</b><span onclick="closeP()" style="cursor:pointer;background:#22223a;padding:4px 10px;border-radius:20px">✕</span></div>
+<div id="p_latin" class="badge"></div>
+<p id="p_fungsi" style="font-size:12px;color:#ddd;margin-top:10px;line-height:1.6"></p>
+<div style="background:#ffffff0a;padding:10px;border-radius:10px;margin-top:10px;border-left:3px solid #ff5a8a">
+<p id="p_fakta" style="font-size:11px;color:#ffb3c8;line-height:1.5"></p>
 </div>
-
-<div id="quiz">
-<b>🧠 QUIZ MODE</b>
-<p id="q_text" style="font-size:13px;color:#ddd;margin:10px 0">Klik bagian yang disebut!</p>
-<p id="q_target" style="font-size:16px;color:#ff5a8a;font-weight:800">Cor</p>
-<p id="q_score" style="font-size:11px;color:#888">Score: 0</p>
-<button class="btn" onclick="closeQuiz()">Keluar Quiz</button>
+<button class="btn" onclick="closeP()">Oke Paham! ✅</button>
 </div>
 
 <div id="ui">
-<div style="display:flex;justify-content:space-between;font-size:11px"><span id="pct">0% Kulit</span><span style="color:#888">Double tap = reset zoom</span></div>
+<div id="bar"><span id="pct">0% - KULIT: Pelindung Terluar</span><span style="color:#555">Pinch = zoom</span></div>
 <input id="depth" type="range" min="0" max="100" value="0" oninput="bedah(this.value)">
 <div class="chips">
-<div class="chip on" id="c0" onclick="go(0)">KULIT</div>
-<div class="chip" id="c1" onclick="go(25)">OTOT</div>
-<div class="chip" id="c2" onclick="go(50)">ORGAN</div>
-<div class="chip" id="c3" onclick="go(70)">SARAF</div>
-<div class="chip" id="c4" onclick="go(85)">DARAH</div>
-<div class="chip" id="c5" onclick="go(100)">TULANG</div>
+<div class="chip on" id="c0" onclick="go(0)">KULIT<br>2m²</div>
+<div class="chip" id="c1" onclick="go(25)">OTOT<br>600+</div>
+<div class="chip" id="c2" onclick="go(50)">ORGAN<br>78</div>
+<div class="chip" id="c3" onclick="go(70)">SARAF<br>86M</div>
+<div class="chip" id="c4" onclick="go(85)">DARAH<br>100rb km</div>
+<div class="chip" id="c5" onclick="go(100)">TULANG<br>206</div>
 </div>
-<div style="display:flex;gap:6px;margin-top:8px">
-<button class="btn2" style="flex:1;padding:8px;border-radius:10px;border:none;color:#fff" onclick="startQuiz()">🎯 Mode Quiz</button>
-<button class="btn2" style="flex:1;padding:8px;border-radius:10px;border:none;color:#fff" onclick="resetZoom()">🔍 Reset View</button>
+<div id="detail">
+<b id="d_title">👋 Tap organ apapun buat belajar</b>
+<p id="d_desc">Geser slider dari KULIT → TULANG untuk bedah lapisan. Tiap layer punya penjelasan fungsi & fakta unik yang sering keluar di ujian biologi.</p>
 </div>
 </div>
 
 <script>
 const L={skin:L_skin,muscle:L_muscle,organ:L_organ,nerve:L_nerve,vessel:L_vessel,bone:L_bone};
+const titles=["KULIT: Pelindung Terluar 2m²","OTOT: 600+ Otot Penggerak 40% Berat","ORGAN: 78 Organ Vital","SARAF: 86 Miliar Neuron 432km/jam","PEMBULUH: 100.000km Selang Darah","TULANG: 206 Tulang Penopang"];
+const descs=[
+"3 lapisan: epidermis (luar), dermis (saraf & keringat), hipodermis (lemak). Fungsi: cegah kuman, atur suhu, sensor sentuh.",
+"Jenis: lurik (sadar, bisa dilatih), polos (di usus & pembuluh), jantung (otomatis). Butuh protein & latihan biar besar.",
+"Jantung pompa 7.500L/hari, Paru 11.000L udara, Hati 500+ fungsi, Ginjal filter 180L darah. Semua kerja 24 jam nonstop.",
+"Otak 1.4kg tapi pakai 20% energi. Sumsum tulang belakang 45cm, 31 pasang saraf. Refleks lutut tidak lewat otak, makanya cepat.",
+"Aorta 2.5cm diameter, vena cava 22cm. Darah 5 liter muter 1x per menit. Kapiler setipis rambut, tempat tukar O2.",
+"Bayi 270 tulang, dewasa 206 karena menyatu. Femur tahan 30x berat badan. Sumsum merah di tulang buat 200 miliar sel darah/hari."
+];
 function bedah(v){
  v=+v;
  L.skin.style.opacity = v<20?1-v/20:0;
@@ -113,61 +143,35 @@ function bedah(v){
  L.nerve.style.opacity = v<60?0 : v<75?(v-60)/15 : 1;
  L.vessel.style.opacity = v<70?0 : v<85?(v-70)/15 : 1;
  L.bone.style.opacity = 0.15+v/100*0.85;
- let txt=v<20?v+'% Kulit':v<40?v+'% Otot':v<60?v+'% Organ':v<75?v+'% Saraf':v<90?v+'% Pembuluh Darah':v+'% Tulang';
- document.getElementById('pct').innerText=txt;
- document.querySelectorAll('.chips.chip').forEach(c=>c.classList.remove('on'));
- if(v<20)c0.classList.add('on');else if(v<40)c1.classList.add('on');else if(v<60)c2.classList.add('on');else if(v<75)c3.classList.add('on');else if(v<90)c4.classList.add('on');else c5.classList.add('on');
+ let idx=v<20?0:v<40?1:v<60?2:v<75?3:v<90?4:5;
+ document.getElementById('pct').innerText=v+'% - '+titles[idx];
+ document.getElementById('d_title').innerText=titles[idx];
+ document.getElementById('d_desc').innerText=descs[idx];
+ document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+ document.getElementById('c'+idx).classList.add('on');
 }
 function go(v){depth.value=v;bedah(v)}
-// ZOOM & PAN
-let scale=1, panX=0, panY=0, lastDist=0;
-const vp=document.getElementById('viewport');
-function apply(){vp.style.transform=`translate(${panX}px,${panY}px) scale(${scale})`}
-vp.addEventListener('touchstart',e=>{
- if(e.touches.length==2){lastDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY)}
-});
-vp.addEventListener('touchmove',e=>{
- if(e.touches.length==2){
-  let d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
-  scale=Math.min(3,Math.max(0.6,scale*(d/lastDist))); lastDist=d; apply();
- } else if(e.touches.length==1 && scale>1){
-  panX+=e.touches[0].clientX-(panX+window.innerWidth/2); // simple pan
- }
-},{passive:false});
-function resetZoom(){scale=1;panX=0;panY=0;apply()}
-document.getElementById('stage').addEventListener('dblclick',resetZoom);
-// POPUP
-let quizMode=false, score=0, target=null;
-const parts=[...document.querySelectorAll('.part')];
-parts.forEach(el=>{
+// zoom
+let scale=1; const vp=document.getElementById('viewport');
+function apply(){vp.style.transform=`scale(${scale})`}
+let lastDist=0;
+vp.addEventListener('touchstart',e=>{if(e.touches.length==2)lastDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY)},{passive:false});
+vp.addEventListener('touchmove',e=>{if(e.touches.length==2){let d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);scale=Math.min(3,Math.max(0.7,scale*(d/lastDist)));lastDist=d;apply();}},{passive:false});
+document.getElementById('stage').addEventListener('dblclick',()=>{scale=1;apply()});
+// popup detail
+document.querySelectorAll('.part').forEach(el=>{
  el.addEventListener('click',e=>{
-  if(quizMode){
-   if(el.dataset.name.includes(target) || el.dataset.latin.includes(target)){
-    score++; document.getElementById('q_score').innerText='Score: '+score+' ✅ Benar!';
-    nextQ();
-   } else {
-    document.getElementById('q_score').innerText='Score: '+score+' ❌ Salah, itu '+el.dataset.name;
-   }
-  } else {
-   p_name.innerText=el.dataset.name;
-   p_latin.innerText=el.dataset.latin;
-   p_info.innerText=el.dataset.info;
-   document.getElementById('popup').classList.add('show');
-  }
+  p_name.innerText=el.dataset.name;
+  p_latin.innerText=el.dataset.latin;
+  p_fungsi.innerText="📌 FUNGSI: "+el.dataset.fungsi;
+  p_fakta.innerText="💡 FAKTA UNIK: "+el.dataset.fakta;
+  document.getElementById('popup').classList.add('show');
   e.stopPropagation();
  })
 });
 function closeP(){document.getElementById('popup').classList.remove('show')}
-function startQuiz(){quizMode=true;score=0;document.getElementById('quiz').classList.add('show');nextQ()}
-function closeQuiz(){quizMode=false;document.getElementById('quiz').classList.remove('show')}
-function nextQ(){
- let names=['Cor','Pulmo','Hepar','Femur','Cranium','Aorta','Encephalon','Ren'];
- target=names[Math.floor(Math.random()*names.length)];
- document.getElementById('q_target').innerText=target;
- document.getElementById('q_text').innerText='Cari & klik:';
-}
 document.getElementById('stage').addEventListener('click',closeP);
 bedah(0);
 </script>
 </body>
-</html>
+ </html>
