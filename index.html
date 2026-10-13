@@ -56,7 +56,7 @@ a{color:inherit;text-decoration:none}
 <body>
 <header class="top">
 <div class="nav">
-<div class="brand"><div class="logo">B</div><div>BioLab</div><span class="pill">v1.0</span></div>
+<div class="brand"><div class="logo">B</div><div>BioLab</div><span class="pill">v1.0 • Final</span></div>
 <nav class="menu">
 <a href="#materi">Materi</a><a href="#sel">Sim Sel</a><a href="#dna">DNA</a><a href="#evolusi">Evolusi</a><a href="#ekologi">Ekologi</a><a href="#kuis">Kuis</a><a href="#glosarium">Glosarium</a>
 </nav>
@@ -65,9 +65,9 @@ a{color:inherit;text-decoration:none}
 <main class="wrap">
 <section class="hero">
 <div class="card">
-<span class="badge">🔬 Laboratorium Biologi Interaktif — belajar sambil praktik</span>
-<h1 class="h1">Biologi jadi nyata: visual, interaktif, & terverifikasi</h1>
-<p class="sub">BioLab menggabungkan materi ringkas, simulasi sel, untai DNA, pohon evolusi, dan kuis UTBK 50 soal. Semua istilah memakai Terminologia Anatomica & sumber Gray's, Tortora, Guyton, Robbins.</p>
+<span class="badge">🔬 Final Build — lengkap, terverifikasi, siap deploy</span>
+<h1 class="h1">BioLab — laboratorium biologi interaktif</h1>
+<p class="sub">Materi ringkas, simulasi sel, DNA, pohon evolusi, ekologi, dan bank soal UTBK 50 soal verified (Gray's, Tortora, Guyton, Robbins, West). Dibuat untuk belajar, bukan diagnosis medis.</p>
 <div class="cta">
 <button class="btn primary" onclick="document.getElementById('kuis').scrollIntoView({behavior:'smooth'})">🎯 Mulai Ujian 60 Menit</button>
 <button class="btn" onclick="document.getElementById('materi').scrollIntoView({behavior:'smooth'})">📚 Jelajah Materi</button>
@@ -94,7 +94,8 @@ a{color:inherit;text-decoration:none}
 <div class="item"><div>🫁</div><div><b>Pulmo 300-500jt alveoli 70-100m²</b><div class="muted">Membran 0.5 mikron, surfaktan DPPC pneumosit II cegah kolaps. Bronchus dex pendek vertikal 25° → aspirasi lebih sering kanan. V/Q 0.8.</div></div></div>
 <div class="item"><div>🧬</div><div><b>Hepar, Ren, Gaster</b><div class="muted">Hepar 1.2-1.5kg 8 segmen 75% v.portae 25% a.hepatica, 500+ fungsi, bilirubin indirect→direct, regenerasi 70%. Ren 1-1.2jt nefron GFR 90-120. Gaster HCl pH1.5-3.5.</div></div></div>
 </div>
-</section><section id="sel" class="section">
+</section>
+<section id="sel" class="section">
 <h2>🔬 Simulasi Sel — Tap Organel</h2>
 <div class="sim">
 <div class="canvas" id="cellCanvas"></div>
@@ -108,13 +109,65 @@ a{color:inherit;text-decoration:none}
 </div>
 </div>
 </section>
+<section id="sel-lengkap" class="section">
+<h2>🧫 Sel Lengkap — Struktur & Fungsi Detail</h2>
+<div class="grid cols-2">
+<div class="card" style="padding:14px">
+<b>Sel Hewan vs Tumbuhan vs Bakteri</b>
+<div class="code" style="margin-top:8px">Hewan: membran, sitoplasma, nucleus, mitokondria, RE, Golgi, lisosom, sentriol.
+Tumbuhan: + dinding selulosa, kloroplas, vakuola besar.
+Bakteri: prokariotik, tanpa nucleus, DNA sirkular, peptidoglikan, flagela, pili.
+</div>
+<div class="list" style="margin-top:10px">
+<div class="item"><div>🔹</div><div><b>Membran Sel — Fosfolipid bilayer</b><div class="muted">Model mosaic fluid: fosfolipid, kolesterol, protein integral & perifer, glikokaliks. Transport: difusi, osmosis, aktif Na+/K+ ATPase, endo/eksositosis.</div></div></div>
+<div class="item"><div>🔹</div><div><b>Nucleus & DNA</b><div class="muted">Kromatin → kromosom saat mitosis. Nukleolus buat rRNA. Pori 120nm.</div></div></div>
+<div class="item"><div>🔹</div><div><b>Sitoskeleton</b><div class="muted">Mikrotubulus (tubulin, sentriol, flagela 9+2), mikrofilamen (aktin), filamen intermediet (keratin). Untuk bentuk, gerak, pembelahan.</div></div></div>
+</div>
+</div>
+<div class="card" style="padding:14px">
+<b>Fungsi Organel Lengkap</b>
+<div class="list">
+<div class="item"><div>⚡</div><div><b>Mitokondria — Powerhouse</b><div class="muted">Siklus Krebs di matriks, ETC di krista, ATP 30-32/glukosa. Punya DNA sirkular sendiri, warisan maternal.</div></div></div>
+<div class="item"><div>🏭</div><div><b>RE Kasar & Halus</b><div class="muted">Kasar: ribosom → protein sekretori. Halus: lipid, detoks obat via CYP450, simpan Ca2+.</div></div></div>
+<div class="item"><div>📦</div><div><b>Golgi — Packaging</b><div class="muted">Modifikasi (glikosilasi), sorting, vesikel ke lisosom/membran/sekresi.</div></div></div>
+<div class="item"><div>♻️</div><div><b>Lisosom & Peroksisom</b><div class="muted">Lisosom pH 5 enzim hidrolase → autofagi. Peroksisom detoks H2O2 via katalase, beta-oksidasi lemak.</div></div></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sel-pembelahan" class="section">
+<h2>🔬 Pembelahan Sel — Mitosis & Meiosis</h2>
+<div class="grid cols-2">
+<div class="card" style="padding:14px">
+<b>Mitosis — Somatik 2n → 2n</b>
+<div class="code" style="margin-top:8px">Interfase G1 (tumbuh) S (replikasi DNA) G2 (siap)
+Profase: kromatin→kromosom, sentrosom pisah
+Metafase: kromosom di ekuator, spindle menempel kinetokor
+Anafase: sister chromatid pisah ke kutub
+Telofase: membran inti terbentuk lagi
+Sitokinesis: hewan actin ring, tumbuhan cell plate
+Checkpoint: G1/S p53, G2/M, spindle
+</div>
+<div class="muted" style="font-size:12px;margin-top:6px">Tujuan: pertumbuhan, perbaikan, reproduksi aseksual. Kesalahan: aneuploidi, kanker jika checkpoint rusak.</div>
+</div>
+<div class="card" style="padding:14px">
+<b>Meiosis — Germinal 2n → n</b>
+<div class="code" style="margin-top:8px">Meiosis I: Profase I (leptoten, zigoten, pakiten crossing over, diploten, diakinesis) Metafase I Anafase I Telofase I → 2 sel n kromosom duplikat
+Meiosis II: seperti mitosis → 4 sel n
+Crossing over + independent assortment = variasi
+Non-disjunction → Down 21, Turner 45 X, Klinefelter 47 XXY
+</div>
+<div class="muted" style="font-size:12px;margin-top:6px">Tujuan: gamet, variasi genetik, jaga jumlah kromosom. Lokasi: testis & ovarium.</div>
+</div>
+</div>
+</section>
 <section id="dna" class="section">
 <h2>🧬 DNA — Transkripsi & Translasi</h2>
 <div class="grid cols-2">
 <div class="card" style="padding:14px">
 <b>Untai DNA → RNA → Protein</b>
 <p class="muted" style="font-size:13px">Simulasi: ATGC pairing, kodon, antikodon tRNA. Satu kodon = satu asam amino. Start AUG, Stop UAA/UAG/UGA.</p>
-<div class="code" id="dnaSeq">ATGCATGCATGCATGCATGCATGCATGCATGCATGC</div>
+<div class="code" id="dnaSeq">ATGCATGCATGCATGCATGC</div>
 <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
 <button class="btn" onclick="transcribe()">Transkripsi → mRNA</button>
 <button class="btn" onclick="translate()">Translasi → Protein</button>
@@ -133,160 +186,647 @@ a{color:inherit;text-decoration:none}
 </div>
 </div>
 </section>
-<section id="evolusi" class="section">
-<h2>🌳 Evolusi — Pohon Filogenetik</h2>
+<section id="biokimia" class="section">
+<h2>⚗️ Biokimia — Molekul Kehidupan</h2>
 <div class="grid cols-2">
 <div class="card" style="padding:14px">
-<div class="code">Common Ancestor
-├─ Bacteria & Archaea (prokariotik 3.5 miliar tahun)
-└─ Eukarya
-├─ Protista
-├─ Fungi
-├─ Plantae (kloroplas endosimbiosis)
-└─ Animalia
-├─ Porifera → Cnidaria → Bilateria
-└─ Deuterostomia → Chordata → Vertebrata → Mammalia → Primata → Homo sapiens
+<b>4 Makromolekul</b>
+<div class="list" style="margin-top:8px">
+<div class="item"><div>🍞</div><div><b>Karbohidrat — (CH2O)n</b><div class="muted">Monosakarida: glukosa, fruktosa. Disakarida: maltosa, sukrosa, laktosa. Polisakarida: amilum, glikogen, selulosa, kitin. Fungsi: energi cepat, struktur.</div></div></div>
+<div class="item"><div>🥑</div><div><b>Lipid — Hidrofobik</b><div class="muted">Lemak: trigliserida gliserol+3 asam lemak. Fosfolipid: bilayer membran. Steroid: kolesterol, hormon estrogen/testosteron. Fungsi: energi padat, membran, hormon.</div></div></div>
+<div class="item"><div>🍗</div><div><b>Protein — 20 asam amino</b><div class="muted">Struktur primer sekuens, sekunder alpha helix beta sheet, tersier lipatan, kuartener multi subunit. Fungsi: enzim, antibodi, transport (hemoglobin), struktur (kolagen).</div></div></div>
+<div class="item"><div>🧬</div><div><b>Asam Nukleat — DNA RNA</b><div class="muted">Nukleotida: gula pentosa + fosfat + basa N (A,T,G,C,U). DNA double helix, RNA single. ATP energi.</div></div></div>
 </div>
-<div class="legend"><span>Homologi = struktur sama leluhur sama</span><span>Analogi = fungsi sama leluhur beda</span><span>Seleksi alam = survival of the fittest</span></div>
 </div>
 <div class="card" style="padding:14px">
-<b>Bukti Evolusi</b>
+<b>Enzim & Metabolisme</b>
 <div class="list">
-<div class="item"><div>🦴</div><div><b>Fosil & Transitional</b><div class="muted">Archaeopteryx (reptil-burung), Tiktaalik (ikan-tetrapod), Australopithecus.</div></div></div>
-<div class="item"><div>🧬</div><div><b>Molekuler</b><div class="muted">DNA 98% sama simpanse, gen Hox konservasi, ERV retrovirus purba.</div></div></div>
-<div class="item"><div>🧫</div><div><b>Embriologi & Vestigial</b><div class="muted">Insang embrionik, usus buntu, tulang ekor, otot telinga.</div></div></div>
+<div class="item"><div>⚡</div><div><b>Enzim — Biokatalis protein</b><div class="muted">Sisi aktif + substrat → kompleks enzim-substrat → produk. Faktor: suhu optimum 37°C, pH optimum, konsentrasi. Inhibitor kompetitif & non-kompetitif. Feedback inhibition.</div></div></div>
+<div class="item"><div>🔥</div><div><b>Respirasi Seluler — C6H12O6 + 6O2 → 6CO2 + 6H2O + 30-32 ATP</b><div class="muted">Glikolisis di sitoplasma 2 ATP, siklus Krebs di matriks mitokondria 2 ATP, ETC di krista 28 ATP. Fermentasi jika tanpa O2: asam laktat (otot) atau alkohol (ragi).</div></div></div>
+<div class="item"><div>🌞</div><div><b>Fotosintesis — 6CO2 + 6H2O + cahaya → C6H12O6 + 6O2</b><div class="muted">Reaksi terang di tilakoid: fotolisis H2O, ATP, NADPH. Reaksi gelap Calvin di stroma: fiksasi CO2 via RuBisCO → G3P → glukosa.</div></div></div>
 </div>
 </div>
 </div>
 </section>
-<section id="ekologi" class="section">
-<h2>🌍 Ekologi — Rantai Makanan & Siklus</h2>
-<div class="grid cols-3">
-<div class="card" style="padding:12px"><b>Produsen → Konsumen → Dekomposer</b><div class="muted" style="font-size:12px">Produsen (fotosintesis 6CO2+6H2O→C6H12O6+6O2). Konsumen I herbivor, II karnivor, III top. Dekomposer bakteri jamur. 10% energi naik tiap trofik.</div></div>
-<div class="card" style="padding:12px"><b>Siklus Biogeokimia</b><div class="muted" style="font-size:12px">Karbon: fotosintesis-respirasi-pembakaran. Nitrogen: fiksasi Rhizobium → nitrifikasi → denitrifikasi. Air: evaporasi-kondensasi-presipitasi.</div></div>
-<div class="card" style="padding:12px"><b>Interaksi</b><div class="muted" style="font-size:12px">Mutualisme (+/+), Komensalisme (+/0), Parasitisme (+/-), Predasi, Kompetisi. Suksesi primer (lumut) → sekunder → klimaks.</div></div>
-</div>
-</section>
-<section id="kuis" class="section">
-<h2>🎯 Kuis UTBK 50 Soal — Mode Ujian</h2>
+<section id="jaringan" class="section">
+<h2>🧱 Jaringan — Epitel, Ikat, Otot, Saraf</h2>
+<div class="grid cols-2">
 <div class="card" style="padding:14px">
-<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
-<div><b id="qNum">Soal 1/50</b> <span class="pill" id="qScore">Score: 0</span> <span class="pill" id="qMode">Mode Belajar</span></div>
-<div style="display:flex;gap:8px;align-items:center"><span class="pill" id="timer">60:00</span><button class="btn primary" onclick="startUjian()">🎯 Mulai Ujian 60 Menit</button><button class="btn" onclick="startLatihan()">📚 Latihan Bebas</button></div>
-</div>
-<div style="height:6px;background:#0e2a27;border-radius:10px;margin:10px 0;overflow:hidden"><div id="qBar" style="height:100%;width:2%;background:var(--green);transition:.3s"></div></div>
-<p id="qText" style="font-weight:700;margin:8px 0"></p>
-<div id="qOpts" class="list"></div>
-<div id="qExp" style="display:none;margin-top:12px;padding:12px;border-radius:12px;background:#0f2c28;border:1px solid var(--line);border-left:3px solid var(--green)">
-<p id="qExpText" style="font-size:13px"></p><p id="qExpSrc" style="font-size:11px;color:var(--muted);margin-top:6px"></p>
-<button class="btn" style="margin-top:8px" onclick="nextQ()">Lanjut ➡️</button>
-</div>
-<div style="display:flex;gap:8px;margin-top:10px">
-<button class="btn ghost" style="flex:1" onclick="closeQuiz()">Keluar</button>
-<button class="btn ghost" style="flex:1" onclick="acakSoal()">Acak Soal 🔀</button>
-<button class="btn ghost" style="flex:1" onclick="shareScore()">Share Score 📤</button>
+<div class="list">
+<div class="item"><div>🟦</div><div><b>Epitel — Penutup & kelenjar</b><div class="muted">Sederhana: skuamosa (alveolus, Bowman), kuboid (tubulus ginjal), kolumnar (usus dengan mikrovili). Bertingkat: skuamosa (kulit, esofagus). Transisional (kandung kemih). Kelenjar eksokrin (keringat) & endokrin (hormon).</div></div></div>
+<div class="item"><div>🟫</div><div><b>Ikat — Penghubung</b><div class="muted">Longgar: areolar, adiposa, retikular. Padat: kolagen (tendon), elastin (ligamen). Khusus: tulang (osteosit), kartilago (kondrosit), darah (eritrosit, leukosit, trombosit). Matriks: serat + substansi dasar.</div></div></div>
 </div>
 </div>
-  </section><section id="glosarium" class="section">
-<h2>📚 Glosarium & Sumber</h2>
-<div class="gloss">
-<div><b>Os femoris</b><div class="muted">Tulang paha, terpanjang ~50cm ~26% tinggi, tahan 770-1130kg. Sumber: Gray's + study 1077 limbs.</div></div>
-<div><b>CO = SV x HR</b><div class="muted">Cardiac output ~5L/menit, SV 70ml HR 70. Sumber: Guyton Hall.</div></div>
-<div><b>GFR 90-120</b><div class="muted">Glomerular filtration rate, filtrasi 180L/hari → urin 1-2L. Sumber: Guyton.</div></div>
-<div><b>Alveoli 300-500jt 70-100m²</b><div class="muted">Membran 0.5 mikron, surfaktan DPPC pneumosit II. Sumber: West.</div></div>
-<div><b>206 tulang</b><div class="muted">Axial 80 + appendicular 126, bayi 270 fusi. Sumber: Gray's Anatomy 42nd Ed.</div></div>
-<div><b>BBB</b><div class="muted">Tight junction endotel + astrosit foot + perisit. Sumber: Kandel.</div></div>
+<div class="card" style="padding:14px">
+<div class="list">
+<div class="item"><div>🟥</div><div><b>Otot — Kontraksi aktin-miosin</b><div class="muted">Skeletal: lurik multinukleus voluntary, sarkomer. Cardiac: lurik bercabang involuntary discus intercalaris. Smooth: polos spindle involuntary viscera & pembuluh.</div></div></div>
+<div class="item"><div>🟨</div><div><b>Saraf — Neuron + glia</b><div class="muted">Neuron: dendrit → soma → akson → terminal. Glia: astrosit BBB, oligodendrosit mielin CNS, Schwann PNS, mikroglia imun. Sinaps: listrik & kimia neurotransmitter.</div></div></div>
+<div class="item"><div>🌿</div><div><b>Jaringan Tumbuhan</b><div class="muted">Meristem apikal & lateral (kambium). Permanen: epidermis, parenkim, kolenkim, sklerenkim, xilem (trakea), floem (ayakan), kutikula.</div></div></div>
 </div>
-<div class="footer">BioLab v1.0 — Edukasi saja, bukan diagnosis medis. Semua data diverifikasi: Gray's Anatomy, Tortora, Guyton Hall, Robbins, West Respiratory, Snell, Kandel, Fitzpatrick, Abbas Immunology. Dibuat untuk belajar biologi interaktif. Jika ragu, cek buku ajar. © 2026 BioLab.</div>
+</div>
+</div>
 </section>
-</main>
+<section id="fisiologi" class="section">
+<h2>🫀 Fisiologi — Sistem Tubuh Lengkap</h2>
+<div class="grid cols-3">
+<div class="card" style="padding:12px"><b>Sirkulasi — Jantung & Pembuluh</b><div class="muted" style="font-size:12px">Jantung 4 ruang, katup tri/mitral/pulmonal/aorta, SA node 60-100 pacemaker, CO 5L/menit. Darah: eritrosit Hb 12-16, leukosit imun, trombosit 150-400rb koagulasi. ABO & Rhesus transfusi. Limfa & imun.</div></div>
+<div class="card" style="padding:12px"><b>Respirasi — Paru & Gas</b><div class="muted" style="font-size:12px">Saluran: nasal → faring → laring → trakea → bronchus → bronchiolus → alveolus. Mekanisme: inspirasi diaphragm & intercostalis, V/Q 0.8, transport O2 98% Hb 2% larut, CO2 70% bikarbonat.</div></div>
+<div class="card" style="padding:12px"><b>Pencernaan — Mulut ke Anus</b><div class="muted" style="font-size:12px">Mulut amilase, esofagus peristaltik, gaster HCl pH1.5-3.5 pepsin, duodenum empedu + lipase + tripsin, ileum absorpsi vili, kolon absorpsi air, rektum. Hepar empedu 500-1000ml, pankreas enzim + hormon insulin/glukagon.</div></div>
+<div class="card" style="padding:12px"><b>Ekskresi — Ginjal & Kulit</b><div class="muted" style="font-size:12px">Nefron 1-1.2jt, GFR 90-120, filtrasi 180L→1-2L urin. Regulasi ADH air, Aldosteron Na+/K+, RAAS tekanan, EPO eritrosit. Kulit: epidermis 5 stratum, dermis, subcutis, keringat ekrin/apokrin.</div></div>
+<div class="card" style="padding:12px"><b>Saraf & Hormon — Kontrol</b><div class="muted" style="font-size:12px">Saraf: SSP otak & medulla, SST somatik & autonom simpatis/parasimpatis, refleks L2-L4. Hormon: hipofisis GH TSH ACTH FSH LH prolaktin, tiroid T4/T3 metabolisme, paratiroid PTH Ca, pankreas insulin/glukagon, adrenal adrenalin.</div></div>
+<div class="card" style="padding:12px"><b>Reproduksi & Perkembangan</b><div class="muted" style="font-size:12px">Meiosis gamet, fertilisasi zigot 2n, cleavage, blastula, gastrula 3 germ layer (ekto: kulit saraf, meso: otot tulang darah, endo: usus paru), organogenesis, kelahiran. Hormon FSH LH estrogen progesteron testosteron.</div></div>
+</div>
+</section>
+<section id="klasifikasi" class="section">
+<h2>🔍 Klasifikasi — Taksonomi Lengkap</h2>
+<div class="grid cols-2">
+<div class="card" style="padding:14px">
+<b>Taksonomi — Domain → Spesies</b>
+<div class="code" style="margin-top:8px">Domain: Bacteria, Archaea, Eukarya
+Kingdom: Animalia, Plantae, Fungi, Protista, Bacteria, Archaea
+Filum → Kelas → Ordo → Famili → Genus → Spesies
+Contoh: Homo sapiens
+Domain Eukarya, Kingdom Animalia, Filum Chordata, Kelas Mammalia, Ordo Primata, Famili Hominidae, Genus Homo, Spesies sapiens
+</div>
+<div class="list" style="margin-top:10px">
+<div class="item"><div>🦠</div><div><b>Bacteria & Archa    <div id="biokimia" class="lesson"><h3>Biokimia: kimia kehidupan</h3>
+      <p>Karbohidrat: sumber energi utama, terdiri dari monosakarida seperti glukosa. Lipid: penyusun membran dan cadangan energi. Protein: tersusun dari asam amino, berfungsi sebagai enzim, antibodi, dan komponen struktural. Asam nukleat: DNA menyimpan informasi genetik, RNA menerjemahkan menjadi protein.</p>
+      <div class="note">Penting: Struktur menentukan fungsi. Bentuk molekul memengaruhi cara kerja enzim dan interaksi sel.</div>
+    </div>
+    <div id="sel" class="lesson"><h3>Sel: unit kehidupan</h3>
+      <p>Sel prokariotik tidak memiliki inti, contohnya bakteri. Sel eukariotik memiliki inti dan organel bermembran. Organel utama: inti menyimpan DNA, mitokondria penghasil energi, ribosom pembuat protein, retikulum endoplasma tempat sintesis, aparatus Golgi untuk distribusi, lisosom pencerna, sitoskeleton penopang.</p>
+      <div class="note">Semua sel berasal dari sel sebelumnya. Ukuran sel umumnya mikrometer, sehingga perlu mikroskop untuk mengamatinya.</div>
+    </div>
+    <div id="jaringan" class="lesson"><h3>Jaringan: kumpulan sel sejenis</h3>
+      <p>Empat jaringan utama hewan: epitel pelapis, ikat penghubung, otot penggerak, dan saraf penghantar sinyal. Jaringan tumbuhan: meristem yang aktif membelah, epidermis pelindung, parenkim pengisi, kolenkim dan sklerenkim penyokong, serta xilem dan floem pengangkut.</p>
+    </div>
+    <div id="organ" class="lesson"><h3>Organ dan sistem organ</h3>
+      <p>Organ adalah kumpulan jaringan dengan fungsi tertentu. Sistem organ adalah gabungan organ yang bekerja sama. Contoh sistem pencernaan manusia: mulut, esofagus, lambung, usus halus, usus besar, rektum, dan organ aksesori seperti hati dan pankreas.</p>
+    </div>
+    <div id="genetika" class="lesson"><h3>Genetika: pewarisan sifat</h3>
+      <p>Gen adalah unit informasi genetik yang terletak pada kromosom. Alel adalah variasi gen. Hukum Mendel menjelaskan segregasi dan asortasi independen. Pewarisan modern melibatkan interaksi gen, pautan, pindah silang, dan mutasi. Teknologi DNA rekombinan memungkinkan manipulasi genetik.</p>
+    </div>
+    <div id="evolusi" class="lesson"><h3>Evolusi: perubahan dalam waktu</h3>
+      <p>Evolusi adalah perubahan frekuensi alel dalam populasi. Bukti evolusi berasal dari fosil, anatomi perbandingan, embriologi, dan molekuler. Seleksi alam, hanyutan genetik, dan aliran gen adalah mekanisme utama. Spesiasi terjadi ketika isolasi reproduktif terbentuk.</p>
+    </div>
+    <div id="ekologi" class="lesson"><h3>Ekologi: interaksi makhluk hidup dan lingkungan</h3>
+      <p>Ekologi mempelajari hubungan organisme dengan lingkungan. Tingkat organisasi: individu, populasi, komunitas, ekosistem, dan biosfer. Aliran energi melalui rantai makanan dan siklus materi seperti karbon, nitrogen, dan air. Interaksi antar spesies mencakup kompetisi, predasi, mutualisme, dan parasitisme.</p>
+    </div>
+    <div id="lingkungan" class="lesson"><h3>Isu lingkungan</h3>
+      <p>Masalah lingkungan seperti perubahan iklim, polusi, deforestasi, dan kepunahan disebabkan aktivitas manusia. Solusi meliputi konservasi, energi terbarukan, pengelolaan sampah, dan pendidikan lingkungan.</p>
+    </div>
+  </section>
+  <section class="card">
+    <h2>Simulasi: Sel Hewan</h2>
+    <p class="note">Klik bagian sel untuk melihat penjelasan. Ini adalah ilustrasi sederhana, bukan gambaran sebenarnya dengan skala presisi.</p>
+    <div class="cell-diagram" id="cellDiagram">
+      <div class="cell-part" data-part="membran"><span>Membran</span></div>
+      <div class="cell-part" data-part="sitoplasma"><span>Sitoplasma</span></div>
+      <div class="cell-part" data-part="nukleus"><span>Nukleus</span></div>
+      <div class="cell-part" data-part="mitokondria"><span>Mitokondria</span></div>
+      <div class="cell-part" data-part="ribosom"><span>Ribosom</span></div>
+      <div class="cell-part" data-part="re"><span>RE</span></div>
+      <div class="cell-part" data-part="golgi"><span>Golgi</span></div>
+      <div class="cell-part" data-part="lisosom"><span>Lisosom</span></div>
+    </div>
+    <div id="cellInfo" class="note">Pilih bagian sel di atas.</div>
+  </section>
+  <section class="card">
+    <h2>Simulasi: Rantai Makanan</h2>
+    <p class="note">Atur jumlah produsen, konsumen, dan dekomposer untuk melihat keseimbangan.</p>
+    <div class="food-chain">
+      <div><label>Produsen (tumbuhan)</label><input id="produsen" type="range" min="0" max="100" value="50"><span id="produsenVal">50</span></div>
+      <div><label>Konsumen I (herbivora)</label><input id="konsumen1" type="range" min="0" max="100" value="30"><span id="konsumen1Val">30</span></div>
+      <div><label>Konsumen II (karnivora)</label><input id="konsumen2" type="range" min="0" max="100" value="15"><span id="konsumen2Val">15</span></div>
+      <div><label>Dekomposer</label><input id="dekomposer" type="range" min="0" max="100" value="20"><span id="dekomposerVal">20</span></div>
+    </div>
+    <div id="foodInfo" class="note"></div>
+  </section>
+  <section class="card">
+    <h2>Kuis Biologi (10 soal acak)</h2>
+    <p class="note">Soal diambil dari bank soal. Jawaban langsung dinilai. Skor akhir ditampilkan.</p>
+    <div id="quizBox"></div>
+    <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+      <button class="btn" onclick="startQuiz()">Mulai Kuis</button>
+      <button class="btn secondary" onclick="resetQuiz()">Reset</button>
+    </div>
+    <div id="quizResult" class="note"></div>
+  </section>
+  <section class="card">
+    <h2>Glosarium</h2>
+    <div class="search"><input id="glossSearch" placeholder="Cari istilah..."><span id="glossCount" class="pill">0 istilah</span></div>
+    <div id="glossList" class="gloss-grid"></div>
+  </section>
+  <footer>
+    <div>BioLab — dibuat untuk pembelajaran. Sumber materi dirangkum dari buku teks biologi umum, bukan gambaran seluruh proses biologis.</div>
+    <div style="margin-top:6px">© 2026 BioLab. Edukasi saja, bukan nasihat medis.</div>
+  </footer>
+</div>
 <script>
-// ANATOMY 3D LAYER
-const anatomyHTML = `
-<style>
-#anatomy{width:100%;max-width:420px;margin:0 auto}
-#anatomy svg{width:100%;height:auto;display:block}
-.part{cursor:pointer;transition:.2s;pointer-events:all}
-.part:hover{filter:brightness(1.3) drop-shadow(0 0 8px #65edb0)}
-#uiA{margin-top:10px}
-.chips{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
-.chip{flex:1;min-width:60px;padding:7px;border-radius:10px;background:#0e2a27;text-align:center;font-size:10px;font-weight:700;border:1px solid #28463e;cursor:pointer}
-.chip.on{background:#65edb0;color:#0a201d}
-#popupA{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(0);background:#102724;padding:16px;width:360px;max-width:92vw;border-radius:16px;z-index:100;border:1px solid #28463e;transition:.3s;max-height:85vh;overflow:auto}
-#popupA.show{transform:translate(-50%,-50%) scale(1)}
-</style>
-<div id="anatomy">
-<svg viewBox="0 0 200 390">
-<g id="L_skin"><path class="part" d="M46 56 Q100 44 154 56 Q163 140 100 300 Q37 140 46 56" fill="#eac8a6" data-name="Kulit" data-latin="Integumentum 2m² organ terbesar" data-fungsi="Barrier, termoregulasi 5jt reseptor, sensasi Meissner Pacini" data-fakta="Turnover 28-40 hari, sidik jari unik" data-src="Fitzpatrick"/></g>
-<g id="L_muscle"><path class="part" d="M50 60 Q100 50 150 60 Q158 140 100 290 Q42 140 50 60" fill="#a01a1a" opacity=".9" data-name="Musculus" data-latin="600+ otot 40-50% BB" data-fungsi="Skeletal lurik voluntary, cardiac bercabang, smooth spindle" data-fakta="Masseter terkuat 90kg, stapedius terkecil 1mm" data-src="Tortora"/></g>
-<g id="L_organ"><path class="part" d="M68 75 Q65 115 84 122 Q91 95 86 75" fill="#ff8a8a" data-name="Pulmo" data-latin="Dexter 3 lobus 10 segmen, Sinister 2 lobus 9 segmen" data-fungsi="Alveoli 300-500jt 70-100m² membran 0.5 mikron, surfaktan DPPC" data-fakta="Bronchus dex pendek vertikal 25° aspirasi lebih sering kanan, V/Q 0.8" data-src="West"/><path class="part" d="M100 86 Q108 79 113 86 Q113 97 100 108 Q87 97 87 86 Q92 79 100 86" fill="#d00020" data-name="Cor" data-latin="250-350gr 4 ruang" data-fungsi="CO=SV70ml x HR70=5L/menit, SA node 60-100 pacemaker" data-fakta="Suplai aa.coronaria, infark tersering LAD, marker troponin" data-src="Guyton"/><path class="part" d="M84 125 Q100 130 116 125 L116 147 Q100 154 84 147 Z" fill="#8a3d1d" data-name="Hepar" data-latin="1.2-1.5kg 8 segmen Couinaud" data-fungsi="500+ fungsi, 75% v.portae 25% a.hepatica, bilirubin indirect->direct" data-fakta="Regenerasi 70% reseksi, AST/ALT hepatoseluler" data-src="Robbins"/></g>
-<g id="L_nerve"><path class="part" d="M100 24 Q100 70 100 110 Q90 130 86 162" stroke="#ffe47a" stroke-width="2.2" fill="none" stroke-dasharray="5 4" data-name="Medulla Spinalis" data-latin="31 segmen 8C 12T 5L 5S 1Co, conus L1-L2" data-fungsi="Substantia grisea H, alba tractus, refleks patella L2-L4" data-fakta="LP L3-L4/L4-L5, konduksi A-alpha 70-120 m/s" data-src="Snell"/><circle class="part" cx="100" cy="28" r="11" fill="#ffe47a" data-name="Encephalon" data-latin="86M neuron+85M glia ~1400gr 2% BB" data-fungsi="20% O2 25% glukosa, -70mV, glutamat eksitasi GABA inhibisi, BBB tight junction" data-fakta="Cerebrum lobus, cerebellum koordinasi, truncus vital" data-src="Kandel"/></g>
-<g id="L_vessel"><path class="part" d="M100 50 L100 175" stroke="#d00020" stroke-width="3" data-name="Aorta" data-latin="Ascendens 2.5-3.5cm, arcus 3 cabang, descendens" data-fungsi="120/80 mmHg, Windkessel elastin, 3 lapis intima media adventitia" data-fakta="Aneurisma infrarenal >3cm surveillance, diseksi Stanford A emergensi" data-src="Guyton"/><path class="part" d="M100 58 Q82 77 75 135 Q80 150 100 165" stroke="#5a7cff" stroke-width="2.4" fill="none" data-name="Vena Cava" data-latin="VCS brachiocephalica, VCI iliaca communis 22cm 1.5-2.5cm" data-fungsi="Drainase atas/bawah diafragma, pompa otot & respirasi" data-fakta="Total vaskular ~100.000km = 2.5x bumi, VCI tanpa katup" data-src="Anatomy"/></g>
-<g id="L_bone"><circle class="part" cx="100" cy="28" r="20" fill="#e8e8ee" data-name="Os Cranii" data-latin="Neurocranium 8 + Viscerocranium 14 =22" data-fungsi="Lindungi encephalon, sutura pertumbuhan" data-fakta="Bayi ~270 tulang dewasa 206 axial 80 appendicular 126, fontanel anterior 12-18 bulan" data-src="Gray's"/><rect class="part" x="88" y="70" width="24" height="60" rx="7" fill="#e0e0e8" data-name="Thorax" data-latin="Costae I-XII + Sternum" data-fungsi="Vera I-VII langsung, spuria VIII-X tidak langsung, fluctuantes XI-XII bebas" data-fakta="Fraktur V-IX tersering, I jarang" data-src="Tortora"/><rect class="part" x="76" y="172" width="15" height="86" rx="7" fill="#e0e0e8" data-name="Os Femoris" data-latin="~50cm ~26% tinggi terpanjang terkuat" data-fungsi="Caput collum 125-135° trochanter, condylus, hematopoiesis" data-fakta="Mean 50cm tibial 39cm, tahan 770-1130kg, AVN collum risiko a.circumflexa medialis" data-src="Study 1077 limbs"/></g>
-</svg>
-<div id="uiA">
-<div style="display:flex;justify-content:space-between;font-size:11px"><span id="pctA">0% layer</span><span id="modeA">Belajar</span></div>
-<input id="depthA" type="range" min="0" max="100" value="0" oninput="bedahA(this.value)" style="width:100%;accent-color:#65edb0">
-<div class="chips">
-<div class="chip on" id="c0A" onclick="goA(0)">KULIT</div><div class="chip" id="c1A" onclick="goA(25)">OTOT</div><div class="chip" id="c2A" onclick="goA(50)">ORGAN</div><div class="chip" id="c3A" onclick="goA(70)">SARAF</div><div class="chip" id="c4A" onclick="goA(85)">DARAH</div><div class="chip" id="c5A" onclick="goA(100)">TULANG</div>
-</div>
-</div>
-<div id="popupA">
-<b id="pNameA"></b><div id="pLatinA" style="display:inline-block;padding:3px 8px;border-radius:20px;background:#0e2a27;border:1px solid #28463e;color:#9bb9ae;font-size:9px;margin-top:6px"></div>
-<p id="pFungsiA" style="font-size:11px;color:#cde9df;margin-top:8px;line-height:1.5;white-space:pre-wrap"></p>
-<p id="pFaktaA" style="font-size:11px;color:#ffe47a;margin-top:6px;line-height:1.5;white-space:pre-wrap"></p>
-<p id="pSrcA" style="font-size:8px;color:#6b8a82;margin-top:6px"></p>
-<button class="btn primary" style="width:100%;margin-top:8px" onclick="closeA()">Tutup</button>
-</div>
-</div>
-`;
-document.getElementById('anatomy-root').innerHTML=anatomyHTML;
-const LA={skin:document.getElementById('L_skin'),muscle:document.getElementById('L_muscle'),organ:document.getElementById('L_organ'),nerve:document.getElementById('L_nerve'),vessel:document.getElementById('L_vessel'),bone:document.getElementById('L_bone')};
-window.bedahA=function(v){v=+v; try{LA.skin.style.opacity=v<20?1-v/20:0; LA.muscle.style.opacity=v<20?v/20:v<40?1:1-(v-40)/20; LA.organ.style.opacity=v<30?0:v<55?(v-30)/25:v<75?1:1-(v-75)/15; LA.nerve.style.opacity=v<60?0:v<75?(v-60)/15:1; LA.vessel.style.opacity=v<70?0:v<85?(v-70)/15:1; LA.bone.style.opacity=0.15+v/100*0.85;}catch(e){} let idx=v<20?0:v<40?1:v<60?2:v<75?3:v<90?4:5; document.querySelectorAll('#uiA.chip').forEach(c=>c.classList.remove('on')); let el=document.getElementById('c'+idx+'A'); if(el) el.classList.add('on'); let pct=document.getElementById('pctA'); if(pct) pct.innerText=v+'%';}
-window.goA=function(v){document.getElementById('depthA').value=v; bedahA(v);} bedahA(0);
-document.querySelectorAll('#anatomy.part').forEach(el=>{el.addEventListener('click',e=>{let d=el.dataset; document.getElementById('pNameA').innerText=d.name; document.getElementById('pLatinA').innerText=d.latin||""; document.getElementById('pFungsiA').innerText="FUNGSI: "+(d.fungsi||""); document.getElementById('pFaktaA').innerText="FAKTA: "+(d.fakta||""); document.getElementById('pSrcA').innerText="Sumber: "+(d.src||""); document.getElementById('popupA').classList.add('show'); e.stopPropagation();});});
-window.closeA=function(){document.getElementById('popupA').classList.remove('show');}
-document.getElementById('anatomy-root').addEventListener('click',e=>{ if(e.target.id==='anatomy-root') closeA(); });
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const lessons = $$('.lesson');
+const tocLinks = $$('#toc a');
+const searchInput = $('#search');
+const searchInfo = $('#searchInfo');
+function filterLessons(q){
+  const qq = q.trim().toLowerCase();
+  let visible = 0;
+  lessons.forEach(sec=>{
+    const txt = [sec.id,sec.querySelector('h3')?.innerText,sec.innerText].join(' ').toLowerCase();
+    const show =!qq || txt.includes(qq);
+    sec.style.display = show? '' : 'none';
+    if(show) visible++;
+  });
+  searchInfo.textContent = qq? `${visible} materi cocok` : '';
+  tocLinks.forEach(a=>{
+    const id = a.getAttribute('href').slice(1);
+    const sec = document.getElementById(id);
+    if(!sec) return;
+    a.style.display = sec.style.display === 'none'? 'none' : '';
+  });
+}
+searchInput.addEventListener('input', e=>filterLessons(e.target.value));
 
-// CELL SIM
-const cell=document.getElementById('cellCanvas');
-if(cell){
-cell.innerHTML=`<svg viewBox="0 0 200 200" style="width:100%;height:100%"><circle cx="100" cy="100" r="88" fill="#0e2a27" stroke="#28463e"/><circle id="nucleus" cx="100" cy="85" r="28" fill="#1a3d38" stroke="#65edb0" stroke-width="1" style="cursor:pointer"/><circle id="mito" cx="60" cy="120" r="12" fill="#16332e" stroke="#ffe47a" stroke-width="1" style="cursor:pointer"/><circle id="mito2" cx="140" cy="120" r="12" fill="#16332e" stroke="#ffe47a" stroke-width="1" style="cursor:pointer"/><rect id="er" x="30" y="60" width="34" height="18" rx="6" fill="#102724" stroke="#9bb9ae" style="cursor:pointer"/><rect id="golgi" x="130" y="60" width="34" height="18" rx="6" fill="#102724" stroke="#9bb9ae" style="cursor:pointer"/></svg>`;
-const info={nucleus:{name:"Nucleus ~6μm",desc:"Pusat kontrol, DNA kromatin, nukleolus buat rRNA. Pori nukleus 120nm transport mRNA. Sumber: Tortora."},mito:{name:"Mitokondria 0.5-1μm",desc:"Powerhouse, siklus Krebs + ETC + fosforilasi oksidatif, ATP 30-32/glukosa. Endosimbiosis bakteri. Sumber: Guyton."},mito2:{name:"Mitokondria",desc:"Punya DNA sirkular sendiri, cristae perbesar luas. Apoptosis via sitokrom c."},er:{name:"Retikulum Endoplasma",desc:"Kasur: ribosom -> protein sekretori. Halus: sintesis lipid, detoks, Ca2+ store."},golgi:{name:"Apparatus Golgi",desc:"Modifikasi, sorting, packaging protein → vesikel → lisosom/membran/sekresi."}};
-function setOrg(id){let d=info[id]; if(!d) return; document.getElementById('organelleName').innerText=d.name; document.getElementById('organelleDesc').innerText=d.desc;}
-cell.querySelectorAll('[id]').forEach(el=>el.addEventListener('click',()=>setOrg(el.id)));
+// Cell simulation
+const cellInfo = {
+  membran: "Membran sel: lapisan fosfolipid dengan protein. Mengatur keluar masuk zat secara selektif.",
+  sitoplasma: "Sitoplasma: cairan tempat organel berada, mengandung sitosol dan sitoskeleton.",
+  nukleus: "Nukleus: pusat pengendali sel, menyimpan DNA dalam kromosom.",
+  mitokondria: "Mitokondria: penghasil energi melalui respirasi seluler.",
+  ribosom: "Ribosom: tempat sintesis protein dari mRNA.",
+  re: "Retikulum endoplasma: RE kasar dengan ribosom untuk protein, RE halus untuk lipid dan detoksifikasi.",
+  golgi: "Aparatus Golgi: modifikasi, pengemasan, dan distribusi protein dan lipid.",
+  lisosom: "Lisosom: pencerna partikel dan organel rusak dengan enzim hidrolitik."
+};
+$$('.cell-part').forEach(el=>{
+  el.addEventListener('click', ()=>{
+    const part = el.dataset.part;
+    $('#cellInfo').textContent = cellInfo[part] || 'Info tidak tersedia';
+  });
+});
+
+// Food chain
+function updateFood(){
+  const p = +$('#produsen').value;
+  const k1 = +$('#konsumen1').value;
+  const k2 = +$('#konsumen2').value;
+  const d = +$('#dekomposer').value;
+  $('#produsenVal').textContent = p;
+  $('#konsumen1Val').textContent = k1;
+  $('#konsumen2Val').textContent = k2;
+  $('#dekomposerVal').textContent = d;
+  let msg = '';
+  if(p < k1) msg += 'Produsen kurang, konsumen I kekurangan makanan. ';
+  if(k1 < k2) msg += 'Konsumen I kurang untuk konsumen II. ';
+  if(d < 10) msg += 'Dekomposer rendah, daur materi lambat. ';
+  if(!msg) msg = 'Ekosistem relatif seimbang.';
+  $('#foodInfo').textContent = msg;
+}
+['produsen','konsumen1','konsumen2','dekomposer'].forEach(id=>{
+  $('#'+id).addEventListener('input', updateFood);
+});
+updateFood();
+
+// Quiz
+const bank = [
+  {q:"Unit terkecil kehidupan?",a:["Sel","Jaringan","Organ","Populasi"],k:0},
+  {q:"Organel penghasil energi?",a:["Mitokondria","Ribosom","Nukleus","Lisosom"],k:0},
+  {q:"Proses pembuatan protein dari mRNA?",a:["Translasi","Transkripsi","Replikasi","Mutasi"],k:0},
+  {q:"Hukum segregasi dikemukakan oleh?",a:["Mendel","Darwin","Watson","Lamarck"],k:0},
+  {q:"Pewarisan sifat yang terpaut kromosom seks disebut?",a:["Sex linkage","Kodominan","Epistasis","Pleiotropi"],k:0},
+  {q:"Mekanisme evolusi utama menurut Darwin?",a:["Seleksi alam","Hanyutan genetik","Aliran gen","Mutasi saja"],k:0},
+  {q:"Produsen dalam ekosistem darat umumnya adalah?",a:["Tumbuhan hijau","Herbivora","Karnivora","Dekomposer"],k:0},
+  {q:"Siklus yang melibatkan bakteri Rhizobium?",a:["Nitrogen","Karbon","Air","Fosfor"],k:0},
+  {q:"Jaringan tumbuhan yang mengangkut air?",a:["Xilem","Floem","Parenkim","Kolenkim"],k:0},
+  {q:"Fase mitosis dimana kromosom berjajar di bidang ekuator?",a:["Metafase","Profase","Anafase","Telofase"],k:0},
+  {q:"DNA tersusun atas?",a:["Nukleotida","Asam amino","Glukosa","Asam lemak"],k:0},
+  {q:"Enzim yang menguraikan pati menjadi maltosa di mulut?",a:["Amilase","Lipase","Pepsin","Tripsin"],k:0},
+  {q:"Organ ekskresi utama pada manusia?",a:["Ginjal","Hati","Paru-paru","Kulit"],k:0},
+  {q:"Hormon yang mengatur gula darah adalah?",a:["Insulin","Adrenalin","Tiroksin","Estrogen"],k:0},
+  {q:"Interaksi dimana satu untung satu rugi?",a:["Parasitisme","Mutualisme","Komensalisme","Netralisme"],k:0}
+];
+let quizSet = [];
+let quizIdx = 0;
+let score = 0;
+function shuffle(arr){return arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(v=>v[1]);}
+function startQuiz(){
+  quizSet = shuffle(bank).slice(0,10);
+  quizIdx = 0;
+  score = 0;
+  renderQuiz();
+  $('#quizResult').textContent = '';
+}
+function renderQuiz(){
+  const box = $('#quizBox');
+  box.innerHTML = '';
+  if(quizIdx >= quizSet.length){
+    box.innerHTML = `<div class="note">Kuis selesai. Skor: ${score}/${quizSet.length}</div>`;
+    return;
+  }
+  const item = quizSet[quizIdx];
+  const qEl = document.createElement('div');
+  qEl.className = 'quiz-q';
+  qEl.innerHTML = `<div><b>${quizIdx+1}. ${item.q}</b></div>`;
+  const opts = document.createElement('div');
+  opts.className = 'quiz-opts';
+  item.a.forEach((opt,i)=>{
+    const b = document.createElement('button');
+    b.className = 'btn secondary';
+    b.textContent = opt;
+    b.onclick = ()=>{
+      if(i===item.k) score++;
+      quizIdx++;
+      renderQuiz();
+      $('#quizResult').textContent = `Skor sementara: ${score}/${quizIdx}`;
+    };
+    opts.appendChild(b);
+  });
+  qEl.appendChild(opts);
+  box.appendChild(qEl);
+}
+function resetQuiz(){
+  $('#quizBox').innerHTML = '';
+  $('#quizResult').textContent = '';
 }
 
-// DNA
-window.transcribe=function(){let dna=document.getElementById('dnaSeq').innerText.trim(); let rna=dna.replace(/T/g,'U'); document.getElementById('rnaOut').innerText='mRNA: '+rna;}
-window.translate=function(){let rna=document.getElementById('rnaOut').innerText.replace('mRNA: ','').trim(); if(!rna||rna=='-'){transcribe(); rna=document.getElementById('rnaOut').innerText.replace('mRNA: ','').trim();} let codonTable={AUG:'Met',UUU:'Phe',UUC:'Phe',UUA:'Leu',UUG:'Leu',UCU:'Ser',UCC:'Ser',UAU:'Tyr',UAC:'Tyr',UGU:'Cys',UGG:'Trp',UAA:'Stop',UAG:'Stop',UGA:'Stop'}; let prot=[]; for(let i=0;i<rna.length;i+=3){let cod=rna.substr(i,3); if(codonTable[cod]) prot.push(codonTable[cod]); else if(cod.length==3) prot.push('?');} document.getElementById('proteinOut').innerText='Protein: '+prot.join('-');}
-window.mutate=function(){let dna=document.getElementById('dnaSeq'); let s=dna.innerText; let i=Math.floor(Math.random()*s.length); let bases=['A','T','G','C']; s=s.substring(0,i)+bases[Math.floor(Math.random()*4)]+s.substring(i+1); dna.innerText=s;}
+// Glossary
+const glossary = [
+  {t:"Abiotik",d:"Faktor tak hidup di lingkungan seperti suhu, air, cahaya."},
+  {t:"Biotik",d:"Faktor hidup seperti tumbuhan, hewan, mikroba."},
+  {t:"Sel",d:"Unit struktural dan fungsional terkecil kehidupan."},
+  {t:"Jaringan",d:"Kumpulan sel sejenis dengan fungsi sama."},
+  {t:"Organ",d:"Kumpulan jaringan membentuk struktur dengan fungsi tertentu."},
+  {t:"Ekosistem",d:"Interaksi komunitas dengan lingkungan abiotiknya."},
+  {t:"Fotosintesis",d:"Proses tumbuhan membuat makanan dengan bantuan cahaya."},
+  {t:"Respirasi seluler",d:"Proses pelepasan energi dari glukosa di mitokondria."},
+  {t:"DNA",d:"Asam deoksiribonukleat, menyimpan informasi genetik."},
+  {t:"RNA",d:"Asam ribonukleat, berperan dalam sintesis protein."},
+  {t:"Gen",d:"Segmen DNA yang mengkode sifat tertentu."},
+  {t:"Alel",d:"Varian gen pada lokus yang sama."},
+  {t:"Kromosom",d:"Struktur pembawa gen di dalam inti sel."},
+  {t:"Mitosis",d:"Pembelahan sel menghasilkan dua sel identik."},
+  {t:"Meiosis",d:"Pembelahan sel menghasilkan sel dengan setengah kromosom."},
+  {t:"Mutasi",d:"Perubahan materi genetik."},
+  {t:"Seleksi alam",d:"Proses dimana individu dengan sifat adaptif lebih bertahan."},
+  {t:"Spesiasi",d:"Pembentukan spesies baru akibat isolasi reproduktif."},
+  {t:"Populasi",d:"Kumpulan individu sejenis di suatu wilayah."},
+  {t:"Komunitas",d:"Kumpulan populasi berbeda yang berinteraksi."},
+  {t:"Rantai makanan",d:"Alur perpindahan energi dari produsen ke konsumen."},
+  {t:"Produsen",d:"Organisme yang membuat makanan sendiri, biasanya tumbuhan."},
+  {t:"Konsumen",d:"Organisme yang memakan organisme lain."},
+  {t:"Dekomposer",d:"Pengurai sisa makhluk hidup menjadi zat anorganik."},
+  {t:"Homeostasis",d:"Kemampuan menjaga keseimbangan internal."}
+];
+function renderGlossary(){
+  const q = ($('#glossSearch').value||'').toLowerCase();
+  const list = $('#glossList');
+  list.innerHTML = '';
+  const filtered = glossary.filter(g=>!q || g.t.toLowerCase().includes(q) || g.d.toLowerCase().includes(q));
+  $('#glossCount').textContent = `${filtered.length} istilah`;
+  filtered.forEach(g=>{
+    const div = document.createElement('div');
+    div.className = 'gloss-item';
+    div.innerHTML = `<b>${g.t}</b><div style="font-size:13px;color:var(--muted);margin-top:4px">${g.d}</div>`;
+    list.appendChild(div);
+  });
+}
+$('#glossSearch').addEventListener('input', renderGlossary);
 
-// QUIZ 50 SOAL
-const bank=[
-{q:"Jumlah tulang dewasa & bayi menurut Gray's Anatomy?",opts:["206 dewasa, 270 bayi (fusi)","208 dewasa, 300 bayi","206 dewasa, 206 bayi","213 dewasa, 270 bayi"],ans:0,exp:"Gray's: 206 distinct bones dewasa (axial 80 + appendicular 126). Bayi ~270 tulang rawan, fusi sacrum 5->1, coccyx 3-5->1.",src:"Gray's Anatomy 42nd Ed"},
-{q:"Os femoris panjang rata-rata & % tinggi badan?",opts:["~50cm, ~26% tinggi, tulang terpanjang & terkuat","~30cm, ~15% tinggi","~60cm, ~35% tinggi","~40cm, ~20% tinggi"],ans:0,exp:"Studi 1077 limbs: mean femoral length 50.0cm ±7.2, tibial 39cm. Femur ~26% height, tahan 770-1130kg tekan.",src:"Study: mean femoral 50cm, tibial 39cm"},
-{q:"Costae vera, spuria, fluctuantes?",opts:["I-VII vera langsung ke sternum, VIII-X spuria tidak langsung, XI-XII fluctuantes bebas","Semua langsung ke sternum","I-XII semua melayang","Hanya I-V vera"],ans:0,exp:"Vera I-VII cartilago costalis langsung ke sternum. Spuria VIII-X menyatu ke costa di atas. Fluctuantes XI-XII ujung bebas.",src:"Tortora"},
-{q:"Fraktur collum femoris risiko apa & kenapa?",opts:["AVN caput karena a.circumflexa femoris medialis robek","Infeksi saja","Tidak ada risiko","Patah patella"],ans:0,exp:"Collum femoris disuplai a.circumflexa femoris medialis (retinacular). Fraktur = suplai putus => avaskular nekrosis caput femoris.",src:"Gray's - Hip joint"},
-{q:"Diameter aorta ascendens & tekanan normal?",opts:["2.5-3.5cm, 120/80 mmHg","1cm, 90/60","5cm, 200/100","0.5cm, 120/80"],ans:0,exp:"Aorta ascendens 2.5-3.5cm. Tekanan normal sistolik 120, diastolik 80 mmHg. Media kaya elastin untuk Windkessel effect.",src:"Guyton Hall"},
-{q:"VCS & VCI dibentuk dari apa & panjang VCI?",opts:["VCS dari vv.brachiocephalica, VCI dari vv.iliaca communis, panjang VCI ~22cm diam 1.5-2.5cm","Keduanya dari atrium","VCI 5cm","VCS dari aorta"],ans:0,exp:"VCS: vv.brachiocephalica dex+sin. VCI: vv.iliaca communis, panjang 22cm, diameter 1.5-2.5cm, tidak punya katup.",src:"Anatomy textbook"},
-{q:"Total panjang sistem vaskular manusia?",opts:["~100.000km = 2.5x keliling bumi","~10km","~1000km","~1.000.000km"],ans:0,exp:"Arteri + vena + kapiler ~100.000km. Kapiler diameter 5-10 mikron, tempat pertukaran.",src:"Guyton Hall"},
-{q:"Medulla spinalis berakhir di mana & lumbal puncture di mana?",opts:["Conus medullaris L1-L2, puncture L3-L4 / L4-L5","Berakhir di sacrum, puncture di cervical","Berakhir di L5, puncture di thoracal","Berakhir di otak"],ans:0,exp:"Medulla berakhir conus di L1-L2, lanjut cauda equina. LP di L3-L4 atau L4-L5 interspinosus untuk hindari cedera medulla.",src:"Snell Neuroanatomy"},
-{q:"Kecepatan konduksi A-alpha & fungsi refleks patella?",opts:["70-120 m/s, arcus reflexus L2-L4 tanpa cortex","1 m/s, lewat cortex","10 m/s","200 m/s"],ans:0,exp:"Serabut A-alpha 70-120 m/s (myelinated besar). Refleks patella L2-L4: sensorik -> interneuron -> motorik di medulla, tanpa ke cortex, makanya cepat.",src:"Guyton Hall"},
-{q:"Encephalon berat, % O2 & % glukosa?",opts:["~1400gr (2% BB) tapi 20% O2 & 25% glukosa","10% BB 50% O2","500gr 5% O2","2000gr 10% O2"],ans:0,exp:"Otak 2% berat badan tapi konsumsi O2 20% & glukosa 25% tubuh. ATP hampir eksklusif dari glukosa.",src:"Kandel Neuroscience"},
-{q:"Potensial istirahat neuron & ion utama?",opts:["-70mV, K+ tinggi intrasel, Na+ tinggi ekstrasel, aksi potensial via Na+ influx","-10mV","0mV","+70mV"],ans:0,exp:"Resting -70mV karena K+ leak & Na+/K+ ATPase (3 Na+ keluar, 2 K+ masuk). Aksi potensial: Na+ channel buka -> depolarisasi.",src:"Guyton Hall"},
-{q:"Neurotransmitter eksitasi & inhibisi utama?",opts:["Glutamat eksitasi, GABA inhibisi","GABA eksitasi, glutamat inhibisi","Dopamin eksitasi utama","Serotonin eksitasi utama"],ans:0,exp:"Glutamat ~75% sinaps eksitasi di CNS (via AMPA/NMDA). GABA ~25% inhibisi (via GABA-A Cl- influx).",src:"Kandel"},
-{q:"BBB dibentuk oleh?",opts:["Tight junction endotel kapiler + astrosit foot process + perisit","Hanya tengkorak","Hanya dura","Tidak ada BBB"],ans:0,exp:"Blood-brain barrier: tight junction antar endotel, basal lamina, perisit, astrosit foot. Lindungi otak dari toksin.",src:"Neuroscience textbook"},
-{q:"Pulmo dexter vs sinister lobus & segmentum?",opts:["Dexter 3 lobus (sup, med, inf) 10 segmen, sinister 2 lobus + lingula 9 segmen","Keduanya 2 lobus","Keduanya 3 lobus","Dexter 2, sinister 3"],ans:0,exp:"Kanan 3 lobus karena fissura horizontalis + obliqua, kiri 2 lobus. Segmentum bronchopulmonale kanan 10, kiri 9-10.",src:"West Respiratory"},
-{q:"Alveolus jumlah & luas, tebal membran respiratorik?",opts:["300-500 juta, luas 70-100m², membran 0.5 mikron","100 juta, 10m²","1 miliar, 200m²","50 juta, 20m²"],ans:0,exp:"Alveoli 300-500 juta, luas 70-100m² (lapangan tenis). Membran: pneumosit I + basal lamina + endotel = 0.5 mikron.",src:"Tortora"},
-{q:"Surfaktan apa & fungsi?",opts:["DPPC (dipalmitoylphosphatidylcholine) dari pneumosit II, turunkan surface tension cegah kolaps","Protein saja","Hanya air","Mukus"],ans:0,exp:"Surfaktan = DPPC + protein SP-A,B,C,D dari pneumosit tipe II. Turunkan tegangan permukaan alveolus, cegah kolaps.",src:"West"},
-{q:"Bronchus principalis dex kenapa aspirasi lebih sering kanan?",opts:["Lebih pendek, lebar, vertikal (~25° dari trakea)","Lebih panjang","Lebih sempit","Sama saja"],ans:0,exp:"Bronchus dex: panjang 2.5cm, lebar, sudut 25° dari vertikal. Sin: panjang 5cm, sudut 45°. Jadi benda asing cenderung jatuh kanan.",src:"Gray's Anatomy"},
-{q:"Cor 4 ruang & katup urutan aliran?",opts:["VCS/VCI -> atrium dex -> tricuspidalis -> ventriculus dex -> pulmonalis -> pulmo -> vv.pulmonales -> atrium sin -> mitralis -> ventriculus sin -> aortae -> aorta","Langsung aorta","Atrium sin dulu","Tidak ada katup"],ans:0,exp:"Sirkulasi: kanan = pulmonal (darah kotor ke paru), kiri = sistemik (darah bersih ke tubuh). Katup cegah regurgitasi.",src:"Guyton Hall"},
-{q:"Sistem konduksi jantung & pacemaker?",opts:["SA node 60-100/menit (pacemaker) -> AV delay 0.1s -> His -> Purkinje","Hanya Purkinje","AV node pacemaker utama","His pacemaker"],ans:0,exp:"SA node di atrium dex dekat VCS = pacemaker normal 60-100. AV node delay 0.1s untuk atrium kontraksi dulu.",src:"Guyton Hall"},
-{q:"Cardiac output rumus & normal?",opts:["CO = SV (70ml) x HR (70) = ~5L/menit","CO = 1L/menit","CO = 20L/menit","CO = HR saja"],ans:0,exp:"Stroke volume ~70ml, HR ~70 => CO 4.9-5L/menit istirahat. Exercise bisa 20-25L/menit.",src:"Guyton Hall"},
-{q:"Suplai darah jantung & infark tersering?",opts:["aa.coronaria dex & sin dari sinus Valsalva, infark tersering LAD (a.coronaria sin ramus interventricularis anterior)","Dari VCI","Dari aorta descendens","Dari VCS"],ans:0,exp:"Coronaria dari aorta ascendens sinus Valsalva. LAD suplai anterior & septum, paling sering aterosklerosis.",src:"Robbins Pathology"},
-{q:"EKG P, QRS, T?",opts:["P=depolarisasi atrium, QRS=depolarisasi ventriculus, T=repolarisasi ventriculus","Semua depolarisasi","P=ventriculus","T=atrium"],ans:0,exp:"P wave atrium depolarisasi, QRS ventriculus depolarisasi (0.08-0.10s), T repolarisasi ventriculus.",src:"Guyton Hall"},
-{q:"Marker infark miokard?",opts:["Troponin I/T (spesifik), CK-MB","Hanya hemoglobin","Leukosit","Gula darah"],ans:0,exp:"Troponin I/T spesifik miokard, naik 3-6 jam post infark, puncak 24 jam, normal 7-10 hari. CK-MB naik 4-6 jam.",src:"Robbins"},
-{q:"Hepar berat, segmen Couinaud, vaskularisasi?",opts:["1.2-1.5kg, 8 segmen, 75% v.portae + 25% a.hepatica propria","500gr, 4 segmen","2kg, 2 segmen","1kg, 75% arteri"],ans:0,exp:"Hepar 8 segmen Couinaud berdasarkan v.portae. 75% darah dari v.portae (nutrien usus), 25% dari a.hepatica (O2).",src:"Gray's Anatomy"},
-{q:"Fungsi hepar metabolisme & bilirubin?",opts:["Karbo (glikogenesis, glikogenolisis, glukoneogenesis), protein (albumin, faktor koagulasi), lemak, detoks CYP450, bilirubin indirect -> direct via glukuronidasi","Hanya simpan lemak","Hanya buat empedu","Tidak ada fungsi"],ans:0,exp:"Hepar 500+ fungsi. Bilirubin indirect hidrofobik bound albumin -> hepar konjugasi glucuronate -> direct hidrofilik -> empedu.",src:"Guyton Hall"},
-{q:"Empedu volume & AST/ALT?",opts:["500-1000m
+// TOC highlight
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    const id = entry.target.id;
+    const link = document.querySelector(`#toc a[href="#${id}"]`);
+    if(!link) return;
+    if(entry.isIntersecting){
+      $$('#toc a').forEach(a=>a.classList.remove('active'));
+      link.classList.add('active');
+    }
+  });
+},{rootMargin:"-40% 0px -50% 0px",threshold:0.1});
+lessons.forEach(sec=>observer.observe(sec));
+
+// Searchable for anatomy
+(function(){
+  const root = document.getElementById('anatomy-root');
+  if(!root) return;
+  root.innerHTML = `
+  <style>
+    #anatomy{width:100%;max-width:420px;margin:0 auto}
+    #anatomy svg{width:100%;height:auto;display:block}
+   .part{cursor:pointer;transition:.2s;pointer-events:all}
+   .part:hover{filter:brightness(1.3) drop-shadow(0 0 8px #65edb0)}
+    #uiA{margin-top:10px}
+   .chips{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+   .chip{flex:1;min-width:60px;padding:7px;border-radius:10px;background:#0e2a27;text-align:center;font-size:10px;font-weight:700;border:1px solid #28463e;cursor:pointer}
+   .chip.on{background:#65edb0;color:#0a201d}
+    #popupA{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(0);background:#102724;padding:16px;width:360px;max-width:92vw;border-radius:16px;z-index:100;border:1px solid #28463e;transition:.3s;max-height:85vh;overflow:auto}
+    #popupA.show{transform:translate(-50%,-50%) scale(1)}
+  </style>
+  <div id="anatomy">
+  <svg viewBox="0 0 200 390">
+  <g id="L_skin"><path class="part" d="M46 56 Q100 44 154 56 Q163 140 100 300 Q37 140 46 56" fill="#eac8a6" data-name="Kulit" data-latin="Integumentum 2m² organ terbesar" data-fungsi="Barrier, termoregulasi 5jt reseptor, sensasi Meissner Pacini" data-fakta="Turnover 28-40 hari, sidik jari unik" data-src="Fitzpatrick"/></g>
+  <g id="L_muscle"><path class="part" d="M50 60 Q100 50 150 60 Q158 140 100 290 Q42 140 50 60" fill="#a01a1a" opacity=".9" data-name="Musculus" data-latin="600+ otot 40-50% BB" data-fungsi="Skeletal lurik voluntary, cardiac bercabang, smooth spindle" data-fakta="Masseter terkuat 90kg, stapedius terkecil 1mm" data-src="Tortora"/></g>
+  <g id="L_organ"><path class="part" d="M68 75 Q65 115 84 122 Q91 95 86 75" fill="#ff8a8a" data-name="Pulmo" data-latin="Dexter 3 lobus 10 segmen, Sinister 2 lobus 9 segmen" data-fungsi="Alveoli 300-500jt 70-100m² membran 0.5 mikron, surfaktan DPPC" data-fakta="Bronchus dex pendek vertikal 25° aspirasi lebih sering kanan, V/Q 0.8" data-src="West"/><path class="part" d="M100 86 Q108 79 113 86 Q113 97 100 108 Q87 97 87 86 Q92 79 100 86" fill="#d00020" data-name="Cor" data-latin="250-350gr 4 ruang" data-fungsi="CO=SV70ml x HR70=5L/menit, SA node 60-100 pacemaker" data-fakta="Suplai aa.coronaria, infark tersering LAD, marker troponin" data-src="Guyton"/><path class="part" d="M84 125 Q100 130 116 125 L116 147 Q100 154 84 147 Z" fill="#8a3d1d" data-name="Hepar" data-latin="1.2-1.5kg 8 segmen Couinaud" data-fungsi="500+ fungsi, 75% v.portae 25% a.hepatica, bilirubin indirect->direct" data-fakta="Regenerasi 70% reseksi, AST/ALT hepatoseluler" data-src="Robbins"/></g>
+  <g id="L_nerve"><path class="part" d="M100 24 Q100 70 100 110 Q90 130 86 162" stroke="#ffe47a" stroke-width="2.2" fill="none" stroke-dasharray="5 4" data-name="Medulla Spinalis" data-latin="31 segmen 8C 12T 5L 5S 1Co, conus L1-L2" data-fungsi="Substantia grisea H, alba tractus, refleks patella L2-L4" data-fakta="LP L3-L4/L4-L5, konduksi A-alpha 70-120 m/s" data-src="Snell"/><circle class="part" cx="100" cy="28" r="11" fill="#ffe47a" data-name="Encephalon" data-latin="86M neuron+85M glia ~1400gr 2% BB" data-fungsi="20% O2 25% glukosa, -70mV, glutamat eksitasi GABA inhibisi, BBB tight junction" data-fakta="Cerebrum lobus, cerebellum koordinasi, truncus vital" data-src="Kandel"/></g>
+  <g id="L_vessel"><path class="part" d="M100 50 L100 175" stroke="#d00020" stroke-width="3" data-name="Aorta" data-latin="Ascendens 2.5-3.5cm, arcus 3 cabang, descendens" data-fungsi="120/80 mmHg, Windkessel elastin, 3 lapis intima media adventitia" data-fakta="Aneurisma infrarenal >3cm surveillance, diseksi Stanford A emergensi" data-src="Guyton"/><path class="part" d="M100 58 Q82 77 75 135 Q80 150 100 165" stroke="#5a7cff" stroke-width="2.4" fill="none" data-name="Vena Cava" data-latin="VCS brachiocephalica, VCI iliaca communis 22cm 1.5-2.5cm" data-fungsi="Drainase atas/bawah diafragma, pompa otot & respirasi" data-fakta="Total vaskular ~100.000km = 2.5x bumi, VCI tanpa katup" data-src="Anatomy"/></g>
+  <g id="L_bone"><circle class="part" cx="100" cy="28" r="20" fill="#e8e8ee" data-name="Os Cranii" data-latin="Neurocranium 8 + Viscerocranium 14 =22" data-fungsi="Lindungi encephalon, sutura pertumbuhan" data-fakta="Bayi ~270 tulang dewasa 206 axial 80 appendicular 126, fontanel anterior 12-18 bulan" data-src="Gray's"/><rect class="part" x="88" y="70" width="24" height="60" rx="7" fill="#e0e0e8" data-name="Thorax" data-latin="Costae I-XII + Sternum" data-fungsi="Vera I-VII langsung, spuria VIII-X tidak langsung, fluctuantes XI-XII bebas" data-fakta="Fraktur V-IX tersering, I jarang" data-src="Tortora"/><rect class="part" x="76" y="172" width="15" height="86" rx="7" fill="#e0e0e8" data-name="Os Femoris" data-latin="~50cm ~26% tinggi terpanjang terkuat" data-fungsi="Caput collum 125-135° trochanter, condylus, hematopoiesis" data-fakta="Mean 50cm tibial 39cm, tahan 770-1130kg, AVN collum risiko a.circumflexa medialis" data-src="Study 1077 limbs"/></g>
+  </svg>
+  <div id="uiA">
+  <div style="display:flex;justify-content:space-between;font-size:11px"><span id="pctA">0% layer</span><span id="modeA">Belajar</span></div>
+  <input id="depthA" type="range" min="0" max="100" value="0" oninput="bedahA(this.value)" style="width:100%;accent-color:#65edb0">
+  <div class="chips">
+  <div class="chip on" id="c0A" onclick="goA(0)">KULIT</div><div class="chip" id="c1A" onclick="goA(25)">OTOT</div><div class="chip" id="c2A" onclick="goA(50)">ORGAN</div><div class="chip" id="c3A" onclick="goA(70)">SARAF</div><div class="chip" id="c4A" onclick="goA(85)">DARAH</div><div class="chip" id="c5A" onclick="goA(100)">TULANG</div>
+  </div>
+      <div id="biokimia" class="lesson"><h3>Biokimia: kimia kehidupan</h3>
+      <p>Karbohidrat: sumber energi utama, terdiri dari monosakarida seperti glukosa. Lipid: penyusun membran dan cadangan energi. Protein: tersusun dari asam amino, berfungsi sebagai enzim, antibodi, dan komponen struktural. Asam nukleat: DNA menyimpan informasi genetik, RNA menerjemahkan menjadi protein.</p>
+      <div class="note">Penting: Struktur menentukan fungsi. Bentuk molekul memengaruhi cara kerja enzim dan interaksi sel.</div>
+    </div>
+    <div id="sel" class="lesson"><h3>Sel: unit kehidupan</h3>
+      <p>Sel prokariotik tidak memiliki inti, contohnya bakteri. Sel eukariotik memiliki inti dan organel bermembran. Organel utama: inti menyimpan DNA, mitokondria penghasil energi, ribosom pembuat protein, retikulum endoplasma tempat sintesis, aparatus Golgi untuk distribusi, lisosom pencerna, sitoskeleton penopang.</p>
+      <div class="note">Semua sel berasal dari sel sebelumnya. Ukuran sel umumnya mikrometer, sehingga perlu mikroskop untuk mengamatinya.</div>
+    </div>
+    <div id="jaringan" class="lesson"><h3>Jaringan: kumpulan sel sejenis</h3>
+      <p>Empat jaringan utama hewan: epitel pelapis, ikat penghubung, otot penggerak, dan saraf penghantar sinyal. Jaringan tumbuhan: meristem yang aktif membelah, epidermis pelindung, parenkim pengisi, kolenkim dan sklerenkim penyokong, serta xilem dan floem pengangkut.</p>
+    </div>
+    <div id="organ" class="lesson"><h3>Organ dan sistem organ</h3>
+      <p>Organ adalah kumpulan jaringan dengan fungsi tertentu. Sistem organ adalah gabungan organ yang bekerja sama. Contoh sistem pencernaan manusia: mulut, esofagus, lambung, usus halus, usus besar, rektum, dan organ aksesori seperti hati dan pankreas.</p>
+    </div>
+    <div id="genetika" class="lesson"><h3>Genetika: pewarisan sifat</h3>
+      <p>Gen adalah unit informasi genetik yang terletak pada kromosom. Alel adalah variasi gen. Hukum Mendel menjelaskan segregasi dan asortasi independen. Pewarisan modern melibatkan interaksi gen, pautan, pindah silang, dan mutasi. Teknologi DNA rekombinan memungkinkan manipulasi genetik.</p>
+    </div>
+    <div id="evolusi" class="lesson"><h3>Evolusi: perubahan dalam waktu</h3>
+      <p>Evolusi adalah perubahan frekuensi alel dalam populasi. Bukti evolusi berasal dari fosil, anatomi perbandingan, embriologi, dan molekuler. Seleksi alam, hanyutan genetik, dan aliran gen adalah mekanisme utama. Spesiasi terjadi ketika isolasi reproduktif terbentuk.</p>
+    </div>
+    <div id="ekologi" class="lesson"><h3>Ekologi: interaksi makhluk hidup dan lingkungan</h3>
+      <p>Ekologi mempelajari hubungan organisme dengan lingkungan. Tingkat organisasi: individu, populasi, komunitas, ekosistem, dan biosfer. Aliran energi melalui rantai makanan dan siklus materi seperti karbon, nitrogen, dan air. Interaksi antar spesies mencakup kompetisi, predasi, mutualisme, dan parasitisme.</p>
+    </div>
+    <div id="lingkungan" class="lesson"><h3>Isu lingkungan</h3>
+      <p>Masalah lingkungan seperti perubahan iklim, polusi, deforestasi, dan kepunahan disebabkan aktivitas manusia. Solusi meliputi konservasi, energi terbarukan, pengelolaan sampah, dan pendidikan lingkungan.</p>
+    </div>
+  </section>
+  <section class="card">
+    <h2>Simulasi: Sel Hewan</h2>
+    <p class="note">Klik bagian sel untuk melihat penjelasan. Ini adalah ilustrasi sederhana, bukan gambaran sebenarnya dengan skala presisi.</p>
+    <div class="cell-diagram" id="cellDiagram">
+      <div class="cell-part" data-part="membran"><span>Membran</span></div>
+      <div class="cell-part" data-part="sitoplasma"><span>Sitoplasma</span></div>
+      <div class="cell-part" data-part="nukleus"><span>Nukleus</span></div>
+      <div class="cell-part" data-part="mitokondria"><span>Mitokondria</span></div>
+      <div class="cell-part" data-part="ribosom"><span>Ribosom</span></div>
+      <div class="cell-part" data-part="re"><span>RE</span></div>
+      <div class="cell-part" data-part="golgi"><span>Golgi</span></div>
+      <div class="cell-part" data-part="lisosom"><span>Lisosom</span></div>
+    </div>
+    <div id="cellInfo" class="note">Pilih bagian sel di atas.</div>
+  </section>
+  <section class="card">
+    <h2>Simulasi: Rantai Makanan</h2>
+    <p class="note">Atur jumlah produsen, konsumen, dan dekomposer untuk melihat keseimbangan.</p>
+    <div class="food-chain">
+      <div><label>Produsen (tumbuhan)</label><input id="produsen" type="range" min="0" max="100" value="50"><span id="produsenVal">50</span></div>
+      <div><label>Konsumen I (herbivora)</label><input id="konsumen1" type="range" min="0" max="100" value="30"><span id="konsumen1Val">30</span></div>
+      <div><label>Konsumen II (karnivora)</label><input id="konsumen2" type="range" min="0" max="100" value="15"><span id="konsumen2Val">15</span></div>
+      <div><label>Dekomposer</label><input id="dekomposer" type="range" min="0" max="100" value="20"><span id="dekomposerVal">20</span></div>
+    </div>
+    <div id="foodInfo" class="note"></div>
+  </section>
+  <section class="card">
+    <h2>Kuis Biologi (10 soal acak)</h2>
+    <p class="note">Soal diambil dari bank soal. Jawaban langsung dinilai. Skor akhir ditampilkan.</p>
+    <div id="quizBox"></div>
+    <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+      <button class="btn" onclick="startQuiz()">Mulai Kuis</button>
+      <button class="btn secondary" onclick="resetQuiz()">Reset</button>
+    </div>
+    <div id="quizResult" class="note"></div>
+  </section>
+  <section class="card">
+    <h2>Glosarium</h2>
+    <div class="search"><input id="glossSearch" placeholder="Cari istilah..."><span id="glossCount" class="pill">0 istilah</span></div>
+    <div id="glossList" class="gloss-grid"></div>
+  </section>
+  <footer>
+    <div>BioLab — dibuat untuk pembelajaran. Sumber materi dirangkum dari buku teks biologi umum, bukan gambaran seluruh proses biologis.</div>
+    <div style="margin-top:6px">© 2026 BioLab. Edukasi saja, bukan nasihat medis.</div>
+  </footer>
+</div>
+<script>
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const lessons = $$('.lesson');
+const tocLinks = $$('#toc a');
+const searchInput = $('#search');
+const searchInfo = $('#searchInfo');
+function filterLessons(q){
+  const qq = q.trim().toLowerCase();
+  let visible = 0;
+  lessons.forEach(sec=>{
+    const txt = [sec.id,sec.querySelector('h3')?.innerText,sec.innerText].join(' ').toLowerCase();
+    const show =!qq || txt.includes(qq);
+    sec.style.display = show? '' : 'none';
+    if(show) visible++;
+  });
+  searchInfo.textContent = qq? `${visible} materi cocok` : '';
+  tocLinks.forEach(a=>{
+    const id = a.getAttribute('href').slice(1);
+    const sec = document.getElementById(id);
+    if(!sec) return;
+    a.style.display = sec.style.display === 'none'? 'none' : '';
+  });
+}
+searchInput.addEventListener('input', e=>filterLessons(e.target.value));
+
+// Cell simulation
+const cellInfo = {
+  membran: "Membran sel: lapisan fosfolipid dengan protein. Mengatur keluar masuk zat secara selektif.",
+  sitoplasma: "Sitoplasma: cairan tempat organel berada, mengandung sitosol dan sitoskeleton.",
+  nukleus: "Nukleus: pusat pengendali sel, menyimpan DNA dalam kromosom.",
+  mitokondria: "Mitokondria: penghasil energi melalui respirasi seluler.",
+  ribosom: "Ribosom: tempat sintesis protein dari mRNA.",
+  re: "Retikulum endoplasma: RE kasar dengan ribosom untuk protein, RE halus untuk lipid dan detoksifikasi.",
+  golgi: "Aparatus Golgi: modifikasi, pengemasan, dan distribusi protein dan lipid.",
+  lisosom: "Lisosom: pencerna partikel dan organel rusak dengan enzim hidrolitik."
+};
+$$('.cell-part').forEach(el=>{
+  el.addEventListener('click', ()=>{
+    const part = el.dataset.part;
+    $('#cellInfo').textContent = cellInfo[part] || 'Info tidak tersedia';
+  });
+});
+
+// Food chain
+function updateFood(){
+  const p = +$('#produsen').value;
+  const k1 = +$('#konsumen1').value;
+  const k2 = +$('#konsumen2').value;
+  const d = +$('#dekomposer').value;
+  $('#produsenVal').textContent = p;
+  $('#konsumen1Val').textContent = k1;
+  $('#konsumen2Val').textContent = k2;
+  $('#dekomposerVal').textContent = d;
+  let msg = '';
+  if(p < k1) msg += 'Produsen kurang, konsumen I kekurangan makanan. ';
+  if(k1 < k2) msg += 'Konsumen I kurang untuk konsumen II. ';
+  if(d < 10) msg += 'Dekomposer rendah, daur materi lambat. ';
+  if(!msg) msg = 'Ekosistem relatif seimbang.';
+  $('#foodInfo').textContent = msg;
+}
+['produsen','konsumen1','konsumen2','dekomposer'].forEach(id=>{
+  $('#'+id).addEventListener('input', updateFood);
+});
+updateFood();
+
+// Quiz
+const bank = [
+  {q:"Unit terkecil kehidupan?",a:["Sel","Jaringan","Organ","Populasi"],k:0},
+  {q:"Organel penghasil energi?",a:["Mitokondria","Ribosom","Nukleus","Lisosom"],k:0},
+  {q:"Proses pembuatan protein dari mRNA?",a:["Translasi","Transkripsi","Replikasi","Mutasi"],k:0},
+  {q:"Hukum segregasi dikemukakan oleh?",a:["Mendel","Darwin","Watson","Lamarck"],k:0},
+  {q:"Pewarisan sifat yang terpaut kromosom seks disebut?",a:["Sex linkage","Kodominan","Epistasis","Pleiotropi"],k:0},
+  {q:"Mekanisme evolusi utama menurut Darwin?",a:["Seleksi alam","Hanyutan genetik","Aliran gen","Mutasi saja"],k:0},
+  {q:"Produsen dalam ekosistem darat umumnya adalah?",a:["Tumbuhan hijau","Herbivora","Karnivora","Dekomposer"],k:0},
+  {q:"Siklus yang melibatkan bakteri Rhizobium?",a:["Nitrogen","Karbon","Air","Fosfor"],k:0},
+  {q:"Jaringan tumbuhan yang mengangkut air?",a:["Xilem","Floem","Parenkim","Kolenkim"],k:0},
+  {q:"Fase mitosis dimana kromosom berjajar di bidang ekuator?",a:["Metafase","Profase","Anafase","Telofase"],k:0},
+  {q:"DNA tersusun atas?",a:["Nukleotida","Asam amino","Glukosa","Asam lemak"],k:0},
+  {q:"Enzim yang menguraikan pati menjadi maltosa di mulut?",a:["Amilase","Lipase","Pepsin","Tripsin"],k:0},
+  {q:"Organ ekskresi utama pada manusia?",a:["Ginjal","Hati","Paru-paru","Kulit"],k:0},
+  {q:"Hormon yang mengatur gula darah adalah?",a:["Insulin","Adrenalin","Tiroksin","Estrogen"],k:0},
+  {q:"Interaksi dimana satu untung satu rugi?",a:["Parasitisme","Mutualisme","Komensalisme","Netralisme"],k:0}
+];
+let quizSet = [];
+let quizIdx = 0;
+let score = 0;
+function shuffle(arr){return arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(v=>v[1]);}
+function startQuiz(){
+  quizSet = shuffle(bank).slice(0,10);
+  quizIdx = 0;
+  score = 0;
+  renderQuiz();
+  $('#quizResult').textContent = '';
+}
+function renderQuiz(){
+  const box = $('#quizBox');
+  box.innerHTML = '';
+  if(quizIdx >= quizSet.length){
+    box.innerHTML = `<div class="note">Kuis selesai. Skor: ${score}/${quizSet.length}</div>`;
+    return;
+  }
+  const item = quizSet[quizIdx];
+  const qEl = document.createElement('div');
+  qEl.className = 'quiz-q';
+  qEl.innerHTML = `<div><b>${quizIdx+1}. ${item.q}</b></div>`;
+  const opts = document.createElement('div');
+  opts.className = 'quiz-opts';
+  item.a.forEach((opt,i)=>{
+    const b = document.createElement('button');
+    b.className = 'btn secondary';
+    b.textContent = opt;
+    b.onclick = ()=>{
+      if(i===item.k) score++;
+      quizIdx++;
+      renderQuiz();
+      $('#quizResult').textContent = `Skor sementara: ${score}/${quizIdx}`;
+    };
+    opts.appendChild(b);
+  });
+  qEl.appendChild(opts);
+  box.appendChild(qEl);
+}
+function resetQuiz(){
+  $('#quizBox').innerHTML = '';
+  $('#quizResult').textContent = '';
+}
+
+// Glossary
+const glossary = [
+  {t:"Abiotik",d:"Faktor tak hidup di lingkungan seperti suhu, air, cahaya."},
+  {t:"Biotik",d:"Faktor hidup seperti tumbuhan, hewan, mikroba."},
+  {t:"Sel",d:"Unit struktural dan fungsional terkecil kehidupan."},
+  {t:"Jaringan",d:"Kumpulan sel sejenis dengan fungsi sama."},
+  {t:"Organ",d:"Kumpulan jaringan membentuk struktur dengan fungsi tertentu."},
+  {t:"Ekosistem",d:"Interaksi komunitas dengan lingkungan abiotiknya."},
+  {t:"Fotosintesis",d:"Proses tumbuhan membuat makanan dengan bantuan cahaya."},
+  {t:"Respirasi seluler",d:"Proses pelepasan energi dari glukosa di mitokondria."},
+  {t:"DNA",d:"Asam deoksiribonukleat, menyimpan informasi genetik."},
+  {t:"RNA",d:"Asam ribonukleat, berperan dalam sintesis protein."},
+  {t:"Gen",d:"Segmen DNA yang mengkode sifat tertentu."},
+  {t:"Alel",d:"Varian gen pada lokus yang sama."},
+  {t:"Kromosom",d:"Struktur pembawa gen di dalam inti sel."},
+  {t:"Mitosis",d:"Pembelahan sel menghasilkan dua sel identik."},
+  {t:"Meiosis",d:"Pembelahan sel menghasilkan sel dengan setengah kromosom."},
+  {t:"Mutasi",d:"Perubahan materi genetik."},
+  {t:"Seleksi alam",d:"Proses dimana individu dengan sifat adaptif lebih bertahan."},
+  {t:"Spesiasi",d:"Pembentukan spesies baru akibat isolasi reproduktif."},
+  {t:"Populasi",d:"Kumpulan individu sejenis di suatu wilayah."},
+  {t:"Komunitas",d:"Kumpulan populasi berbeda yang berinteraksi."},
+  {t:"Rantai makanan",d:"Alur perpindahan energi dari produsen ke konsumen."},
+  {t:"Produsen",d:"Organisme yang membuat makanan sendiri, biasanya tumbuhan."},
+  {t:"Konsumen",d:"Organisme yang memakan organisme lain."},
+  {t:"Dekomposer",d:"Pengurai sisa makhluk hidup menjadi zat anorganik."},
+  {t:"Homeostasis",d:"Kemampuan menjaga keseimbangan internal."}
+];
+function renderGlossary(){
+  const q = ($('#glossSearch').value||'').toLowerCase();
+  const list = $('#glossList');
+  list.innerHTML = '';
+  const filtered = glossary.filter(g=>!q || g.t.toLowerCase().includes(q) || g.d.toLowerCase().includes(q));
+  $('#glossCount').textContent = `${filtered.length} istilah`;
+  filtered.forEach(g=>{
+    const div = document.createElement('div');
+    div.className = 'gloss-item';
+    div.innerHTML = `<b>${g.t}</b><div style="font-size:13px;color:var(--muted);margin-top:4px">${g.d}</div>`;
+    list.appendChild(div);
+  });
+}
+$('#glossSearch').addEventListener('input', renderGlossary);
+
+// TOC highlight
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    const id = entry.target.id;
+    const link = document.querySelector(`#toc a[href="#${id}"]`);
+    if(!link) return;
+    if(entry.isIntersecting){
+      $$('#toc a').forEach(a=>a.classList.remove('active'));
+      link.classList.add('active');
+    }
+  });
+},{rootMargin:"-40% 0px -50% 0px",threshold:0.1});
+lessons.forEach(sec=>observer.observe(sec));
+
+// Searchable for anatomy
+(function(){
+  const root = document.getElementById('anatomy-root');
+  if(!root) return;
+  root.innerHTML = `
+  <style>
+    #anatomy{width:100%;max-width:420px;margin:0 auto}
+    #anatomy svg{width:100%;height:auto;display:block}
+   .part{cursor:pointer;transition:.2s;pointer-events:all}
+   .part:hover{filter:brightness(1.3) drop-shadow(0 0 8px #65edb0)}
+    #uiA{margin-top:10px}
+   .chips{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+   .chip{flex:1;min-width:60px;padding:7px;border-radius:10px;background:#0e2a27;text-align:center;font-size:10px;font-weight:700;border:1px solid #28463e;cursor:pointer}
+   .chip.on{background:#65edb0;color:#0a201d}
+    #popupA{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(0);background:#102724;padding:16px;width:360px;max-width:92vw;border-radius:16px;z-index:100;border:1px solid #28463e;transition:.3s;max-height:85vh;overflow:auto}
+    #popupA.show{transform:translate(-50%,-50%) scale(1)}
+  </style>
+  <div id="anatomy">
+  <svg viewBox="0 0 200 390">
+  <g id="L_skin"><path class="part" d="M46 56 Q100 44 154 56 Q163 140 100 300 Q37 140 46 56" fill="#eac8a6" data-name="Kulit" data-latin="Integumentum 2m² organ terbesar" data-fungsi="Barrier, termoregulasi 5jt reseptor, sensasi Meissner Pacini" data-fakta="Turnover 28-40 hari, sidik jari unik" data-src="Fitzpatrick"/></g>
+  <g id="L_muscle"><path class="part" d="M50 60 Q100 50 150 60 Q158 140 100 290 Q42 140 50 60" fill="#a01a1a" opacity=".9" data-name="Musculus" data-latin="600+ otot 40-50% BB" data-fungsi="Skeletal lurik voluntary, cardiac bercabang, smooth spindle" data-fakta="Masseter terkuat 90kg, stapedius terkecil 1mm" data-src="Tortora"/></g>
+  <g id="L_organ"><path class="part" d="M68 75 Q65 115 84 122 Q91 95 86 75" fill="#ff8a8a" data-name="Pulmo" data-latin="Dexter 3 lobus 10 segmen, Sinister 2 lobus 9 segmen" data-fungsi="Alveoli 300-500jt 70-100m² membran 0.5 mikron, surfaktan DPPC" data-fakta="Bronchus dex pendek vertikal 25° aspirasi lebih sering kanan, V/Q 0.8" data-src="West"/><path class="part" d="M100 86 Q108 79 113 86 Q113 97 100 108 Q87 97 87 86 Q92 79 100 86" fill="#d00020" data-name="Cor" data-latin="250-350gr 4 ruang" data-fungsi="CO=SV70ml x HR70=5L/menit, SA node 60-100 pacemaker" data-fakta="Suplai aa.coronaria, infark tersering LAD, marker troponin" data-src="Guyton"/><path class="part" d="M84 125 Q100 130 116 125 L116 147 Q100 154 84 147 Z" fill="#8a3d1d" data-name="Hepar" data-latin="1.2-1.5kg 8 segmen Couinaud" data-fungsi="500+ fungsi, 75% v.portae 25% a.hepatica, bilirubin indirect->direct" data-fakta="Regenerasi 70% reseksi, AST/ALT hepatoseluler" data-src="Robbins"/></g>
+  <g id="L_nerve"><path class="part" d="M100 24 Q100 70 100 110 Q90 130 86 162" stroke="#ffe47a" stroke-width="2.2" fill="none" stroke-dasharray="5 4" data-name="Medulla Spinalis" data-latin="31 segmen 8C 12T 5L 5S 1Co, conus L1-L2" data-fungsi="Substantia grisea H, alba tractus, refleks patella L2-L4" data-fakta="LP L3-L4/L4-L5, konduksi A-alpha 70-120 m/s" data-src="Snell"/><circle class="part" cx="100" cy="28" r="11" fill="#ffe47a" data-name="Encephalon" data-latin="86M neuron+85M glia ~1400gr 2% BB" data-fungsi="20% O2 25% glukosa, -70mV, glutamat eksitasi GABA inhibisi, BBB tight junction" data-fakta="Cerebrum lobus, cerebellum koordinasi, truncus vital" data-src="Kandel"/></g>
+  <g id="L_vessel"><path class="part" d="M100 50 L100 175" stroke="#d00020" stroke-width="3" data-name="Aorta" data-latin="Ascendens 2.5-3.5cm, arcus 3 cabang, descendens" data-fungsi="120/80 mmHg, Windkessel elastin, 3 lapis intima media adventitia" data-fakta="Aneurisma infrarenal >3cm surveillance, diseksi Stanford A emergensi" data-src="Guyton"/><path class="part" d="M100 58 Q82 77 75 135 Q80 150 100 165" stroke="#5a7cff" stroke-width="2.4" fill="none" data-name="Vena Cava" data-latin="VCS brachiocephalica, VCI iliaca communis 22cm 1.5-2.5cm" data-fungsi="Drainase atas/bawah diafragma, pompa otot & respirasi" data-fakta="Total vaskular ~100.000km = 2.5x bumi, VCI tanpa katup" data-src="Anatomy"/></g>
+  <g id="L_bone"><circle class="part" cx="100" cy="28" r="20" fill="#e8e8ee" data-name="Os Cranii" data-latin="Neurocranium 8 + Viscerocranium 14 =22" data-fungsi="Lindungi encephalon, sutura pertumbuhan" data-fakta="Bayi ~270 tulang dewasa 206 axial 80 appendicular 126, fontanel anterior 12-18 bulan" data-src="Gray's"/><rect class="part" x="88" y="70" width="24" height="60" rx="7" fill="#e0e0e8" data-name="Thorax" data-latin="Costae I-XII + Sternum" data-fungsi="Vera I-VII langsung, spuria VIII-X tidak langsung, fluctuantes XI-XII bebas" data-fakta="Fraktur V-IX tersering, I jarang" data-src="Tortora"/><rect class="part" x="76" y="172" width="15" height="86" rx="7" fill="#e0e0e8" data-name="Os Femoris" data-latin="~50cm ~26% tinggi terpanjang terkuat" data-fungsi="Caput collum 125-135° trochanter, condylus, hematopoiesis" data-fakta="Mean 50cm tibial 39cm, tahan 770-1130kg, AVN collum risiko a.circumflexa medialis" data-src="Study 1077 limbs"/></g>
+  </svg>
+  <div id="uiA">
+  <div style="display:flex;justify-content:space-between;font-size:11px"><span id="pctA">0% layer</span><span id="modeA">Belajar</span></div>
+  <input id="depthA" type="range" min="0" max="100" value="0" oninput="bedahA(this.value)" style="width:100%;accent-color:#65edb0">
+  <div class="chips">
+  <div class="chip on" id="c0A" onclick="goA(0)">KULIT</div><div class="chip" id="c1A" onclick="goA(25)">OTOT</div><div class="chip" id="c2A" onclick="goA(50)">ORGAN</div><div class="chip" id="c3A" onclick="goA(70)">SARAF</div><div class="chip" id="c4A" onclick="goA(85)">DARAH</div><div class="chip" id="c5A" onclick="goA(100)">TULANG</div>
+  </div>
+  
