@@ -3,170 +3,207 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>ANATOMY ULTIMATE V2 - For Araa</title>
+<title>ANATOMY 3D V3</title>
 <style>
 *{margin:0;box-sizing:border-box}
-body{background:#050510;color:#fff;font-family:Inter,system-ui,sans-serif;overflow:hidden}
-#top{position:fixed;top:0;width:100%;padding:14px 16px;z-index:20;background:linear-gradient(#050510 85%,transparent);border-bottom:1px solid #1a1a30}
-#title{font-weight:900;font-size:15px;letter-spacing:.5px}
-#title span{color:#ff5a8a}
-#desc{font-size:11px;color:#7a7a9a;margin-top:4px;line-height:1.4}
-#stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding-top:60px;padding-bottom:160px}
+body{background:radial-gradient(ellipse at top,#14142e 0%,#050510 70%);color:#fff;font-family:Inter,sans-serif;overflow:hidden}
+#top{position:fixed;top:0;width:100%;padding:14px 16px;z-index:20;background:rgba(5,5,16,.9);backdrop-filter:blur(12px);border-bottom:1px solid #1e1e3a}
+#title{font-weight:900;font-size:15px}#title span{color:#ff5a8a;background:linear-gradient(90deg,#ff5a8a,#ff9a5a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+#desc{font-size:10.5px;color:#7a7a9a;margin-top:4px}
+#stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding-top:60px;padding-bottom:170px}
 #viewport{transform-origin:center center;transition:transform.3s ease}
-svg{width:400px;height:680px;touch-action:none;filter:drop-shadow(0 0 40px #ff5a8a22)}
-.part{cursor:pointer;transition:.2s;stroke:transparent;stroke-width:0}
-.part:hover{filter:brightness(1.5) drop-shadow(0 0 8px #fff);stroke:#fff;stroke-width:1}
-.part.active{filter:brightness(1.6) drop-shadow(0 0 12px #ff5a8a);stroke:#ff5a8a;stroke-width:1.2}
+svg{width:420px;height:720px;touch-action:none}
+.part{cursor:pointer;transition:.25s}
+.part:hover{filter:brightness(1.3) drop-shadow(0 0 10px #ff5a8a88)}
 
-#ui{position:fixed;bottom:0;width:100%;padding:14px;background:#0e0e1c;border-radius:24px 24px 0 0;z-index:20;border:1px solid #22223e;border-bottom:none}
+/* 3D SHADING */
+.skin-base{fill:url(#skinGrad);stroke:#c9a27a;stroke-width:.3}
+.muscle-base{fill:url(#muscleGrad);stroke:#7a1a1a;stroke-width:.3}
+.bone-base{fill:url(#boneGrad);stroke:#b0b0b8;stroke-width:.4;filter:drop-shadow(2px 3px 4px rgba(0,0,0,.5))}
+
+#ui{position:fixed;bottom:0;width:100%;padding:14px;background:#0d0d1fEE;border-radius:24px 24px 0 0;z-index:20;border:1px solid #22224a;backdrop-filter:blur(16px)}
 #bar{display:flex;justify-content:space-between;font-size:11px;margin-bottom:8px}
-#pct{font-weight:700;color:#ff5a8a}
-input{width:100%;accent-color:#ff5a8a;height:6px}
+#pct{font-weight:800;color:#ff5a8a}
+input{width:100%;accent-color:#ff5a8a}
 .chips{display:flex;gap:6px;margin-top:10px}
-.chip{flex:1;padding:8px 2px;border-radius:12px;background:#1a1a32;text-align:center;font-size:10px;font-weight:700;border:1px solid #2a2a4a;cursor:pointer;transition:.2s}
-.chip.on{background:#ff5a8a;border-color:#ff5a8a;color:#fff;transform:translateY(-2px);box-shadow:0 4px 12px #ff5a8a44}
-#detail{margin-top:12px;background:#1a1a32;padding:12px;border-radius:14px;border:1px solid #2a2a4a;min-height:70px}
-#detail b{font-size:12px}
-#detail p{font-size:11px;color:#aaa;margin-top:4px;line-height:1.5}
-
-#popup{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(0);background:#15152a;padding:20px;width:340px;border-radius:20px;z-index:100;border:1px solid #333355;transition:.3s cubic-bezier(.34,1.56,.64,1);box-shadow:0 20px 60px #000a}
+.chip{flex:1;padding:9px 2px;border-radius:12px;background:linear-gradient(180deg,#1d1d3a,#181830);text-align:center;font-size:10px;font-weight:800;border:1px solid #2a2a5a;cursor:pointer;transition:.2s;box-shadow:inset 0 1px 0 #ffffff14,0 4px 10px #0005}
+.chip.on{background:linear-gradient(180deg,#ff5a8a,#e0447a);border-color:#ff5a8a;color:#fff;transform:translateY(-2px);box-shadow:0 6px 18px #ff5a8a66}
+#detail{margin-top:12px;background:linear-gradient(180deg,#1e1e3e,#191933);padding:12px;border-radius:14px;border:1px solid #2a2a5a;min-height:68px;box-shadow:inset 0 1px 0 #ffffff10}
+#popup{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(0);background:linear-gradient(180deg,#1d1d3a,#15152a);padding:20px;width:350px;border-radius:22px;z-index:100;border:1px solid #3a3a6a;transition:.35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 30px 80px #000c,0 0 0 1px #ffffff0f inset}
 #popup.show{transform:translate(-50%,-50%) scale(1)}
-.badge{display:inline-block;padding:3px 8px;border-radius:20px;background:#ff5a8a22;color:#ff5a8a;font-size:9px;font-weight:800;margin-top:6px}
-.btn{width:100%;padding:12px;margin-top:10px;border:none;border-radius:12px;background:#ff5a8a;color:#fff;font-weight:800;cursor:pointer}
-.btn2{background:#24244a}
-
-@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-.beating{animation:beat.8s infinite}
+.badge{display:inline-block;padding:4px 10px;border-radius:20px;background:#ff5a8a22;color:#ff8aab;font-size:9px;font-weight:800;margin-top:6px;border:1px solid #ff5a8a33}
+.btn{width:100%;padding:12px;margin-top:12px;border:none;border-radius:12px;background:linear-gradient(180deg,#ff5a8a,#e04075);color:#fff;font-weight:800;cursor:pointer;box-shadow:0 6px 18px #ff5a8a44}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.beating{animation:beat.75s infinite;transform-origin:100px 98px}
+@keyframes glow{0%,100%{opacity:.8}50%{opacity:1;filter:drop-shadow(0 0 6px #ffeb3b)}}
+.nerve-glow{animation:glow 1.2s infinite}
 </style>
 </head>
 <body>
 <div id="top">
-<div id="title">HUMAN ANATOMY <span>ULTIMATE V2</span> 🧬</div>
-<div id="desc">Kulit (2m²) → Otot (600+) → Organ (78) → Saraf (86M neuron) → Pembuluh (100rb km) → Tulang (206)<br>Pinch zoom | Tap organ untuk penjelasan lengkap</div>
+<div id="title">HUMAN ANATOMY <span>3D REALISTIC V3</span> 💀</div>
+<div id="desc">Shading 3D • Muscle Fiber • Bone Shadow • Tap organ = detail lengkap ujian</div>
 </div>
 
 <div id="stage">
 <div id="viewport">
-<svg id="man" viewBox="0 0 200 360">
-<!-- TULANG -->
+<svg id="man" viewBox="0 0 200 380">
+<defs>
+<radialGradient id="skinGrad" cx="0.4" cy="0.35" r="0.8">
+<stop offset="0%" stop-color="#f8d8b8"/><stop offset="35%" stop-color="#eac8a6"/><stop offset="75%" stop-color="#d4a07a"/><stop offset="100%" stop-color="#b07a55"/>
+</radialGradient>
+<linearGradient id="muscleGrad" x1="0" x2="1">
+<stop offset="0%" stop-color="#8b1a1a"/><stop offset="20%" stop-color="#b02020"/><stop offset="50%" stop-color="#d12a2a"/><stop offset="80%" stop-color="#a01e1e"/><stop offset="100%" stop-color="#6b1212"/>
+</linearGradient>
+<linearGradient id="boneGrad" x1="0" x2="1">
+<stop offset="0%" stop-color="#ffffff"/><stop offset="25%" stop-color="#f2f2f7"/><stop offset="60%" stop-color="#d8d8e0"/><stop offset="100%" stop-color="#b8b8c0"/>
+</linearGradient>
+<radialGradient id="headGrad" cx="0.35" cy="0.35" r="0.7">
+<stop offset="0%" stop-color="#fefefe"/><stop offset="50%" stop-color="#e8e8ee"/><stop offset="100%" stop-color="#b8b8c0"/>
+</radialGradient>
+</defs>
+
+<!-- BAYANGAN BELAKANG BUAT EFEK 3D -->
+<ellipse cx="100" cy="325" rx="40" ry="6" fill="#000" opacity=".35" />
+
+<!-- TULANG 3D -->
 <g id="L_bone">
-<circle class="part" cx="100" cy="28" r="20" fill="#f0f0f5" data-name="Tengkorak" data-latin="Os Cranium - 22 tulang" data-fungsi="Melindungi otak dari benturan, tempat melekatnya otot wajah & membentuk struktur wajah" data-fakta="Terdiri dari 8 tulang cranium + 14 tulang wajah. Bayi baru lahir punya 270 tulang, dewasa 206 karena penggabungan"/>
-<rect class="part" x="88" y="70" width="24" height="60" rx="7" fill="#eaeaf0" data-name="Tulang Dada & Rusuk" data-latin="Sternum & Costae - 25 tulang" data-fungsi="Melindungi jantung dan paru-paru, membantu pernapasan dengan gerakan naik-turun" data-fakta="12 pasang rusuk. 7 pasang rusuk sejati, 3 palsu, 2 melayang"/>
-<rect class="part" x="58" y="72" width="13" height="52" rx="6" fill="#dddde5" data-name="Lengan Atas" data-latin="Humerus - Tulang terpanjang di lengan" data-fungsi="Menghubungkan bahu ke siku, untuk gerakan mengangkat, mendorong, memutar lengan" data-fakta="Tulang ini punya 3 bagian: caput, corpus, dan condylus. Sering patah saat jatuh"/>
-<rect class="part" x="129" y="72" width="13" height="52" rx="6" fill="#dddde5" data-name="Lengan Atas" data-latin="Humerus" data-fungsi="Gerakan lengan atas, titik lekat otot biceps & triceps" data-fakta="Bisa menahan beban hingga 150kg"/>
-<rect class="part" x="76" y="172" width="15" height="85" rx="7" fill="#dddde5" data-name="Tulang Paha" data-latin="Femur - Tulang TERKUAT & TERPANJANG" data-fungsi="Menopang 70% berat tubuh, untuk berjalan, lari, lompat. Tempat sumsum tulang merah pembuat darah" data-fakta="Panjang ~26% tinggi badan. Bisa menahan beban 30x berat badan! Tulang paling sulit patah"/>
-<rect class="part" x="109" y="172" width="15" height="85" rx="7" fill="#dddde5" data-name="Tulang Paha" data-latin="Femur" data-fungsi="Penopang utama tubuh, mengandung sumsum merah pembuat sel darah" data-fakta="Jika patah butuh 3-6 bulan penyembuhan"/>
-<rect class="part" x="77" y="260" width="13" height="45" rx="5" fill="#d0d0d8" data-name="Tulang Kering" data-latin="Tibia" data-fungsi="Menopang berat badan di kaki bawah" data-fakta="Tulang kering kedua terkuat setelah femur"/>
-<rect class="part" x="110" y="260" width="13" height="45" rx="5" fill="#d0d0d8" data-name="Tulang Kering" data-latin="Tibia" data-fungsi="Penopang kaki bawah" data-fakta="Sering disebut tulang kering karena dekat kulit"/>
+<!-- Tengkorak 3D -->
+<g class="part" data-name="Tengkorak" data-latin="Cranium 22 tulang" data-fungsi="Lindungi otak 1.4kg, titik lekat otot wajah" data-fakta="8 cranium + 14 wajah. Ubun-ubun bayi masih lunak sampai 18 bulan">
+<circle cx="100" cy="30" r="21" fill="url(#headGrad)" stroke="#999" stroke-width=".5"/>
+<ellipse cx="94" cy="27" rx="5" ry="7" fill="#fff" opacity=".6"/>
 </g>
-<!-- PEMBULUH -->
+<!-- Tulang Dada 3D -->
+<g class="part" data-name="Sternum & Costae" data-latin="Thorax 25 tulang" data-fungsi="Sangkar pelindung jantung-paru, bantu napas" data-fakta="12 pasang rusuk: 7 sejati, 3 palsu, 2 melayang. Patah rusuk paling sakit">
+<rect x="88" y="70" width="24" height="62" rx="8" fill="url(#boneGrad)"/><rect x="90" y="72" width="3" height="58" rx="1" fill="#fff" opacity=".5"/>
+</g>
+<g class="part" data-name="Femur Kiri" data-latin="Femur terkuat" data-fungsi="Topang 70% berat, buat sel darah" data-fakta="Tahan 30x BB, panjang 26% tinggi badan">
+<rect x="76" y="172" width="15.5" height="86" rx="7" fill="url(#boneGrad)"/><rect x="77.5" y="174" width="3" height="82" rx="1" fill="#fff" opacity=".45"/>
+</g>
+<g class="part" data-name="Femur Kanan" data-latin="Femur" data-fungsi="Tulang paha penopang" data-fakta="Butuh 3-6 bulan sembuh jika patah">
+<rect x="109" y="172" width="15.5" height="86" rx="7" fill="url(#boneGrad)"/>
+</g>
+<!-- Lengan -->
+<rect class="part" x="57" y="72" width="14" height="54" rx="7" fill="url(#boneGrad)" data-name="Humerus" data-latin="Os brachii" data-fungsi="Lengan atas" data-fakta="Tahan 150kg"/>
+<rect class="part" x="129" y="72" width="14" height="54" rx="7" fill="url(#boneGrad)" data-name="Humerus" data-latin="Humerus kanan" data-fungsi="Gerakan lengan" data-fakta="Sering patah saat jatuh"/>
+</g>
+
+<!-- PEMBULUH 3D DENGAN GLOW -->
 <g id="L_vessel">
-<path d="M100 50 L100 175" stroke="#ff1a1a" stroke-width="3" opacity=".9" class="part" data-name="Aorta" data-latin="Aorta - Pembuluh nadi terbesar (diameter 2.5cm)" data-fungsi="Membawa darah kaya O2 dari jantung kiri ke seluruh tubuh. Tekanan tertinggi di tubuh" data-fakta="Panjang 30-40cm. Setiap detik mengalirkan 83ml darah. Jika putus, manusia bisa mati dalam 1 menit"/>
-<path d="M100 58 Q82 75 75 135 Q80 150 100 165" stroke="#2a6bff" stroke-width="2.4" opacity=".8" fill="none" class="part" data-name="Vena Cava Superior & Inferior" data-latin="Vena Cava - Vena terbesar" data-fungsi="Mengembalikan darah miskin O2 dari seluruh tubuh ke jantung kanan untuk dipompa ke paru" data-fakta="Vena cava inferior adalah vena terpanjang di tubuh, panjang 22cm"/>
-<path d="M100 58 Q118 75 125 135 Q120 150 100 165" stroke="#2a6bff" stroke-width="2.4" opacity=".8" fill="none" class="part" data-name="Vena Cava" data-latin="Vena cava inferior" data-fungsi="Membawa darah kotor CO2 kembali ke jantung" data-fakta="Total panjang pembuluh darah manusia 100.000 km, bisa mengelilingi bumi 2.5x"/>
-<circle cx="100" cy="98" r="4" fill="#ff1a1a" class="beating" opacity=".9"/>
+<path d="M100 50 L100 176" stroke="#ff1a1a" stroke-width="3.2" opacity=".95" class="part" stroke-linecap="round" filter="url(#glow)" data-name="Aorta" data-latin="Aorta 2.5cm" data-fungsi="Bawa darah O2 83ml/detik" data-fakta="Putus = mati 1 menit"/>
+<path d="M100 60 Q80 78 74 136 Q80 152 100 166" stroke="#2a6bff" stroke-width="2.6" opacity=".85" fill="none" stroke-linecap="round" class="part" data-name="Vena Cava" data-latin="Vena terbesar" data-fungsi="Balikin darah kotor ke jantung" data-fakta="Panjang 22cm, vena terpanjang"/>
+<path d="M100 60 Q120 78 126 136 Q120 152 100 166" stroke="#2a6bff" stroke-width="2.6" opacity=".85" fill="none" stroke-linecap="round" class="part" data-name="Vena Cava" data-latin="Vena cava inferior" data-fungsi="Bawa CO2 ke jantung" data-fakta="Total pembuluh 100.000km = 2.5x keliling bumi"/>
+<circle cx="100" cy="99" r="3.5" fill="#ff1a1a" class="beating"/>
 </g>
-<!-- SARAF -->
-<g id="L_nerve">
-<path d="M100 22 Q100 60 100 100 Q90 120 86 150 Q84 190 90 230 Q92 250 100 270" stroke="#ffeb3b" stroke-width="2.2" fill="none" stroke-dasharray="5 4" class="part" data-name="Sumsum Tulang Belakang" data-latin="Medulla Spinalis - 45cm, 31 pasang saraf" data-fungsi="Jalan tol informasi: otak ke tubuh 120m/detik. Mengatur refleks tanpa harus lewat otak" data-fakta="Jika terpotong = lumpuh. Punya 31 pasang saraf spinal. Kecepatan sinyal 432 km/jam"/>
-<circle cx="100" cy="28" r="12" fill="#ffe76a" opacity=".95" class="part" data-name="Otak" data-latin="Encephalon - 1.4kg, 86 miliar neuron" data-fungsi="Pusat kontrol: berpikir, ingatan, emosi, gerakan. Butuh 20% energi tubuh padahal cuma 2% berat" data-fakta="Otak punya 86 miliar neuron, koneksinya 1000 triliun. Lebih banyak dari bintang di galaksi! Tidak bisa merasakan sakit sendiri"/>
-<path d="M100 40 Q70 55 58 75 Q55 85 62 95" stroke="#ffeb3b" stroke-width="1.5" fill="none" opacity=".6"/>
-<path d="M100 40 Q130 55 142 75 Q145 85 138 95" stroke="#ffeb3b" stroke-width="1.5" fill="none" opacity=".6"/>
+
+<!-- SARAF GLOWING -->
+<g id="L_nerve" class="nerve-glow">
+<path d="M100 24 Q100 70 100 110 Q90 130 86 162 Q84 200 90 240 Q93 260 100 280" stroke="#ffeb3b" stroke-width="2.5" fill="none" stroke-dasharray="6 4" class="part" data-name="Medulla Spinalis" data-latin="45cm 31 pasang saraf" data-fungsi="Jalan tol 120m/detik, refleks tanpa otak" data-fakta="Kecepatan 432km/jam, potong = lumpuh"/>
+<circle cx="100" cy="30" r="12.5" fill="#ffe76a" stroke="#ffeb3b" stroke-width="1" opacity=".95" class="part" data-name="Otak" data-latin="86 miliar neuron" data-fungsi="Kontrol berpikir, 20% energi tubuh" data-fakta="1000 triliun koneksi, lebih banyak dari bintang di galaksi"/>
 </g>
-<!-- ORGAN -->
+
+<!-- ORGAN 3D DENGAN GRADASI -->
 <g id="L_organ">
-<path class="part" d="M68 75 Q66 115 84 122 Q91 95 86 75" fill="#ff8a8a" data-name="Paru-Paru Kiri" data-latin="Pulmo Sinister - 2 lobus, 300 juta alveoli" data-fungsi="Pertukaran O2 & CO2. Menghirup 11.000 liter udara/hari. 70% sampah tubuh dibuang lewat paru" data-fakta="Jika dibentangkan luas alveoli 70m² = lapangan tenis. Kanan 3 lobus, kiri 2 lobus biar ada tempat jantung"/>
-<path class="part" d="M132 75 Q134 115 116 122 Q109 95 114 75" fill="#ff8a8a" data-name="Paru-Paru Kanan" data-latin="Pulmo Dexter - 3 lobus, lebih besar" data-fungsi="Ambil O2, buang CO2. 1x napas = 500ml udara" data-fakta="Paru kanan lebih besar 10% dari kiri. Kita bernapas 22.000x sehari"/>
-<path id="heart" class="part beating" d="M100 86 Q108 79 113 86 Q113 97 100 108 Q87 97 87 86 Q92 79 100 86" fill="#ff1744" data-name="Jantung" data-latin="Cor - 300gr, berdetak 100.000x/hari" data-fungsi="Pompa 7.500 liter darah/hari ke seluruh tubuh. 4 ruang: 2 atrium, 2 ventrikel. Listrik sendiri tanpa otak" data-fakta="Seumur hidup berdetak 3 MILIAR kali. Jantung wanita berdetak lebih cepat dari pria. Bisa terus berdetak di luar tubuh jika diberi O2"/>
-<path class="part" d="M84 125 Q100 130 116 125 L116 145 Q100 152 84 145 Z" fill="#8a3d1d" data-name="Hati" data-latin="Hepar - 1.5kg, 500+ fungsi" data-fungsi="Pabrik kimia: detoks racun, buat empedu, simpan gula, buat protein darah. Bisa regenerasi 75% hilang" data-fakta="Organ terbesar di dalam tubuh. 1 menit menyaring 1.4 liter darah. Hati mabuk butuh 1 minggu recovery"/>
-<path class="part" d="M84 148 Q72 158 84 170 L96 170 Q108 158 96 148 Z" fill="#e0a060" data-name="Lambung" data-latin="Ventriculus - Kapasitas 1.5L" data-fungsi="Mencerna protein dengan HCl pH 1.5 (sekuat air aki) & enzim pepsin. Bunuh bakteri" data-fakta="Asam lambung bisa larutkan silet! Lambung buat lapisan lendir baru tiap 3 hari biar tidak tercerna sendiri"/>
-<ellipse class="part" cx="76" cy="138" rx="7" ry="12" fill="#a05a2a" data-name="Ginjal Kiri" data-latin="Ren - Filter 180L darah/hari" data-fungsi="Filter darah jadi urin, buang racun, atur tekanan darah, buat hormon. 1 juta nefron per ginjal" data-fakta="Ginjal filter darah 40x sehari. Jika 1 ginjal rusak, 1 lagi bisa handle 100%. Ginjal kanan lebih rendah karena ada hati"/>
-<ellipse class="part" cx="124" cy="138" rx="7" ry="12" fill="#a05a2a" data-name="Ginjal Kanan" data-latin="Ren Dexter" data-fungsi="Cuci darah, atur air & garam tubuh" data-fakta="Setiap hari buat 1-2L urin dari 180L darah yang difilter"/>
-<path class="part" d="M90 170 Q100 180 110 170 Q105 200 100 210 Q95 200 90 170" fill="#d4a0" data-name="Usus Halus" data-latin="Intestinum Tenue - 6 meter!" data-fungsi="Serap 90% nutrisi makanan. Panjang 6m tapi muat karena melingkar. Vili & mikrovili perbesar luas serap" data-fakta="Luas penyerapan usus 250m² = lapangan tenis. Makanan 6 jam di usus halus"/>
+<!-- Paru dengan shading -->
+<g class="part" data-name="Paru Kiri" data-latin="Pulmo 2 lobus 300jt alveoli" data-fungsi="Tukar O2-CO2 11.000L/hari" data-fakta="Luas 70m² = lapangan tenis">
+<path d="M68 75 Q65 116 84 123 Q92 97 87 75" fill="#ff8a8a" stroke="#cc5a5a" stroke-width=".4"/>
+<path d="M70 78 Q68 110 82 118" fill="none" stroke="#ffaaaa" stroke-width=".8" opacity=".6"/>
 </g>
-<!-- OTOT -->
+<g class="part" data-name="Paru Kanan" data-latin="Pulmo 3 lobus" data-fungsi="Ambil O2 22.000x napas/hari" data-fakta="10% lebih besar dari kiri">
+<path d="M132 75 Q135 116 116 123 Q108 97 113 75" fill="#ff8a8a" stroke="#cc5a5a" stroke-width=".4"/>
+</g>
+<!-- Jantung 3D berdetak -->
+<g id="heart" class="part beating" data-name="Jantung" data-latin="Cor 300gr 100.000x/hari" data-fungsi="Pompa 7.500L/hari 4 ruang" data-fakta="3 MILIAR detak seumur hidup, bisa detak di luar tubuh">
+<path d="M100 87 Q108.5 80 113.5 87 Q113.5 98.5 100 110 Q86.5 98.5 86.5 87 Q91.5 80 100 87" fill="#ff1744" stroke="#a00020" stroke-width=".5"/>
+<ellipse cx="96" cy="88" rx="3" ry="2" fill="#ff6a8a" opacity=".7"/>
+</g>
+<!-- Hati 3D -->
+<g class="part" data-name="Hati" data-latin="Hepar 1.5kg 500+ fungsi" data-fungsi="Detoks, empedu, simpan gula, regenerasi 75%" data-fakta="Saring 1.4L darah/menit">
+<path d="M84 125 Q100 130 116 125 L116 147 Q100 154 84 147 Z" fill="#8a3d1d" stroke="#5a2510" stroke-width=".4"/>
+<path d="M86 127 Q100 132 114 127" fill="none" stroke="#aa5a30" stroke-width=".6" opacity=".6"/>
+</g>
+<g class="part" data-name="Lambung" data-latin="Ventriculus 1.5L" data-fungsi="HCl pH 1.5 sekuat aki, cerna protein" data-fakta="Bisa larutkan silet, ganti lendir tiap 3 hari">
+<path d="M84 150 Q71 160 84 173 L97 173 Q110 160 97 150 Z" fill="#e0a060" stroke="#8a5a30" stroke-width=".4"/>
+</g>
+<ellipse class="part" cx="76" cy="139" rx="7.5" ry="12.5" fill="#a05a2a" stroke="#6a3a1a" stroke-width=".4" data-name="Ginjal" data-latin="Ren filter 180L/hari" data-fungsi="1jt nefron, buat 1-2L urin" data-fakta="Filter 40x sehari, 1 ginjal bisa handle 100%"/>
+<ellipse class="part" cx="124" cy="139" rx="7.5" ry="12.5" fill="#a05a2a" stroke="#6a3a1a" stroke-width=".4" data-name="Ginjal Kanan" data-latin="Ren dexter" data-fungsi="Cuci darah atur garam" data-fakta="Kanan lebih rendah karena hati"/>
+</g>
+
+<!-- OTOT 3D DENGAN SERAT -->
 <g id="L_muscle">
-<path class="part" d="M52 62 Q100 54 148 62 Q155 140 100 285 Q45 140 52 62" fill="#b01e1e" opacity=".92" data-name="Otot Rangka" data-latin="Musculus Skeletalis - 600+ otot, 40% berat" data-fungsi="Gerakan sadar (voluntary). Otot lurik bisa berkontraksi 50x/detik. Butuh energi besar" data-fakta="Otot terkuat: rahang (masseter) bisa gigit 90kg. Otot terkecil: di telinga 1mm. Otot mata bergerak 100.000x/hari"/>
+<path class="part" d="M50 60 Q100 50 150 60 Q158 140 100 290 Q42 140 50 60" fill="url(#muscleGrad)" opacity=".94" data-name="Otot Rangka 600+" data-latin="Musculus 40% berat" data-fungsi="Voluntary 50x kontraksi/detik" data-fakta="Rahang 90kg gigit, mata 100.000x gerak/hari"/>
+<!-- serat otot -->
+<path d="M70 80 Q100 85 130 80" stroke="#ff5555" stroke-width=".4" opacity=".4" fill="none"/>
+<path d="M68 100 Q100 105 132 100" stroke="#ff5555" stroke-width=".4" opacity=".4" fill="none"/>
+<path d="M65 125 Q100 130 135 125" stroke="#ff5555" stroke-width=".4" opacity=".3" fill="none"/>
 </g>
-<!-- KULIT -->
+
+<!-- KULIT 3D REALISTIK -->
 <g id="L_skin">
-<path class="part" d="M48 58 Q100 46 152 58 Q160 140 100 295 Q40 140 48 58" fill="#eac8a6" data-name="Kulit" data-latin="Integumen - Organ TERBESAR 2m², 4kg" data-fungsi="Proteksi: anti bakteri, UV, air. Termoregulasi: keringat & bulu kuduk. Sensor: 5 juta reseptor sentuh" data-fakta="3 lapisan: epidermis, dermis, hipodermis. Ganti kulit baru tiap 28 hari. Sidik jari unik bahkan kembar identik beda"/>
-<circle class="part" cx="100" cy="28" r="27" fill="#eac8a6" data-name="Kulit Kepala & Rambut" data-latin="Scalp - 100.000 helai rambut" data-fungsi="Proteksi kepala dari panas & benturan, estetika" data-fakta="Rambut tumbuh 1cm/bulan. Botak karena hormon DHT, bukan karena topi"/>
+<path class="part skin-base" d="M46 56 Q100 44 154 56 Q163 140 100 300 Q37 140 46 56" data-name="Kulit" data-latin="Integumen 2m² 4kg organ terbesar" data-fungsi="Anti kuman UV, termoregulasi 5jt reseptor" data-fakta="Ganti baru 28 hari, sidik jari unik kembar pun beda"/>
+<!-- highlight kulit -->
+<path d="M55 62 Q100 52 145 62 Q145 64 100 56 Q55 64 55 62" fill="#ffffff" opacity=".25"/>
+<circle class="part skin-base" cx="100" cy="30" r="28" data-name="Kepala" data-latin="Scalp 100rb rambut" data-fungsi="Proteksi panas benturan" data-fakta="Tumbuh 1cm/bulan, botak karena DHT"/>
+<ellipse cx="92" cy="27" rx="7" ry="9" fill="#fff" opacity=".28"/>
 </g>
 </svg>
 </div>
 </div>
 
 <div id="popup">
-<div style="display:flex;justify-content:space-between;align-items:center"><b id="p_name" style="font-size:16px">Nama</b><span onclick="closeP()" style="cursor:pointer;background:#22223a;padding:4px 10px;border-radius:20px">✕</span></div>
+<div style="display:flex;justify-content:space-between"><b id="p_name" style="font-size:17px"></b><span onclick="closeP()" style="cursor:pointer;background:#2a2a4a;padding:5px 12px;border-radius:20px">✕</span></div>
 <div id="p_latin" class="badge"></div>
-<p id="p_fungsi" style="font-size:12px;color:#ddd;margin-top:10px;line-height:1.6"></p>
-<div style="background:#ffffff0a;padding:10px;border-radius:10px;margin-top:10px;border-left:3px solid #ff5a8a">
-<p id="p_fakta" style="font-size:11px;color:#ffb3c8;line-height:1.5"></p>
+<p id="p_fungsi" style="font-size:12.5px;color:#ddd;margin-top:12px;line-height:1.6"></p>
+<div style="background:linear-gradient(90deg,#ffffff08,#ffffff03);padding:11px;border-radius:12px;margin-top:10px;border-left:3px solid #ff5a8a">
+<p id="p_fakta" style="font-size:11px;color:#ffb3c8;line-height:1.6"></p>
 </div>
 <button class="btn" onclick="closeP()">Oke Paham! ✅</button>
 </div>
 
 <div id="ui">
-<div id="bar"><span id="pct">0% - KULIT: Pelindung Terluar</span><span style="color:#555">Pinch = zoom</span></div>
+<div id="bar"><span id="pct">0% - KULIT 3D: Organ Terbesar</span><span style="color:#555;font-size:10px">Pinch zoom • Double tap reset</span></div>
 <input id="depth" type="range" min="0" max="100" value="0" oninput="bedah(this.value)">
 <div class="chips">
 <div class="chip on" id="c0" onclick="go(0)">KULIT<br>2m²</div>
 <div class="chip" id="c1" onclick="go(25)">OTOT<br>600+</div>
 <div class="chip" id="c2" onclick="go(50)">ORGAN<br>78</div>
 <div class="chip" id="c3" onclick="go(70)">SARAF<br>86M</div>
-<div class="chip" id="c4" onclick="go(85)">DARAH<br>100rb km</div>
+<div class="chip" id="c4" onclick="go(85)">DARAH<br>100K</div>
 <div class="chip" id="c5" onclick="go(100)">TULANG<br>206</div>
 </div>
-<div id="detail">
-<b id="d_title">👋 Tap organ apapun buat belajar</b>
-<p id="d_desc">Geser slider dari KULIT → TULANG untuk bedah lapisan. Tiap layer punya penjelasan fungsi & fakta unik yang sering keluar di ujian biologi.</p>
-</div>
+<div id="detail"><b id="d_title">💀 Versi 3D Realistic - Tap organ!</b><p id="d_desc">Sekarang ada shading, highlight, bayangan, serat otot. Jantung berdetak, saraf glowing. Keliatan volume kayak di buku Gray's Anatomy.</p></div>
 </div>
 
 <script>
 const L={skin:L_skin,muscle:L_muscle,organ:L_organ,nerve:L_nerve,vessel:L_vessel,bone:L_bone};
-const titles=["KULIT: Pelindung Terluar 2m²","OTOT: 600+ Otot Penggerak 40% Berat","ORGAN: 78 Organ Vital","SARAF: 86 Miliar Neuron 432km/jam","PEMBULUH: 100.000km Selang Darah","TULANG: 206 Tulang Penopang"];
+const titles=["KULIT 3D: 2m² Organ Terbesar - Gradient + Highlight","OTOT 3D: 600+ Serat Otot Realistis 40% Berat","ORGAN 3D: 78 Organ dengan Shading & Depth","SARAF 3D: Glowing 86M Neuron 432km/jam","DARAH 3D: 100.000km Pembuluh Bercahaya","TULANG 3D: 206 Tulang dengan Shadow & Highlight"];
 const descs=[
-"3 lapisan: epidermis (luar), dermis (saraf & keringat), hipodermis (lemak). Fungsi: cegah kuman, atur suhu, sensor sentuh.",
-"Jenis: lurik (sadar, bisa dilatih), polos (di usus & pembuluh), jantung (otomatis). Butuh protein & latihan biar besar.",
-"Jantung pompa 7.500L/hari, Paru 11.000L udara, Hati 500+ fungsi, Ginjal filter 180L darah. Semua kerja 24 jam nonstop.",
-"Otak 1.4kg tapi pakai 20% energi. Sumsum tulang belakang 45cm, 31 pasang saraf. Refleks lutut tidak lewat otak, makanya cepat.",
-"Aorta 2.5cm diameter, vena cava 22cm. Darah 5 liter muter 1x per menit. Kapiler setipis rambut, tempat tukar O2.",
-"Bayi 270 tulang, dewasa 206 karena menyatu. Femur tahan 30x berat badan. Sumsum merah di tulang buat 200 miliar sel darah/hari."
-];
+"Kulit sekarang pakai radial gradient + highlight putih biar keliatan basah 3D. 3 lapisan: epidermis, dermis, hipodermis.",
+"Otot pakai linear gradient merah gelap-terang + garis serat. Lurik 50x kontraksi/detik, butuh protein.",
+"Paru, jantung, hati semua pakai stroke & highlight biar timbul. Jantung ada pantulan cahaya di atas.",
+"Saraf kuning glowing animation, sumsum 45cm 31 pasang saraf. Sinyal 120m/detik.",
+"Aorta merah glowing, vena biru. Total panjang pembuluh 100rb km bisa keliling bumi 2.5x.",
+"Tulang pakai bone gradient putih-abu + highlight + drop shadow. Femur tahan 30x berat badan."];
 function bedah(v){
- v=+v;
- L.skin.style.opacity = v<20?1-v/20:0;
- L.muscle.style.opacity = v<20?v/20 : v<40?1 : 1-(v-40)/20;
- L.organ.style.opacity = v<30?0 : v<55?(v-30)/25 : v<75?1 : 1-(v-75)/15;
- L.nerve.style.opacity = v<60?0 : v<75?(v-60)/15 : 1;
- L.vessel.style.opacity = v<70?0 : v<85?(v-70)/15 : 1;
- L.bone.style.opacity = 0.15+v/100*0.85;
+ v=+v; L.skin.style.opacity=v<20?1-v/20:0; L.muscle.style.opacity=v<20?v/20:v<40?1:1-(v-40)/20;
+ L.organ.style.opacity=v<30?0:v<55?(v-30)/25:v<75?1:1-(v-75)/15;
+ L.nerve.style.opacity=v<60?0:v<75?(v-60)/15:1; L.vessel.style.opacity=v<70?0:v<85?(v-70)/15:1;
+ L.bone.style.opacity=0.15+v/100*0.85;
  let idx=v<20?0:v<40?1:v<60?2:v<75?3:v<90?4:5;
- document.getElementById('pct').innerText=v+'% - '+titles[idx];
- document.getElementById('d_title').innerText=titles[idx];
- document.getElementById('d_desc').innerText=descs[idx];
- document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
- document.getElementById('c'+idx).classList.add('on');
+ pct.innerText=v+'% - '+titles[idx]; d_title.innerText=titles[idx]; d_desc.innerText=descs[idx];
+ document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on')); document.getElementById('c'+idx).classList.add('on');
 }
 function go(v){depth.value=v;bedah(v)}
-// zoom
 let scale=1; const vp=document.getElementById('viewport');
-function apply(){vp.style.transform=`scale(${scale})`}
 let lastDist=0;
 vp.addEventListener('touchstart',e=>{if(e.touches.length==2)lastDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY)},{passive:false});
-vp.addEventListener('touchmove',e=>{if(e.touches.length==2){let d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);scale=Math.min(3,Math.max(0.7,scale*(d/lastDist)));lastDist=d;apply();}},{passive:false});
-document.getElementById('stage').addEventListener('dblclick',()=>{scale=1;apply()});
-// popup detail
+vp.addEventListener('touchmove',e=>{if(e.touches.length==2){let d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);scale=Math.min(3,Math.max(0.7,scale*(d/lastDist)));lastDist=d;vp.style.transform=`scale(${scale})`;}},{passive:false});
+document.getElementById('stage').addEventListener('dblclick',()=>{scale=1;vp.style.transform=`scale(1)`});
 document.querySelectorAll('.part').forEach(el=>{
  el.addEventListener('click',e=>{
-  p_name.innerText=el.dataset.name;
-  p_latin.innerText=el.dataset.latin;
-  p_fungsi.innerText="📌 FUNGSI: "+el.dataset.fungsi;
-  p_fakta.innerText="💡 FAKTA UNIK: "+el.dataset.fakta;
-  document.getElementById('popup').classList.add('show');
-  e.stopPropagation();
+  p_name.innerText=el.dataset.name; p_latin.innerText=el.dataset.latin;
+  p_fungsi.innerText="📌 FUNGSI: "+el.dataset.fungsi; p_fakta.innerText="💡 FAKTA: "+el.dataset.fakta;
+  document.getElementById('popup').classList.add('show'); e.stopPropagation();
  })
 });
 function closeP(){document.getElementById('popup').classList.remove('show')}
