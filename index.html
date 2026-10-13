@@ -1,121 +1,292 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ANATOMY V6 - 50 SOAL UTBK</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071b19">
+<meta name="description" content="BioLab adalah laboratorium belajar biologi interaktif: materi, simulasi sel, DNA, evolusi, ekologi, kuis, dan glosarium.">
+<title>BioLab — Laboratorium Biologi</title>
 <style>
-*{margin:0;box-sizing:border-box}body{background:#070714;color:#fff;font-family:Inter,sans-serif;overflow:hidden}
-#top{position:fixed;top:0;width:100%;padding:10px 14px;z-index:30;background:#070714F2;border-bottom:1px solid #22224a;display:flex;justify-content:space-between;align-items:center}
-#stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;padding:60px 0 160px}
-svg{width:380px;height:680px}.part{cursor:pointer;transition:.2s}.part:hover{filter:brightness(1.3)}
-#ui{position:fixed;bottom:0;width:100%;padding:10px;background:#0e0e1f;border-radius:20px 20px 0 0;border:1px solid #22224a;z-index:20}
-.chips{display:flex;gap:5px;margin-top:6px}.chip{flex:1;padding:6px;border-radius:9px;background:#1a1a32;text-align:center;font-size:9px;font-weight:700;border:1px solid #2a2a5a;cursor:pointer}.chip.on{background:#ff5a8a;color:#fff}
-#popup,#quizBox{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(0);background:#15152e;padding:18px;width:380px;max-width:94vw;border-radius:18px;z-index:99;border:1px solid #3a3a6a;transition:.3s cubic-bezier(.34,1.56,.64,1);max-height:90vh;overflow-y:auto}
-#popup.show,#quizBox.show{transform:translate(-50%,-50%) scale(1)}
-.badge{padding:3px 8px;border-radius:20px;background:#ff5a8a22;color:#ffb3c8;font-size:8px;font-weight:800}
-.btn{width:100%;padding:11px;margin-top:8px;border:none;border-radius:10px;background:#ff5a8a;color:#fff;font-weight:800;cursor:pointer}
-.btn2{background:#24244a}
-.opt{padding:10px;margin-top:7px;border-radius:10px;background:#1e1e3a;border:1px solid #2a2a5a;cursor:pointer;font-size:12px;text-align:left}
-.opt.correct{background:#0a3d2a;border-color:#00c853}
-.opt.wrong{background:#4a1515;border-color:#ff1744}
-.opt:hover{border-color:#ff5a8a}
-#timer{font-weight:900;color:#ff5a8a;font-size:13px}
-.progress{height:4px;background:#22224a;border-radius:10px;margin:8px 0;overflow:hidden}
-.progress div{height:100%;background:#ff5a8a;transition:.3s}
+:root{--bg:#071b19;--panel:#102724;--panel2:#16332e;--text:#e8f6ef;--muted:#9bb9ae;--green:#65edb0;--line:#28463e;--yellow:#ffe47a;--red:#ff8a8a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.top{position:sticky;top:0;z-index:50;background:rgba(7,27,25,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 18px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
+.logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--green),#a7f3d0);display:grid;place-items:center;color:#0a201d;font-weight:900}
+.menu{display:flex;gap:18px;font-size:13px;color:var(--muted)}
+.menu a{padding:6px 8px;border-radius:8px}
+.menu a:hover{background:var(--panel);color:var(--text)}
+.wrap{max-width:1180px;margin:0 auto;padding:22px 18px}
+.hero{display:grid;grid-template-columns:1.1fr.9fr;gap:22px;align-items:center;padding:18px 0 8px}
+.card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.hero.card{padding:22px}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;background:#0e2a27;border:1px solid var(--line);color:var(--muted);font-size:12px}
+.h1{font-size:34px;line-height:1.15;margin:12px 0 8px;font-weight:900}
+.sub{color:var(--muted);font-size:14px}
+.cta{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.btn{appearance:none;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 14px;border-radius:12px;font-weight:700;font-size:13px;cursor:pointer}
+.btn.primary{background:linear-gradient(180deg,var(--green),#3dd598);color:#0a201d;border-color:transparent}
+.btn.ghost{background:transparent}
+.grid{display:grid;gap:16px}
+.grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.kpi{display:flex;gap:14px;margin-top:10px}
+.kpi.box{flex:1;background:#0e2a27;border:1px dashed var(--line);border-radius:14px;padding:10px 12px;text-align:center}
+.kpi b{font-size:18px;display:block}
+.section{margin:26px 0}
+.section h2{font-size:20px;margin:0 0 8px}
+.muted{color:var(--muted)}
+.list{display:grid;gap:10px}
+.item{padding:12px;border-radius:12px;background:#0f2c28;border:1px solid var(--line);display:flex;gap:10px;align-items:flex-start}
+.item b{font-size:13px}
+.pill{font-size:11px;padding:3px 8px;border-radius:999px;background:#0e2a27;border:1px solid var(--line);color:var(--muted)}
+.sim{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.canvas{aspect-ratio:1.2/1;background:radial-gradient(120% 120% at 30% 20%,#143a35,#0b211f);border-radius:14px;border:1px solid var(--line);position:relative;overflow:hidden}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.legend span{font-size:11px;padding:4px 8px;border-radius:999px;background:#0e2a27;border:1px solid var(--line);color:var(--muted)}
+.footer{margin-top:28px;padding:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+.gloss{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.gloss div{padding:10px;border-radius:12px;background:#0f2c28;border:1px solid var(--line)}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;background:#0b211f;border:1px solid var(--line);padding:10px;border-radius:10px;overflow:auto}
+@media(max-width:980px){.hero{grid-template-columns:1fr}.grid.cols-3{grid-template-columns:1fr}.grid.cols-2{grid-template-columns:1fr}.sim{grid-template-columns:1fr}.menu{display:none}}
 </style>
 </head>
 <body>
-<div id="top">
-<div><b>V6 UTBK BANK 50 SOAL</b><div style="font-size:8.5px;color:#888">Verified: Gray's, Tortora, Guyton</div></div>
-<div style="text-align:right"><div id="timer">60:00</div><button class="btn2" style="padding:5px 10px;border-radius:8px;border:none;color:#fff;font-size:10px;font-weight:800;cursor:pointer;background:#ff5a8a" onclick="startUjian()">MODE UJIAN 🎯</button></div>
+<header class="top">
+<div class="nav">
+<div class="brand"><div class="logo">B</div><div>BioLab</div><span class="pill">v1.0</span></div>
+<nav class="menu">
+<a href="#materi">Materi</a><a href="#sel">Sim Sel</a><a href="#dna">DNA</a><a href="#evolusi">Evolusi</a><a href="#ekologi">Ekologi</a><a href="#kuis">Kuis</a><a href="#glosarium">Glosarium</a>
+</nav>
 </div>
-
-<div id="stage"><div id="viewport">
-<svg viewBox="0 0 200 390">
-<g id="L_bone"><circle class="part" cx="100" cy="28" r="20" fill="#e8e8ee" data-name="Os Cranii"/><rect x="88" y="70" width="24" height="60" rx="7" fill="#e0e0e8" class="part" data-name="Thorax"/><rect x="76" y="172" width="15" height="86" rx="7" fill="#e0e0e8" class="part" data-name="Femur"/></g>
-<g id="L_vessel"><path d="M100 50 L100 175" stroke="#d00020" stroke-width="3" class="part" data-name="Aorta"/><path d="M100 58 Q82 77 75 135 Q80 150 100 165" stroke="#2045ff" stroke-width="2.4" fill="none" class="part" data-name="Vena Cava"/></g>
-<g id="L_nerve"><path d="M100 24 Q100 70 100 110 Q90 130 86 162" stroke="#ffeb3b" stroke-width="2.2" fill="none" stroke-dasharray="5 4" class="part" data-name="Medulla"/><circle cx="100" cy="28" r="11" fill="#ffe76a" class="part" data-name="Encephalon"/></g>
-<g id="L_organ"><path d="M68 75 Q65 115 84 122 Q91 95 86 75" fill="#ff8a8a" class="part" data-name="Pulmo"/><path d="M100 86 Q108 79 113 86 Q113 97 100 108 Q87 97 87 86 Q92 79 100 86" fill="#d00020" class="part" data-name="Cor"/><path d="M84 125 Q100 130 116 125 L116 147 Q100 154 84 147 Z" fill="#8a3d1d" class="part" data-name="Hepar"/></g>
-<g id="L_muscle"><path d="M50 60 Q100 50 150 60 Q158 140 100 290 Q42 140 50 60" fill="#a01a1a" opacity=".9" class="part" data-name="Musculus"/></g>
-<g id="L_skin"><path d="M46 56 Q100 44 154 56 Q163 140 100 300 Q37 140 46 56" fill="#eac8a6" class="part" data-name="Kulit"/></g>
-</svg>
-</div></div>
-
-<div id="popup">
-<b id="p_name"></b><div id="p_src" style="font-size:9px;color:#888;margin-top:6px"></div>
-<button class="btn" onclick="closeP()">Tutup</button>
-<button class="btn btn2" onclick="quizFromOrgan()">Quiz organ ini ❓</button>
+</header>
+<main class="wrap">
+<section class="hero">
+<div class="card">
+<span class="badge">🔬 Laboratorium Biologi Interaktif — belajar sambil praktik</span>
+<h1 class="h1">Biologi jadi nyata: visual, interaktif, & terverifikasi</h1>
+<p class="sub">BioLab menggabungkan materi ringkas, simulasi sel, untai DNA, pohon evolusi, dan kuis UTBK 50 soal. Semua istilah memakai Terminologia Anatomica & sumber Gray's, Tortora, Guyton, Robbins.</p>
+<div class="cta">
+<button class="btn primary" onclick="document.getElementById('kuis').scrollIntoView({behavior:'smooth'})">🎯 Mulai Ujian 60 Menit</button>
+<button class="btn" onclick="document.getElementById('materi').scrollIntoView({behavior:'smooth'})">📚 Jelajah Materi</button>
+<span class="pill">Offline • PWA ready • 100% edukasi</span>
 </div>
-
-<div id="quizBox">
-<div style="display:flex;justify-content:space-between"><b id="q_num">Soal 1/50</b><b id="q_score">Score: 0</b></div>
-<div class="progress"><div id="q_bar" style="width:2%"></div></div>
-<p id="q_text" style="font-size:13px;margin:10px 0;line-height:1.5;font-weight:600"></p>
-<div id="q_opts"></div>
-<div id="q_exp" style="display:none;margin-top:10px;padding:10px;background:#ffffff08;border-radius:10px;border-left:3px solid #ff5a8a">
-<p id="q_exp_text" style="font-size:11px;color:#ccc;line-height:1.5"></p>
-<p id="q_exp_src" style="font-size:8px;color:#666;margin-top:6px"></p>
-<button class="btn" onclick="nextQ()">Lanjut ➡️</button>
-</div>
-<div style="display:flex;gap:6px;margin-top:10px">
-<button class="btn btn2" style="flex:1" onclick="closeQuiz()">Keluar</button>
-<button class="btn btn2" style="flex:1" onclick="acakSoal()">Acak Soal 🔀</button>
+<div class="kpi">
+<div class="box"><b>6</b><span class="muted">Sistem Lapisan</span></div>
+<div class="box"><b>50</b><span class="muted">Soal UTBK Verified</span></div>
+<div class="box"><b>206</b><span class="muted">Tulang Referensi</span></div>
 </div>
 </div>
-
-<div id="ui">
-<div style="display:flex;justify-content:space-between;font-size:10px"><span id="pct">Geser layer • Tap organ = quiz</span><span id="mode">Mode Belajar</span></div>
-<input id="depth" type="range" min="0" max="100" value="0" oninput="bedah(this.value)" style="width:100%;accent-color:#ff5a8a">
-<div class="chips">
-<div class="chip on" id="c0" onclick="go(0)">KULIT</div><div class="chip" id="c1" onclick="go(25)">OTOT</div><div class="chip" id="c2" onclick="go(50)">ORGAN</div><div class="chip" id="c3" onclick="go(70)">SARAF</div><div class="chip" id="c4" onclick="go(85)">DARAH</div><div class="chip" id="c5" onclick="go(100)">TULANG</div>
+<div class="card" style="padding:14px">
+<div class="code" style="margin-bottom:10px"><b style="color:var(--green)">Human Anatomy V6.1 — 3D + Quiz</b><br>Tap organ = detail latin + fungsi + fakta klinis + sumber. Slider kulit→tulang, pinch zoom, mode ujian timer.</div>
+<div id="anatomy-root"></div>
 </div>
-<div style="margin-top:8px;display:flex;gap:6px">
-<button class="btn" style="flex:1;padding:8px;font-size:11px" onclick="startUjian()">🎯 MODE UJIAN 50 SOAL (60 MENIT)</button>
-<button class="btn btn2" style="flex:1;padding:8px;font-size:11px" onclick="startLatihan()">📚 LATIHAN BEBAS</button>
+</section>
+<section id="materi" class="section">
+<h2>📖 Materi Inti — Ringkas & Verified</h2>
+<div class="grid cols-3">
+<div class="item"><div>🦴</div><div><b>Skeletal 206 tulang (axial 80 + appendicular 126)</b><div class="muted">Bayi ~270 tulang, fusi sacrum 5→1. Femur ~50cm ~26% tinggi, terpanjang & terkuat tahan 770-1130kg. Gray's Anatomy.</div></div></div>
+<div class="item"><div>💪</div><div><b>Muscular 600+ otot, 40-50% BB</b><div class="muted">Skeletal lurik multinukleus voluntary NMJ ACh, cardiac bercabang discus intercalaris, smooth spindle calmodulin. Sarkomer Z-Z, sliding filament Ca2+.</div></div></div>
+<div class="item"><div>🧠</div><div><b>Neurologi 86M neuron + 85M glia</b><div class="muted">Otak 2% BB pakai 20% O2 & 25% glukosa. Resting -70mV K+ intrasel. Glutamat eksitasi, GABA inhibisi. BBB tight junction endotel + astrosit.</div></div></div>
+<div class="item"><div>❤️</div><div><b>Cor & Vascular 5L CO</b><div class="muted">CO = SV70ml x HR70 = ~5L/menit. Aorta 2.5-3.5cm 120/80. VCS dari brachiocephalica, VCI 22cm 1.5-2.5cm. Total vaskular ~100.000km.</div></div></div>
+<div class="item"><div>🫁</div><div><b>Pulmo 300-500jt alveoli 70-100m²</b><div class="muted">Membran 0.5 mikron, surfaktan DPPC pneumosit II cegah kolaps. Bronchus dex pendek vertikal 25° → aspirasi lebih sering kanan. V/Q 0.8.</div></div></div>
+<div class="item"><div>🧬</div><div><b>Hepar, Ren, Gaster</b><div class="muted">Hepar 1.2-1.5kg 8 segmen 75% v.portae 25% a.hepatica, 500+ fungsi, bilirubin indirect→direct, regenerasi 70%. Ren 1-1.2jt nefron GFR 90-120. Gaster HCl pH1.5-3.5.</div></div></div>
+</div>
+</section><section id="sel" class="section">
+<h2>🔬 Simulasi Sel — Tap Organel</h2>
+<div class="sim">
+<div class="canvas" id="cellCanvas"></div>
+<div class="card" style="padding:14px">
+<div style="display:flex;justify-content:space-between;align-items:center"><b>Detail Organel</b><span class="pill" id="organelleName">Pilih organel</span></div>
+<p class="muted" id="organelleDesc" style="font-size:13px;margin-top:8px">Klik organel di kiri untuk lihat fungsi, ukuran, & fakta ujian. Semua skala mikrometer.</p>
+<div class="legend"><span>Nucleus ~6μm</span><span>Mitokondria 0.5-1μm</span><span>Ribosom 20nm</span><span>RE kasar & halus</span><span>Golgi</span><span>Lisosom</span></div>
+<div class="list" style="margin-top:12px">
+<div class="item"><div>🧫</div><div><b>Tips UTBK Sel</b><div class="muted">Prokariotik tanpa membran inti, Eukariotik punya. Endosimbiosis: mitokondria & kloroplas dulu bakteri. Sel hewan tanpa dinding, tumbuhan ada selulosa.</div></div></div>
 </div>
 </div>
-
+</div>
+</section>
+<section id="dna" class="section">
+<h2>🧬 DNA — Transkripsi & Translasi</h2>
+<div class="grid cols-2">
+<div class="card" style="padding:14px">
+<b>Untai DNA → RNA → Protein</b>
+<p class="muted" style="font-size:13px">Simulasi: ATGC pairing, kodon, antikodon tRNA. Satu kodon = satu asam amino. Start AUG, Stop UAA/UAG/UGA.</p>
+<div class="code" id="dnaSeq">ATGCATGCATGCATGCATGCATGCATGCATGCATGC</div>
+<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+<button class="btn" onclick="transcribe()">Transkripsi → mRNA</button>
+<button class="btn" onclick="translate()">Translasi → Protein</button>
+<button class="btn ghost" onclick="mutate()">Mutasi Titik</button>
+</div>
+<div class="code" id="rnaOut" style="margin-top:10px">mRNA: -</div>
+<div class="code" id="proteinOut" style="margin-top:8px">Protein: -</div>
+</div>
+<div class="card" style="padding:14px">
+<b>Catatan Penting</b>
+<div class="list">
+<div class="item"><div>📌</div><div><b>Replikasi semikonservatif</b><div class="muted">Enzim helikase, polimerase, ligase. Leading continuous, lagging Okazaki.</div></div></div>
+<div class="item"><div>📌</div><div><b>Mutasi</b><div class="muted">Titik (substitusi), frameshift (insersi/delesi), kromosom (aneuploidi). Sumber variasi + seleksi = evolusi.</div></div></div>
+<div class="item"><div>📌</div><div><b>Regulasi gen</b><div class="muted">Operon lac/trp pada prokariotik, enhancer/silencer + faktor transkripsi pada eukariotik.</div></div></div>
+</div>
+</div>
+</div>
+</section>
+<section id="evolusi" class="section">
+<h2>🌳 Evolusi — Pohon Filogenetik</h2>
+<div class="grid cols-2">
+<div class="card" style="padding:14px">
+<div class="code">Common Ancestor
+├─ Bacteria & Archaea (prokariotik 3.5 miliar tahun)
+└─ Eukarya
+├─ Protista
+├─ Fungi
+├─ Plantae (kloroplas endosimbiosis)
+└─ Animalia
+├─ Porifera → Cnidaria → Bilateria
+└─ Deuterostomia → Chordata → Vertebrata → Mammalia → Primata → Homo sapiens
+</div>
+<div class="legend"><span>Homologi = struktur sama leluhur sama</span><span>Analogi = fungsi sama leluhur beda</span><span>Seleksi alam = survival of the fittest</span></div>
+</div>
+<div class="card" style="padding:14px">
+<b>Bukti Evolusi</b>
+<div class="list">
+<div class="item"><div>🦴</div><div><b>Fosil & Transitional</b><div class="muted">Archaeopteryx (reptil-burung), Tiktaalik (ikan-tetrapod), Australopithecus.</div></div></div>
+<div class="item"><div>🧬</div><div><b>Molekuler</b><div class="muted">DNA 98% sama simpanse, gen Hox konservasi, ERV retrovirus purba.</div></div></div>
+<div class="item"><div>🧫</div><div><b>Embriologi & Vestigial</b><div class="muted">Insang embrionik, usus buntu, tulang ekor, otot telinga.</div></div></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ekologi" class="section">
+<h2>🌍 Ekologi — Rantai Makanan & Siklus</h2>
+<div class="grid cols-3">
+<div class="card" style="padding:12px"><b>Produsen → Konsumen → Dekomposer</b><div class="muted" style="font-size:12px">Produsen (fotosintesis 6CO2+6H2O→C6H12O6+6O2). Konsumen I herbivor, II karnivor, III top. Dekomposer bakteri jamur. 10% energi naik tiap trofik.</div></div>
+<div class="card" style="padding:12px"><b>Siklus Biogeokimia</b><div class="muted" style="font-size:12px">Karbon: fotosintesis-respirasi-pembakaran. Nitrogen: fiksasi Rhizobium → nitrifikasi → denitrifikasi. Air: evaporasi-kondensasi-presipitasi.</div></div>
+<div class="card" style="padding:12px"><b>Interaksi</b><div class="muted" style="font-size:12px">Mutualisme (+/+), Komensalisme (+/0), Parasitisme (+/-), Predasi, Kompetisi. Suksesi primer (lumut) → sekunder → klimaks.</div></div>
+</div>
+</section>
+<section id="kuis" class="section">
+<h2>🎯 Kuis UTBK 50 Soal — Mode Ujian</h2>
+<div class="card" style="padding:14px">
+<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+<div><b id="qNum">Soal 1/50</b> <span class="pill" id="qScore">Score: 0</span> <span class="pill" id="qMode">Mode Belajar</span></div>
+<div style="display:flex;gap:8px;align-items:center"><span class="pill" id="timer">60:00</span><button class="btn primary" onclick="startUjian()">🎯 Mulai Ujian 60 Menit</button><button class="btn" onclick="startLatihan()">📚 Latihan Bebas</button></div>
+</div>
+<div style="height:6px;background:#0e2a27;border-radius:10px;margin:10px 0;overflow:hidden"><div id="qBar" style="height:100%;width:2%;background:var(--green);transition:.3s"></div></div>
+<p id="qText" style="font-weight:700;margin:8px 0"></p>
+<div id="qOpts" class="list"></div>
+<div id="qExp" style="display:none;margin-top:12px;padding:12px;border-radius:12px;background:#0f2c28;border:1px solid var(--line);border-left:3px solid var(--green)">
+<p id="qExpText" style="font-size:13px"></p><p id="qExpSrc" style="font-size:11px;color:var(--muted);margin-top:6px"></p>
+<button class="btn" style="margin-top:8px" onclick="nextQ()">Lanjut ➡️</button>
+</div>
+<div style="display:flex;gap:8px;margin-top:10px">
+<button class="btn ghost" style="flex:1" onclick="closeQuiz()">Keluar</button>
+<button class="btn ghost" style="flex:1" onclick="acakSoal()">Acak Soal 🔀</button>
+<button class="btn ghost" style="flex:1" onclick="shareScore()">Share Score 📤</button>
+</div>
+</div>
+  </section><section id="glosarium" class="section">
+<h2>📚 Glosarium & Sumber</h2>
+<div class="gloss">
+<div><b>Os femoris</b><div class="muted">Tulang paha, terpanjang ~50cm ~26% tinggi, tahan 770-1130kg. Sumber: Gray's + study 1077 limbs.</div></div>
+<div><b>CO = SV x HR</b><div class="muted">Cardiac output ~5L/menit, SV 70ml HR 70. Sumber: Guyton Hall.</div></div>
+<div><b>GFR 90-120</b><div class="muted">Glomerular filtration rate, filtrasi 180L/hari → urin 1-2L. Sumber: Guyton.</div></div>
+<div><b>Alveoli 300-500jt 70-100m²</b><div class="muted">Membran 0.5 mikron, surfaktan DPPC pneumosit II. Sumber: West.</div></div>
+<div><b>206 tulang</b><div class="muted">Axial 80 + appendicular 126, bayi 270 fusi. Sumber: Gray's Anatomy 42nd Ed.</div></div>
+<div><b>BBB</b><div class="muted">Tight junction endotel + astrosit foot + perisit. Sumber: Kandel.</div></div>
+</div>
+<div class="footer">BioLab v1.0 — Edukasi saja, bukan diagnosis medis. Semua data diverifikasi: Gray's Anatomy, Tortora, Guyton Hall, Robbins, West Respiratory, Snell, Kandel, Fitzpatrick, Abbas Immunology. Dibuat untuk belajar biologi interaktif. Jika ragu, cek buku ajar. © 2026 BioLab.</div>
+</section>
+</main>
 <script>
-const L={skin:L_skin,muscle:L_muscle,organ:L_organ,nerve:L_nerve,vessel:L_vessel,bone:L_bone};
-function bedah(v){v=+v; L.skin.style.opacity=v<20?1-v/20:0; L.muscle.style.opacity=v<20?v/20:v<40?1:1-(v-40)/20; L.organ.style.opacity=v<30?0:v<55?(v-30)/25:v<75?1:1-(v-75)/15; L.nerve.style.opacity=v<60?0:v<75?(v-60)/15:1; L.vessel.style.opacity=v<70?0:v<85?(v-70)/15:1; L.bone.style.opacity=0.15+v/100*0.85; let idx=v<20?0:v<40?1:v<60?2:v<75?3:v<90?4:5; document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on')); document.getElementById('c'+idx).classList.add('on');}
-function go(v){depth.value=v;bedah(v)} bedah(0);
+// ANATOMY 3D LAYER
+const anatomyHTML = `
+<style>
+#anatomy{width:100%;max-width:420px;margin:0 auto}
+#anatomy svg{width:100%;height:auto;display:block}
+.part{cursor:pointer;transition:.2s;pointer-events:all}
+.part:hover{filter:brightness(1.3) drop-shadow(0 0 8px #65edb0)}
+#uiA{margin-top:10px}
+.chips{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.chip{flex:1;min-width:60px;padding:7px;border-radius:10px;background:#0e2a27;text-align:center;font-size:10px;font-weight:700;border:1px solid #28463e;cursor:pointer}
+.chip.on{background:#65edb0;color:#0a201d}
+#popupA{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(0);background:#102724;padding:16px;width:360px;max-width:92vw;border-radius:16px;z-index:100;border:1px solid #28463e;transition:.3s;max-height:85vh;overflow:auto}
+#popupA.show{transform:translate(-50%,-50%) scale(1)}
+</style>
+<div id="anatomy">
+<svg viewBox="0 0 200 390">
+<g id="L_skin"><path class="part" d="M46 56 Q100 44 154 56 Q163 140 100 300 Q37 140 46 56" fill="#eac8a6" data-name="Kulit" data-latin="Integumentum 2m² organ terbesar" data-fungsi="Barrier, termoregulasi 5jt reseptor, sensasi Meissner Pacini" data-fakta="Turnover 28-40 hari, sidik jari unik" data-src="Fitzpatrick"/></g>
+<g id="L_muscle"><path class="part" d="M50 60 Q100 50 150 60 Q158 140 100 290 Q42 140 50 60" fill="#a01a1a" opacity=".9" data-name="Musculus" data-latin="600+ otot 40-50% BB" data-fungsi="Skeletal lurik voluntary, cardiac bercabang, smooth spindle" data-fakta="Masseter terkuat 90kg, stapedius terkecil 1mm" data-src="Tortora"/></g>
+<g id="L_organ"><path class="part" d="M68 75 Q65 115 84 122 Q91 95 86 75" fill="#ff8a8a" data-name="Pulmo" data-latin="Dexter 3 lobus 10 segmen, Sinister 2 lobus 9 segmen" data-fungsi="Alveoli 300-500jt 70-100m² membran 0.5 mikron, surfaktan DPPC" data-fakta="Bronchus dex pendek vertikal 25° aspirasi lebih sering kanan, V/Q 0.8" data-src="West"/><path class="part" d="M100 86 Q108 79 113 86 Q113 97 100 108 Q87 97 87 86 Q92 79 100 86" fill="#d00020" data-name="Cor" data-latin="250-350gr 4 ruang" data-fungsi="CO=SV70ml x HR70=5L/menit, SA node 60-100 pacemaker" data-fakta="Suplai aa.coronaria, infark tersering LAD, marker troponin" data-src="Guyton"/><path class="part" d="M84 125 Q100 130 116 125 L116 147 Q100 154 84 147 Z" fill="#8a3d1d" data-name="Hepar" data-latin="1.2-1.5kg 8 segmen Couinaud" data-fungsi="500+ fungsi, 75% v.portae 25% a.hepatica, bilirubin indirect->direct" data-fakta="Regenerasi 70% reseksi, AST/ALT hepatoseluler" data-src="Robbins"/></g>
+<g id="L_nerve"><path class="part" d="M100 24 Q100 70 100 110 Q90 130 86 162" stroke="#ffe47a" stroke-width="2.2" fill="none" stroke-dasharray="5 4" data-name="Medulla Spinalis" data-latin="31 segmen 8C 12T 5L 5S 1Co, conus L1-L2" data-fungsi="Substantia grisea H, alba tractus, refleks patella L2-L4" data-fakta="LP L3-L4/L4-L5, konduksi A-alpha 70-120 m/s" data-src="Snell"/><circle class="part" cx="100" cy="28" r="11" fill="#ffe47a" data-name="Encephalon" data-latin="86M neuron+85M glia ~1400gr 2% BB" data-fungsi="20% O2 25% glukosa, -70mV, glutamat eksitasi GABA inhibisi, BBB tight junction" data-fakta="Cerebrum lobus, cerebellum koordinasi, truncus vital" data-src="Kandel"/></g>
+<g id="L_vessel"><path class="part" d="M100 50 L100 175" stroke="#d00020" stroke-width="3" data-name="Aorta" data-latin="Ascendens 2.5-3.5cm, arcus 3 cabang, descendens" data-fungsi="120/80 mmHg, Windkessel elastin, 3 lapis intima media adventitia" data-fakta="Aneurisma infrarenal >3cm surveillance, diseksi Stanford A emergensi" data-src="Guyton"/><path class="part" d="M100 58 Q82 77 75 135 Q80 150 100 165" stroke="#5a7cff" stroke-width="2.4" fill="none" data-name="Vena Cava" data-latin="VCS brachiocephalica, VCI iliaca communis 22cm 1.5-2.5cm" data-fungsi="Drainase atas/bawah diafragma, pompa otot & respirasi" data-fakta="Total vaskular ~100.000km = 2.5x bumi, VCI tanpa katup" data-src="Anatomy"/></g>
+<g id="L_bone"><circle class="part" cx="100" cy="28" r="20" fill="#e8e8ee" data-name="Os Cranii" data-latin="Neurocranium 8 + Viscerocranium 14 =22" data-fungsi="Lindungi encephalon, sutura pertumbuhan" data-fakta="Bayi ~270 tulang dewasa 206 axial 80 appendicular 126, fontanel anterior 12-18 bulan" data-src="Gray's"/><rect class="part" x="88" y="70" width="24" height="60" rx="7" fill="#e0e0e8" data-name="Thorax" data-latin="Costae I-XII + Sternum" data-fungsi="Vera I-VII langsung, spuria VIII-X tidak langsung, fluctuantes XI-XII bebas" data-fakta="Fraktur V-IX tersering, I jarang" data-src="Tortora"/><rect class="part" x="76" y="172" width="15" height="86" rx="7" fill="#e0e0e8" data-name="Os Femoris" data-latin="~50cm ~26% tinggi terpanjang terkuat" data-fungsi="Caput collum 125-135° trochanter, condylus, hematopoiesis" data-fakta="Mean 50cm tibial 39cm, tahan 770-1130kg, AVN collum risiko a.circumflexa medialis" data-src="Study 1077 limbs"/></g>
+</svg>
+<div id="uiA">
+<div style="display:flex;justify-content:space-between;font-size:11px"><span id="pctA">0% layer</span><span id="modeA">Belajar</span></div>
+<input id="depthA" type="range" min="0" max="100" value="0" oninput="bedahA(this.value)" style="width:100%;accent-color:#65edb0">
+<div class="chips">
+<div class="chip on" id="c0A" onclick="goA(0)">KULIT</div><div class="chip" id="c1A" onclick="goA(25)">OTOT</div><div class="chip" id="c2A" onclick="goA(50)">ORGAN</div><div class="chip" id="c3A" onclick="goA(70)">SARAF</div><div class="chip" id="c4A" onclick="goA(85)">DARAH</div><div class="chip" id="c5A" onclick="goA(100)">TULANG</div>
+</div>
+</div>
+<div id="popupA">
+<b id="pNameA"></b><div id="pLatinA" style="display:inline-block;padding:3px 8px;border-radius:20px;background:#0e2a27;border:1px solid #28463e;color:#9bb9ae;font-size:9px;margin-top:6px"></div>
+<p id="pFungsiA" style="font-size:11px;color:#cde9df;margin-top:8px;line-height:1.5;white-space:pre-wrap"></p>
+<p id="pFaktaA" style="font-size:11px;color:#ffe47a;margin-top:6px;line-height:1.5;white-space:pre-wrap"></p>
+<p id="pSrcA" style="font-size:8px;color:#6b8a82;margin-top:6px"></p>
+<button class="btn primary" style="width:100%;margin-top:8px" onclick="closeA()">Tutup</button>
+</div>
+</div>
+`;
+document.getElementById('anatomy-root').innerHTML=anatomyHTML;
+const LA={skin:document.getElementById('L_skin'),muscle:document.getElementById('L_muscle'),organ:document.getElementById('L_organ'),nerve:document.getElementById('L_nerve'),vessel:document.getElementById('L_vessel'),bone:document.getElementById('L_bone')};
+window.bedahA=function(v){v=+v; try{LA.skin.style.opacity=v<20?1-v/20:0; LA.muscle.style.opacity=v<20?v/20:v<40?1:1-(v-40)/20; LA.organ.style.opacity=v<30?0:v<55?(v-30)/25:v<75?1:1-(v-75)/15; LA.nerve.style.opacity=v<60?0:v<75?(v-60)/15:1; LA.vessel.style.opacity=v<70?0:v<85?(v-70)/15:1; LA.bone.style.opacity=0.15+v/100*0.85;}catch(e){} let idx=v<20?0:v<40?1:v<60?2:v<75?3:v<90?4:5; document.querySelectorAll('#uiA.chip').forEach(c=>c.classList.remove('on')); let el=document.getElementById('c'+idx+'A'); if(el) el.classList.add('on'); let pct=document.getElementById('pctA'); if(pct) pct.innerText=v+'%';}
+window.goA=function(v){document.getElementById('depthA').value=v; bedahA(v);} bedahA(0);
+document.querySelectorAll('#anatomy.part').forEach(el=>{el.addEventListener('click',e=>{let d=el.dataset; document.getElementById('pNameA').innerText=d.name; document.getElementById('pLatinA').innerText=d.latin||""; document.getElementById('pFungsiA').innerText="FUNGSI: "+(d.fungsi||""); document.getElementById('pFaktaA').innerText="FAKTA: "+(d.fakta||""); document.getElementById('pSrcA').innerText="Sumber: "+(d.src||""); document.getElementById('popupA').classList.add('show'); e.stopPropagation();});});
+window.closeA=function(){document.getElementById('popupA').classList.remove('show');}
+document.getElementById('anatomy-root').addEventListener('click',e=>{ if(e.target.id==='anatomy-root') closeA(); });
 
-// BANK 50 SOAL UTBK VERIFIED
+// CELL SIM
+const cell=document.getElementById('cellCanvas');
+if(cell){
+cell.innerHTML=`<svg viewBox="0 0 200 200" style="width:100%;height:100%"><circle cx="100" cy="100" r="88" fill="#0e2a27" stroke="#28463e"/><circle id="nucleus" cx="100" cy="85" r="28" fill="#1a3d38" stroke="#65edb0" stroke-width="1" style="cursor:pointer"/><circle id="mito" cx="60" cy="120" r="12" fill="#16332e" stroke="#ffe47a" stroke-width="1" style="cursor:pointer"/><circle id="mito2" cx="140" cy="120" r="12" fill="#16332e" stroke="#ffe47a" stroke-width="1" style="cursor:pointer"/><rect id="er" x="30" y="60" width="34" height="18" rx="6" fill="#102724" stroke="#9bb9ae" style="cursor:pointer"/><rect id="golgi" x="130" y="60" width="34" height="18" rx="6" fill="#102724" stroke="#9bb9ae" style="cursor:pointer"/></svg>`;
+const info={nucleus:{name:"Nucleus ~6μm",desc:"Pusat kontrol, DNA kromatin, nukleolus buat rRNA. Pori nukleus 120nm transport mRNA. Sumber: Tortora."},mito:{name:"Mitokondria 0.5-1μm",desc:"Powerhouse, siklus Krebs + ETC + fosforilasi oksidatif, ATP 30-32/glukosa. Endosimbiosis bakteri. Sumber: Guyton."},mito2:{name:"Mitokondria",desc:"Punya DNA sirkular sendiri, cristae perbesar luas. Apoptosis via sitokrom c."},er:{name:"Retikulum Endoplasma",desc:"Kasur: ribosom -> protein sekretori. Halus: sintesis lipid, detoks, Ca2+ store."},golgi:{name:"Apparatus Golgi",desc:"Modifikasi, sorting, packaging protein → vesikel → lisosom/membran/sekresi."}};
+function setOrg(id){let d=info[id]; if(!d) return; document.getElementById('organelleName').innerText=d.name; document.getElementById('organelleDesc').innerText=d.desc;}
+cell.querySelectorAll('[id]').forEach(el=>el.addEventListener('click',()=>setOrg(el.id)));
+}
+
+// DNA
+window.transcribe=function(){let dna=document.getElementById('dnaSeq').innerText.trim(); let rna=dna.replace(/T/g,'U'); document.getElementById('rnaOut').innerText='mRNA: '+rna;}
+window.translate=function(){let rna=document.getElementById('rnaOut').innerText.replace('mRNA: ','').trim(); if(!rna||rna=='-'){transcribe(); rna=document.getElementById('rnaOut').innerText.replace('mRNA: ','').trim();} let codonTable={AUG:'Met',UUU:'Phe',UUC:'Phe',UUA:'Leu',UUG:'Leu',UCU:'Ser',UCC:'Ser',UAU:'Tyr',UAC:'Tyr',UGU:'Cys',UGG:'Trp',UAA:'Stop',UAG:'Stop',UGA:'Stop'}; let prot=[]; for(let i=0;i<rna.length;i+=3){let cod=rna.substr(i,3); if(codonTable[cod]) prot.push(codonTable[cod]); else if(cod.length==3) prot.push('?');} document.getElementById('proteinOut').innerText='Protein: '+prot.join('-');}
+window.mutate=function(){let dna=document.getElementById('dnaSeq'); let s=dna.innerText; let i=Math.floor(Math.random()*s.length); let bases=['A','T','G','C']; s=s.substring(0,i)+bases[Math.floor(Math.random()*4)]+s.substring(i+1); dna.innerText=s;}
+
+// QUIZ 50 SOAL
 const bank=[
-{q:"Jumlah tulang dewasa & bayi menurut Gray's Anatomy?",opts:["206 dewasa, 270 bayi (fusi)","208 dewasa, 300 bayi","206 dewasa, 206 bayi","213 dewasa, 270 bayi"],ans:0,exp:"Gray's: 206 distinct bones dewasa (axial 80 + appendicular 126). Bayi ~270 tulang rawan, fusi sacrum 5->1, coccyx 3-5->1.",src:"Gray's Anatomy 42nd Ed, axial 80 + appendicular 126 = 206"},
-{q:"Os femoris panjang rata-rata & % tinggi badan?",opts:["~50cm, ~26% tinggi, tulang terpanjang & terkuat","~30cm, ~15% tinggi","~60cm, ~35% tinggi","~40cm, ~20% tinggi"],ans:0,exp:"Studi 1077 limbs: mean femoral length 50.0cm ±7.2, tibial 39cm. Femur ~26% height, tahan 770-1130kg tekan.",src:"Seminar: mean femoral 50cm, tibial 39cm. Testbook: femur 26% height"},
-{q:"Costae vera, spuria, fluctuantes?",opts:["I-VII vera langsung ke sternum, VIII-X spuria tidak langsung, XI-XII fluctuantes bebas","Semua langsung ke sternum","I-XII semua melayang","Hanya I-V vera"],ans:0,exp:"Vera I-VII cartilago costalis langsung ke sternum. Spuria VIII-X menyatu ke costa di atas. Fluctuantes XI-XII ujung bebas.",src:"Tortora Principles of Anatomy - Thorax"},
-{q:"Fraktur collum femoris risiko apa & kenapa?",opts:["AVN caput karena a.circumflexa femoris medialis robek","Infeksi saja","Tidak ada risiko","Patah patella"],ans:0,exp:"Collum femoris disuplai a.circumflexa femoris medialis (retinacular). Fraktur = suplai putus => avaskular nekrosis caput femoris.",src:"Gray's Anatomy - Hip joint blood supply"},
-{q:"Diameter aorta ascendens & tekanan normal?",opts:["2.5-3.5cm, 120/80 mmHg","1cm, 90/60","5cm, 200/100","0.5cm, 120/80"],ans:0,exp:"Aorta ascendens 2.5-3.5cm. Tekanan normal sistolik 120, diastolik 80 mmHg. Media kaya elastin untuk Windkessel effect.",src:"Guyton Hall - Aorta compliance"},
-{q:"VCS & VCI dibentuk dari apa & panjang VCI?",opts:["VCS dari vv.brachiocephalica, VCI dari vv.iliaca communis, panjang VCI ~22cm diam 1.5-2.5cm","Keduanya dari atrium","VCI 5cm","VCS dari aorta"],ans:0,exp:"VCS: vv.brachiocephalica dex+sin. VCI: vv.iliaca communis, panjang 22cm, diameter 1.5-2.5cm, tidak punya katup.",src:"Anatomy textbook - Great veins"},
-{q:"Total panjang sistem vaskular manusia?",opts:["~100.000km = 2.5x keliling bumi","~10km","~1000km","~1.000.000km"],ans:0,exp:"Arteri + vena + kapiler ~100.000km. Kapiler diameter 5-10 mikron, tempat pertukaran.",src:"Guyton Hall - Vascular length"},
-{q:"Medulla spinalis berakhir di mana & lumbal puncture di mana?",opts:["Conus medullaris L1-L2, puncture L3-L4 / L4-L5","Berakhir di sacrum, puncture di cervical","Berakhir di L5, puncture di thoracal","Berakhir di otak"],ans:0,exp:"Medulla berakhir conus di L1-L2, lanjut cauda equina. LP di L3-L4 atau L4-L5 interspinosus untuk hindari cedera medulla.",src:"Snell Neuroanatomy - Spinal cord"},
-{q:"Kecepatan konduksi A-alpha & fungsi refleks patella?",opts:["70-120 m/s, arcus reflexus L2-L4 tanpa cortex","1 m/s, lewat cortex","10 m/s","200 m/s"],ans:0,exp:"Serabut A-alpha 70-120 m/s (myelinated besar). Refleks patella L2-L4: sensorik -> interneuron -> motorik di medulla, tanpa ke cortex, makanya cepat.",src:"Guyton Hall - Nerve conduction"},
-{q:"Encephalon berat, % O2 & % glukosa?",opts:["~1400gr (2% BB) tapi 20% O2 & 25% glukosa","10% BB 50% O2","500gr 5% O2","2000gr 10% O2"],ans:0,exp:"Otak 2% berat badan tapi konsumsi O2 20% & glukosa 25% tubuh. ATP hampir eksklusif dari glukosa (tidak simpan glikogen banyak).",src:"Kandel Neuroscience - Brain metabolism"},
-{q:"Potensial istirahat neuron & ion utama?",opts:["-70mV, K+ tinggi intrasel, Na+ tinggi ekstrasel, aksi potensial via Na+ influx","-10mV","0mV","+70mV"],ans:0,exp:"Resting -70mV karena K+ leak & Na+/K+ ATPase (3 Na+ keluar, 2 K+ masuk). Aksi potensial: Na+ channel buka -> depolarisasi -> K+ keluar repolarisasi.",src:"Guyton Hall - Membrane potential"},
-{q:"Neurotransmitter eksitasi & inhibisi utama?",opts:["Glutamat eksitasi, GABA inhibisi","GABA eksitasi, glutamat inhibisi","Dopamin eksitasi utama","Serotonin eksitasi utama"],ans:0,exp:"Glutamat ~75% sinaps eksitasi di CNS (via AMPA/NMDA). GABA ~25% inhibisi (via GABA-A Cl- influx).",src:"Kandel - Neurotransmitter"},
-{q:"BBB dibentuk oleh?",opts:["Tight junction endotel kapiler + astrosit foot process + perisit","Hanya tengkorak","Hanya dura","Tidak ada BBB"],ans:0,exp:"Blood-brain barrier: tight junction antar endotel, basal lamina, perisit, astrosit foot. Lindungi otak dari toksin, tapi obat sulit masuk.",src:"Neuroscience textbook"},
-{q:"Pulmo dexter vs sinister lobus & segmentum?",opts:["Dexter 3 lobus (sup, med, inf) 10 segmen, sinister 2 lobus + lingula 9 segmen","Keduanya 2 lobus","Keduanya 3 lobus","Dexter 2, sinister 3"],ans:0,exp:"Kanan 3 lobus karena fissura horizontalis + obliqua, kiri 2 lobus. Segmentum bronchopulmonale kanan 10, kiri 9-10.",src:"West Respiratory Physiology"},
-{q:"Alveolus jumlah & luas, tebal membran respiratorik?",opts:["300-500 juta, luas 70-100m², membran 0.5 mikron","100 juta, 10m²","1 miliar, 200m²","50 juta, 20m²"],ans:0,exp:"Alveoli 300-500 juta, luas 70-100m² (lapangan tenis). Membran: pneumosit I + basal lamina + endotel = 0.5 mikron tipis untuk difusi O2/CO2.",src:"Tortora - Respiratory membrane"},
-{q:"Surfaktan apa & fungsi?",opts:["DPPC (dipalmitoylphosphatidylcholine) dari pneumosit II, turunkan surface tension cegah kolaps","Protein saja","Hanya air","Mukus"],ans:0,exp:"Surfaktan = DPPC + protein SP-A,B,C,D dari pneumosit tipe II. Turunkan tegangan permukaan alveolus, cegah kolaps saat ekspirasi, cegah edema.",src:"West - Surfactant"},
-{q:"Bronchus principalis dex kenapa aspirasi lebih sering kanan?",opts:["Lebih pendek, lebar, vertikal (~25° dari trakea)","Lebih panjang","Lebih sempit","Sama saja"],ans:0,exp:"Bronchus dex: panjang 2.5cm, lebar, sudut 25° dari vertikal. Sin: panjang 5cm, sudut 45°. Jadi benda asing cenderung jatuh kanan.",src:"Gray's Anatomy - Bronchi"},
-{q:"Cor 4 ruang & katup urutan aliran?",opts:["VCS/VCI -> atrium dex -> tricuspidalis -> ventriculus dex -> pulmonalis -> pulmo -> vv.pulmonales -> atrium sin -> mitralis -> ventriculus sin -> aortae -> aorta","Langsung aorta","Atrium sin dulu","Tidak ada katup"],ans:0,exp:"Sirkulasi: kanan = pulmonal (darah kotor ke paru), kiri = sistemik (darah bersih ke tubuh). Katup cegah regurgitasi.",src:"Guyton Hall - Heart chambers"},
-{q:"Sistem konduksi jantung & pacemaker?",opts:["SA node 60-100/menit (pacemaker) -> AV delay 0.1s -> His -> Purkinje","Hanya Purkinje","AV node pacemaker utama","His pacemaker"],ans:0,exp:"SA node di atrium dex dekat VCS = pacemaker normal 60-100. AV node delay 0.1s untuk atrium kontraksi dulu. His & Purkinje cepat 2-3 m/s.",src:"Guyton Hall - Conduction system"},
-{q:"Cardiac output rumus & normal?",opts:["CO = SV (70ml) x HR (70) = ~5L/menit","CO = 1L/menit","CO = 20L/menit","CO = HR saja"],ans:0,exp:"Stroke volume ~70ml, HR ~70 => CO 4.9-5L/menit istirahat. Exercise bisa 20-25L/menit.",src:"Guyton Hall - Cardiac output"},
-{q:"Suplai darah jantung & infark tersering?",opts:["aa.coronaria dex & sin dari sinus Valsalva, infark tersering LAD (a.coronaria sin ramus interventricularis anterior)","Dari VCI","Dari aorta descendens","Dari VCS"],ans:0,exp:"Coronaria dari aorta ascendens sinus Valsalva. LAD suplai anterior & septum, paling sering aterosklerosis -> infark anterior.",src:"Robbins Pathology - Coronary"},
-{q:"EKG P, QRS, T?",opts:["P=depolarisasi atrium, QRS=depolarisasi ventriculus, T=repolarisasi ventriculus","Semua depolarisasi","P=ventriculus","T=atrium"],ans:0,exp:"P wave atrium depolarisasi, QRS ventriculus depolarisasi (0.08-0.10s), T repolarisasi ventriculus. Atrium repolarisasi tertutup QRS.",src:"Guyton Hall - ECG"},
-{q:"Marker infark miokard?",opts:["Troponin I/T (spesifik), CK-MB","Hanya hemoglobin","Leukosit","Gula darah"],ans:0,exp:"Troponin I/T spesifik miokard, naik 3-6 jam post infark, puncak 24 jam, normal 7-10 hari. CK-MB naik 4-6 jam.",src:"Robbins - MI markers"},
-{q:"Hepar berat, segmen Couinaud, vaskularisasi?",opts:["1.2-1.5kg, 8 segmen, 75% v.portae + 25% a.hepatica propria","500gr, 4 segmen","2kg, 2 segmen","1kg, 75% arteri"],ans:0,exp:"Hepar 8 segmen Couinaud berdasarkan v.portae. 75% darah dari v.portae (nutrien usus), 25% dari a.hepatica (O2). Trias: portae, hepatica, choledocus.",src:"Gray's Anatomy - Liver"},
-{q:"Fungsi hepar metabolisme & bilirubin?",opts:["Karbo (glikogenesis, glikogenolisis, glukoneogenesis), protein (albumin, faktor koagulasi), lemak, detoks CYP450, bilirubin indirect -> direct via glukuronidasi","Hanya simpan lemak","Hanya buat empedu","Tidak ada fungsi"],ans:0,exp:"Hepar 500+ fungsi. Bilirubin indirect hidrofobik bound albumin -> hepar konjugasi glucuronate -> direct hidrofilik -> empedu -> usus.",src:"Guyton Hall - Liver functions"},
-{q:"Empedu volume & AST/ALT?",opts:["500-1000ml/hari, AST/ALT marker hepatoseluler, ALP/bilirubin kolestasis","100ml/hari","5000ml/hari","Tidak buat empedu"],ans:0,exp:"Empedu 500-1000ml/hari, garam empedu untuk emulsi lemak. AST/ALT naik jika hepatosit rusak, ALP naik jika kolestasis.",src:"Robbins - Liver enzymes"},
-{q:"Regenerasi hepar & sirosis?",opts:["Bisa regrow 70% reseksi (hepatosit masuk G1), sirosis = fibrosis + nodul regeneratif + hipertensi porta","Tidak bisa regenerasi","Sirosis = normal","Regenerasi 10% saja"],ans:0,exp:"Hepar bisa regenerasi hingga 70% reseksi karena hepatosit quiescent bisa masuk siklus. Sirosis: fibrosis difus + nodul, tekanan porta naik, varises.",src:"Robbins - Liver regeneration"},
-{q:"Gaster kapasitas, sel & pH?",opts:["1-1.5L (bisa 4L), chief pepsinogen, parietal HCl pH 1.5-3.5 + faktor intrinsik B12, mukus HCO3- proteksi","Kapasitas 100ml pH 7","Tidak ada HCl","Hanya chief saja"],ans:0,exp:"Gaster fundus, corpus, pars pylorica. Chief: pepsinogen -> pepsin aktif pH 1.5-2.5. Parietal: HCl & IF B12. G cell: gastrin. Mukus + HCO3- proteksi.",src:"Tortora - Stomach"},
-{q:"Turnover mukosa gaster & ulkus?",opts:["Mukosa ganti 3-6 hari, ulkus duodenum 90% H.pylori, gaster NSAID","Turnover 1 tahun","Ulkus karena makan pedas saja","Tidak ada ulkus"],ans:0,exp:"Mukosa cepat regenerasi 3-6 hari. Ulkus peptikum: duodenum paling sering H.pylori, gaster NSAID (hambat prostaglandin proteksi). HCl volume 2-5L/hari.",src:"Robbins - Peptic ulcer"},
-{q:"Ren nefron & GFR?",opts:["~1-1.2 juta nefron/ginjal, GFR 90-120ml/menit, filtrasi 180L/hari -> urin 1-2L (99% reabsorpsi)","100 nefron","GFR 10ml/menit","Filtrasi 1L/hari"],ans:0,exp:"Tiap ginjal ~1 juta nefron. Glomerulus filtrasi 180L/hari, tubulus reabsorpsi 99% jadi urin 1-2L. GFR normal 90-120ml/menit.",src:"Guyton Hall - GFR"},
-{q:"Regulasi ginjal ADH, Aldosteron, RAAS?",opts:["ADH reabsorpsi air di koligens, Aldosteron reabsorpsi Na+ sekresi K+, RAAS atur tekanan, EPO buat eritrosit, vit D kalsitriol","Tidak ada regulasi","Hanya ADH","Hanya EPO"],ans:0,exp:"ADH dari hipofisis posterior, Aldosteron dari adrenal, RAAS: renin dari juxtaglomerular -> angiotensin II vasokonstriksi + Aldosteron, ANP lawan.",src:"Guyton Hall - Kidney regulation"},
-{q:"Posisi ginjal kanan vs kiri & hilum?",opts:["Kanan lebih rendah 1-2cm karena hepar, hilum: v.renalis anterior, a.renalis tengah, ureter posterior","Kiri lebih rendah","Sama tinggi","Hilum hanya ureter"],ans:0,exp:"Ginjal kanan lebih rendah karena hepar di atasnya. Hilum urutan V-A-U dari depan ke belakang. Kreatinin marker filtrasi.",src:"Gray's Anatomy - Kidney"},
-{q:"Jenis otot 3 & perbedaan?",opts:["Skeletal: lurik multinukleus voluntary NMJ asetilkolin, Cardiac: lurik bercabang involuntary discus intercalaris, Smooth: polos spindle involuntary calmodulin","Semua sama","Hanya skeletal","Skeletal involuntary"],ans:0,exp:"Skeletal: voluntary, sarkomer aktin-miosin sliding. Cardiac: involuntary, gap junction. Smooth: involuntary viscera & pembuluh, calmodulin bukan troponin.",src:"Tortora - Muscle types"},
-{q:"Sarkomer & sliding filament?",opts:["Z-disc ke Z-disc, A-band miosin, I-band aktin, Ca2+ dari SR -> troponin -> tropomiosin geser -> cross-bridge + ATP","Tidak ada aktin","Hanya miosin","Tanpa Ca2+"],ans:0,exp:"Ca2+ dari sarkoplasmik retikulum ikat troponin C -> tropomiosin geser buka binding site aktin -> miosin head + ATP -> kontraksi.",src:"Guyton Hall - Muscle contraction"},
-{q:"Tipe serat otot & otot terkecil/terkuat?",opts:["Tipe I slow oxidative merah tahan lelah, IIa & IIx fast, terkecil m.stapedius 1mm, terkuat m.masseter 70-90kg/cm²","Semua fast","Terkecil masseter","Terkuat stapedius"],ans:0,exp:"Tipe I mitokondria banyak, myoglobin merah. Tipe IIx putih cepat lelah. Masseter tekanan gigitan terkuat, stapedius terkecil di telinga tengah.",src:"Tortora - Fiber types"},
-{q:"Integumentum lapisan & sel?",opts:["Epidermis: basale (mitosis melanosit Merkel), spinosum desmosom, granulosum keratohyalin, lucidum telapak, corneum keratin. Dermis papillare Meissner, reticulare kolagen","Hanya epidermis","Hanya dermis","Tidak ada lapisan"],ans:0,exp:"Epidermis 5 stratum. Dermis papillare kapiler & Meissner raba halus, reticulare kolagen I elastin folikel sebacea sudorifera.",src:"Fitzpatrick Dermatology"},
-{q:"Melanin & kelenjar keringat?",opts:["Melanosit di basale transfer melanosome 
+{q:"Jumlah tulang dewasa & bayi menurut Gray's Anatomy?",opts:["206 dewasa, 270 bayi (fusi)","208 dewasa, 300 bayi","206 dewasa, 206 bayi","213 dewasa, 270 bayi"],ans:0,exp:"Gray's: 206 distinct bones dewasa (axial 80 + appendicular 126). Bayi ~270 tulang rawan, fusi sacrum 5->1, coccyx 3-5->1.",src:"Gray's Anatomy 42nd Ed"},
+{q:"Os femoris panjang rata-rata & % tinggi badan?",opts:["~50cm, ~26% tinggi, tulang terpanjang & terkuat","~30cm, ~15% tinggi","~60cm, ~35% tinggi","~40cm, ~20% tinggi"],ans:0,exp:"Studi 1077 limbs: mean femoral length 50.0cm ±7.2, tibial 39cm. Femur ~26% height, tahan 770-1130kg tekan.",src:"Study: mean femoral 50cm, tibial 39cm"},
+{q:"Costae vera, spuria, fluctuantes?",opts:["I-VII vera langsung ke sternum, VIII-X spuria tidak langsung, XI-XII fluctuantes bebas","Semua langsung ke sternum","I-XII semua melayang","Hanya I-V vera"],ans:0,exp:"Vera I-VII cartilago costalis langsung ke sternum. Spuria VIII-X menyatu ke costa di atas. Fluctuantes XI-XII ujung bebas.",src:"Tortora"},
+{q:"Fraktur collum femoris risiko apa & kenapa?",opts:["AVN caput karena a.circumflexa femoris medialis robek","Infeksi saja","Tidak ada risiko","Patah patella"],ans:0,exp:"Collum femoris disuplai a.circumflexa femoris medialis (retinacular). Fraktur = suplai putus => avaskular nekrosis caput femoris.",src:"Gray's - Hip joint"},
+{q:"Diameter aorta ascendens & tekanan normal?",opts:["2.5-3.5cm, 120/80 mmHg","1cm, 90/60","5cm, 200/100","0.5cm, 120/80"],ans:0,exp:"Aorta ascendens 2.5-3.5cm. Tekanan normal sistolik 120, diastolik 80 mmHg. Media kaya elastin untuk Windkessel effect.",src:"Guyton Hall"},
+{q:"VCS & VCI dibentuk dari apa & panjang VCI?",opts:["VCS dari vv.brachiocephalica, VCI dari vv.iliaca communis, panjang VCI ~22cm diam 1.5-2.5cm","Keduanya dari atrium","VCI 5cm","VCS dari aorta"],ans:0,exp:"VCS: vv.brachiocephalica dex+sin. VCI: vv.iliaca communis, panjang 22cm, diameter 1.5-2.5cm, tidak punya katup.",src:"Anatomy textbook"},
+{q:"Total panjang sistem vaskular manusia?",opts:["~100.000km = 2.5x keliling bumi","~10km","~1000km","~1.000.000km"],ans:0,exp:"Arteri + vena + kapiler ~100.000km. Kapiler diameter 5-10 mikron, tempat pertukaran.",src:"Guyton Hall"},
+{q:"Medulla spinalis berakhir di mana & lumbal puncture di mana?",opts:["Conus medullaris L1-L2, puncture L3-L4 / L4-L5","Berakhir di sacrum, puncture di cervical","Berakhir di L5, puncture di thoracal","Berakhir di otak"],ans:0,exp:"Medulla berakhir conus di L1-L2, lanjut cauda equina. LP di L3-L4 atau L4-L5 interspinosus untuk hindari cedera medulla.",src:"Snell Neuroanatomy"},
+{q:"Kecepatan konduksi A-alpha & fungsi refleks patella?",opts:["70-120 m/s, arcus reflexus L2-L4 tanpa cortex","1 m/s, lewat cortex","10 m/s","200 m/s"],ans:0,exp:"Serabut A-alpha 70-120 m/s (myelinated besar). Refleks patella L2-L4: sensorik -> interneuron -> motorik di medulla, tanpa ke cortex, makanya cepat.",src:"Guyton Hall"},
+{q:"Encephalon berat, % O2 & % glukosa?",opts:["~1400gr (2% BB) tapi 20% O2 & 25% glukosa","10% BB 50% O2","500gr 5% O2","2000gr 10% O2"],ans:0,exp:"Otak 2% berat badan tapi konsumsi O2 20% & glukosa 25% tubuh. ATP hampir eksklusif dari glukosa.",src:"Kandel Neuroscience"},
+{q:"Potensial istirahat neuron & ion utama?",opts:["-70mV, K+ tinggi intrasel, Na+ tinggi ekstrasel, aksi potensial via Na+ influx","-10mV","0mV","+70mV"],ans:0,exp:"Resting -70mV karena K+ leak & Na+/K+ ATPase (3 Na+ keluar, 2 K+ masuk). Aksi potensial: Na+ channel buka -> depolarisasi.",src:"Guyton Hall"},
+{q:"Neurotransmitter eksitasi & inhibisi utama?",opts:["Glutamat eksitasi, GABA inhibisi","GABA eksitasi, glutamat inhibisi","Dopamin eksitasi utama","Serotonin eksitasi utama"],ans:0,exp:"Glutamat ~75% sinaps eksitasi di CNS (via AMPA/NMDA). GABA ~25% inhibisi (via GABA-A Cl- influx).",src:"Kandel"},
+{q:"BBB dibentuk oleh?",opts:["Tight junction endotel kapiler + astrosit foot process + perisit","Hanya tengkorak","Hanya dura","Tidak ada BBB"],ans:0,exp:"Blood-brain barrier: tight junction antar endotel, basal lamina, perisit, astrosit foot. Lindungi otak dari toksin.",src:"Neuroscience textbook"},
+{q:"Pulmo dexter vs sinister lobus & segmentum?",opts:["Dexter 3 lobus (sup, med, inf) 10 segmen, sinister 2 lobus + lingula 9 segmen","Keduanya 2 lobus","Keduanya 3 lobus","Dexter 2, sinister 3"],ans:0,exp:"Kanan 3 lobus karena fissura horizontalis + obliqua, kiri 2 lobus. Segmentum bronchopulmonale kanan 10, kiri 9-10.",src:"West Respiratory"},
+{q:"Alveolus jumlah & luas, tebal membran respiratorik?",opts:["300-500 juta, luas 70-100m², membran 0.5 mikron","100 juta, 10m²","1 miliar, 200m²","50 juta, 20m²"],ans:0,exp:"Alveoli 300-500 juta, luas 70-100m² (lapangan tenis). Membran: pneumosit I + basal lamina + endotel = 0.5 mikron.",src:"Tortora"},
+{q:"Surfaktan apa & fungsi?",opts:["DPPC (dipalmitoylphosphatidylcholine) dari pneumosit II, turunkan surface tension cegah kolaps","Protein saja","Hanya air","Mukus"],ans:0,exp:"Surfaktan = DPPC + protein SP-A,B,C,D dari pneumosit tipe II. Turunkan tegangan permukaan alveolus, cegah kolaps.",src:"West"},
+{q:"Bronchus principalis dex kenapa aspirasi lebih sering kanan?",opts:["Lebih pendek, lebar, vertikal (~25° dari trakea)","Lebih panjang","Lebih sempit","Sama saja"],ans:0,exp:"Bronchus dex: panjang 2.5cm, lebar, sudut 25° dari vertikal. Sin: panjang 5cm, sudut 45°. Jadi benda asing cenderung jatuh kanan.",src:"Gray's Anatomy"},
+{q:"Cor 4 ruang & katup urutan aliran?",opts:["VCS/VCI -> atrium dex -> tricuspidalis -> ventriculus dex -> pulmonalis -> pulmo -> vv.pulmonales -> atrium sin -> mitralis -> ventriculus sin -> aortae -> aorta","Langsung aorta","Atrium sin dulu","Tidak ada katup"],ans:0,exp:"Sirkulasi: kanan = pulmonal (darah kotor ke paru), kiri = sistemik (darah bersih ke tubuh). Katup cegah regurgitasi.",src:"Guyton Hall"},
+{q:"Sistem konduksi jantung & pacemaker?",opts:["SA node 60-100/menit (pacemaker) -> AV delay 0.1s -> His -> Purkinje","Hanya Purkinje","AV node pacemaker utama","His pacemaker"],ans:0,exp:"SA node di atrium dex dekat VCS = pacemaker normal 60-100. AV node delay 0.1s untuk atrium kontraksi dulu.",src:"Guyton Hall"},
+{q:"Cardiac output rumus & normal?",opts:["CO = SV (70ml) x HR (70) = ~5L/menit","CO = 1L/menit","CO = 20L/menit","CO = HR saja"],ans:0,exp:"Stroke volume ~70ml, HR ~70 => CO 4.9-5L/menit istirahat. Exercise bisa 20-25L/menit.",src:"Guyton Hall"},
+{q:"Suplai darah jantung & infark tersering?",opts:["aa.coronaria dex & sin dari sinus Valsalva, infark tersering LAD (a.coronaria sin ramus interventricularis anterior)","Dari VCI","Dari aorta descendens","Dari VCS"],ans:0,exp:"Coronaria dari aorta ascendens sinus Valsalva. LAD suplai anterior & septum, paling sering aterosklerosis.",src:"Robbins Pathology"},
+{q:"EKG P, QRS, T?",opts:["P=depolarisasi atrium, QRS=depolarisasi ventriculus, T=repolarisasi ventriculus","Semua depolarisasi","P=ventriculus","T=atrium"],ans:0,exp:"P wave atrium depolarisasi, QRS ventriculus depolarisasi (0.08-0.10s), T repolarisasi ventriculus.",src:"Guyton Hall"},
+{q:"Marker infark miokard?",opts:["Troponin I/T (spesifik), CK-MB","Hanya hemoglobin","Leukosit","Gula darah"],ans:0,exp:"Troponin I/T spesifik miokard, naik 3-6 jam post infark, puncak 24 jam, normal 7-10 hari. CK-MB naik 4-6 jam.",src:"Robbins"},
+{q:"Hepar berat, segmen Couinaud, vaskularisasi?",opts:["1.2-1.5kg, 8 segmen, 75% v.portae + 25% a.hepatica propria","500gr, 4 segmen","2kg, 2 segmen","1kg, 75% arteri"],ans:0,exp:"Hepar 8 segmen Couinaud berdasarkan v.portae. 75% darah dari v.portae (nutrien usus), 25% dari a.hepatica (O2).",src:"Gray's Anatomy"},
+{q:"Fungsi hepar metabolisme & bilirubin?",opts:["Karbo (glikogenesis, glikogenolisis, glukoneogenesis), protein (albumin, faktor koagulasi), lemak, detoks CYP450, bilirubin indirect -> direct via glukuronidasi","Hanya simpan lemak","Hanya buat empedu","Tidak ada fungsi"],ans:0,exp:"Hepar 500+ fungsi. Bilirubin indirect hidrofobik bound albumin -> hepar konjugasi glucuronate -> direct hidrofilik -> empedu.",src:"Guyton Hall"},
+{q:"Empedu volume & AST/ALT?",opts:["500-1000m
